@@ -45,17 +45,18 @@ body {
 
 /* ─── RYA INTERNATIONAL — dark elegante ──────────── */
 .rya-brand {
-  --r-bg: #0A0A0A;
+  --r-bg: #0D0D0D;
   --r-surface: #141414;
-  --r-text: #F0EBE1;
-  --r-muted: rgba(240, 235, 225, 0.45);
+  --r-text: #F7F5F1;
+  --r-muted: rgba(247, 245, 241, 0.45);
   --r-gold: #C8A96E;
   --r-gold-light: #E8D5A3;
   --r-border: rgba(200, 169, 110, 0.2);
 
   background-color: var(--r-bg);
   color: var(--r-text);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 300;
   line-height: 1.7;
 }
 
@@ -63,7 +64,7 @@ body {
 .rya-brand h2,
 .rya-brand h3,
 .rya-brand h4 {
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   font-weight: 500;
   line-height: 1.15;
 }

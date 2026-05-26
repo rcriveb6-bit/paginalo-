@@ -32,6 +32,18 @@ export interface RyaTestimonial {
   created_at: string;
 }
 
+export interface RyaProduct {
+  id: number;
+  name: string;
+  description: string | null;
+  price: number | null;
+  category: string | null;
+  image_url: string | null;
+  sold: boolean;
+  active: boolean;
+  created_at: string;
+}
+
 export interface SiteSetting {
   id: number;
   brand: string;

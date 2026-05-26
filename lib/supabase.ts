@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import type { LioraProduct, RyaService, RyaTestimonial } from './types';
+import type { LioraProduct, RyaProduct } from './types';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
@@ -15,17 +15,13 @@ const FALLBACK_LIORA_PRODUCTS: LioraProduct[] = [
   { id: 4, name: 'Coco & Lima', category: 'frutal', note: 'Coco tostado · Lima zesty · Vainilla tropical', price: 30, stock: 10, stripe_price_id: null, image_url: null, bg_color: '#E8F0D8', wax_color: '#A8C070', active: true, created_at: '' },
 ];
 
-const FALLBACK_RYA_SERVICES: RyaService[] = [
-  { id: 1, title: 'Business Strategy', description: 'Planificación estratégica para escalar tu negocio con métricas claras y resultados medibles.', icon: 'chart', order_index: 1, created_at: '' },
-  { id: 2, title: 'Branding Premium', description: 'Identidad de marca que comunica excelencia y atrae al cliente ideal desde el primer contacto.', icon: 'diamond', order_index: 2, created_at: '' },
-  { id: 3, title: 'Marketing Digital', description: 'Estrategias de crecimiento omnicanal: SEO, paid media y content marketing de alto impacto.', icon: 'megaphone', order_index: 3, created_at: '' },
-  { id: 4, title: 'Coaching Empresarial', description: 'Acompañamiento ejecutivo para líderes que quieren transformar su visión en resultados concretos.', icon: 'target', order_index: 4, created_at: '' },
-];
-
-const FALLBACK_RYA_TESTIMONIALS: RyaTestimonial[] = [
-  { id: 1, client_name: 'María González, CEO TechMiami', text: 'RYA International transformó completamente nuestra estrategia. Crecimos 40% en 6 meses.', rating: 5, avatar_url: null, created_at: '' },
-  { id: 2, client_name: 'Carlos Rodríguez, Fundador StartupPR', text: 'El coaching empresarial fue un punto de inflexión para nuestro equipo. Altamente recomendado.', rating: 5, avatar_url: null, created_at: '' },
-  { id: 3, client_name: 'Ana Martínez, Directora Creatividad', text: 'Su trabajo en branding nos posicionó como líderes en el mercado latinoamericano.', rating: 5, avatar_url: null, created_at: '' },
+const FALLBACK_RYA_PRODUCTS: RyaProduct[] = [
+  { id: 1, name: 'Blazer Vintage Camel', description: null, price: 35, category: 'outerwear', image_url: '/rya/item-1.png', sold: false, active: true, created_at: '' },
+  { id: 2, name: 'Conjunto Coord Café', description: null, price: 28, category: 'tops', image_url: '/rya/item-2.png', sold: false, active: true, created_at: '' },
+  { id: 3, name: 'Vestido Midi Floral', description: null, price: 32, category: 'dresses', image_url: '/rya/item-3.png', sold: false, active: true, created_at: '' },
+  { id: 4, name: 'Top Linen Crema', description: null, price: 18, category: 'tops', image_url: '/rya/item-4.png', sold: false, active: true, created_at: '' },
+  { id: 5, name: 'Pantalón Wide Leg', description: null, price: 25, category: 'bottoms', image_url: '/rya/item-5.png', sold: false, active: true, created_at: '' },
+  { id: 6, name: 'Chaqueta Denim', description: null, price: 30, category: 'outerwear', image_url: '/rya/item-6.png', sold: false, active: true, created_at: '' },
 ];
 
 export async function getLioraProducts(): Promise<LioraProduct[]> {
@@ -43,29 +39,17 @@ export async function getLioraProducts(): Promise<LioraProduct[]> {
   }
 }
 
-export async function getRyaServices(): Promise<RyaService[]> {
-  if (!supabase) return FALLBACK_RYA_SERVICES;
+export async function getRyaProducts(): Promise<RyaProduct[]> {
+  if (!supabase) return FALLBACK_RYA_PRODUCTS;
   try {
     const { data, error } = await supabase
-      .from('rya_services')
+      .from('rya_products')
       .select('*')
-      .order('order_index');
-    if (error || !data?.length) return FALLBACK_RYA_SERVICES;
-    return data as RyaService[];
+      .eq('active', true)
+      .order('id');
+    if (error || !data?.length) return FALLBACK_RYA_PRODUCTS;
+    return data as RyaProduct[];
   } catch {
-    return FALLBACK_RYA_SERVICES;
-  }
-}
-
-export async function getRyaTestimonials(): Promise<RyaTestimonial[]> {
-  if (!supabase) return FALLBACK_RYA_TESTIMONIALS;
-  try {
-    const { data, error } = await supabase
-      .from('rya_testimonials')
-      .select('*');
-    if (error || !data?.length) return FALLBACK_RYA_TESTIMONIALS;
-    return data as RyaTestimonial[];
-  } catch {
-    return FALLBACK_RYA_TESTIMONIALS;
+    return FALLBACK_RYA_PRODUCTS;
   }
 }
