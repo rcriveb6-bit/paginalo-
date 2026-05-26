@@ -1,121 +1,102 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-}
+html { scroll-behavior: smooth; height: 100%; }
 
 body {
   min-height: 100%;
-  background-color: #F7F5F1;
-  color: #1E3A5F;
-  font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+/* ─── PÁGINALO (main) ─────────────────────────────── */
 :root {
   --teal: #00B5B5;
   --coral: #FF7F7F;
   --navy: #1E3A5F;
   --bone: #F7F5F1;
-  --bone-dark: #EAE6DF;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #F7F5F1;
-}
-::-webkit-scrollbar-thumb {
-  background: #00B5B5;
-  border-radius: 3px;
-}
-
-/* -------------------------------------------------------------
-   LIORA BRAND SCOPING
-   ------------------------------------------------------------- */
+/* ─── LIORA — tonos tierra cálidos ───────────────── */
 .liora-brand {
-  --black: #0D0D0D;
-  --gold: #C9A84C;
-  --gold-light: #E8D08A;
-  --cream: #FAF7F1;
-  --ivory: #F3EDE0;
-  --warm-gray: #EDEAD3;
-  --gray-mid: #9A9A9A;
-  --border-gold: rgba(201, 168, 76, 0.35);
+  --l-bg: #F5EDE0;
+  --l-bg2: #EDD9C0;
+  --l-text: #2C1A0E;
+  --l-muted: rgba(44, 26, 14, 0.5);
+  --l-gold: #C9A84C;
+  --l-terra: #A0522D;
+  --l-border: #D4B896;
 
-  background-color: var(--cream) !important;
-  color: var(--black) !important;
-  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: var(--l-bg);
+  color: var(--l-text);
+  font-family: var(--font-outfit), system-ui, sans-serif;
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 .liora-brand h1,
 .liora-brand h2,
 .liora-brand h3,
-.liora-brand h4,
-.liora-brand h5,
-.liora-brand h6 {
-  font-family: var(--font-playfair), 'Playfair Display', serif;
+.liora-brand h4 {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  line-height: 1.15;
 }
 
-@keyframes flicker {
-  0%, 100% { transform: rotate(-1.5deg) scaleX(1); }
-  20%       { transform: rotate(2deg) scaleX(0.88); }
-  40%       { transform: rotate(-1deg) scaleX(1.07); }
-  60%       { transform: rotate(1.5deg) scaleX(0.93); }
-  80%       { transform: rotate(-0.5deg) scaleX(1.03); }
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50%       { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes tickerMove {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.liora-brand .flicker {
-  animation: flicker 2.8s ease-in-out infinite;
-  transform-origin: bottom center;
-}
-
-.liora-brand .glow-pulse {
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-.liora-brand .ticker-track {
-  animation: tickerMove 28s linear infinite;
-}
-
-/* -------------------------------------------------------------
-   RYA SHOP BRAND SCOPING
-   ------------------------------------------------------------- */
+/* ─── RYA INTERNATIONAL — dark elegante ──────────── */
 .rya-brand {
-  --color-bg: #F7F5F1;
-  --color-dark: #0D0D0D;
-  --color-navy: #1E3A5F;
-  --color-cream: #FAF8F4;
-  --color-border: #DDD9D2;
+  --r-bg: #0A0A0A;
+  --r-surface: #141414;
+  --r-text: #F0EBE1;
+  --r-muted: rgba(240, 235, 225, 0.45);
+  --r-gold: #C8A96E;
+  --r-gold-light: #E8D5A3;
+  --r-border: rgba(200, 169, 110, 0.2);
 
-  background-color: var(--color-bg) !important;
-  color: var(--color-dark) !important;
+  background-color: var(--r-bg);
+  color: var(--r-text);
   font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.7;
 }
 
 .rya-brand h1,
 .rya-brand h2,
 .rya-brand h3,
 .rya-brand h4 {
-  font-family: var(--font-playfair), 'Playfair Display', serif;
+  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+/* ─── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+
+/* ─── Liora CTA button ────────────────────────────── */
+.liora-cta-btn {
+  border: 1px solid #C9A84C;
+  color: #C9A84C;
+}
+.liora-cta-btn:hover {
+  background-color: #C9A84C;
+  color: #2C1A0E;
+}
+
+/* ─── Animations ──────────────────────────────────── */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #e8e0d4 25%, #f5ede0 50%, #e8e0d4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-dark {
+  background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
