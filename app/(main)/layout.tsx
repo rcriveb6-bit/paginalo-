@@ -6,15 +6,17 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     <div className="min-h-full flex flex-col bg-[#0F1B2D] text-white">
       <header className="sticky top-0 z-50 w-full bg-[#0F1B2D]/90 backdrop-blur-md border-b border-white/5">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <Image
-              src="/logo-paginalo.png"
-              alt="Páginalo"
-              width={140}
-              height={40}
-              className="h-9 w-auto object-contain brightness-0 invert"
-              priority
-            />
+          <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
+            <div className="bg-white rounded-xl px-3 py-1.5">
+              <Image
+                src="/logo-paginalo.png"
+                alt="Páginalo"
+                width={130}
+                height={36}
+                className="h-8 w-auto object-contain"
+                priority
+              />
+            </div>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
             <Link href="/#servicios" className="text-sm font-medium text-white/60 hover:text-[#00B5B5] transition-colors">Servicios</Link>

@@ -137,7 +137,7 @@ body {
 }
 
 .btn-shimmer {
-  background: linear-gradient(90deg, #00B5B5, #22d3ee, #00B5B5);
+  background: linear-gradient(90deg, #00B5B5, #FF7F7F, #00B5B5);
   background-size: 200% auto;
 }
 .btn-shimmer:hover {

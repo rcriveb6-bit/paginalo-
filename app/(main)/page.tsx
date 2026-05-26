@@ -60,7 +60,7 @@ export default function HomePage() {
 
         {/* Glow blobs */}
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#00B5B5]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#FF7F7F]/8 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
 
@@ -86,7 +86,7 @@ export default function HomePage() {
             <span
               className="inline-block"
               style={{
-                background: "linear-gradient(90deg, #00B5B5, #22d3ee, #818cf8, #00B5B5)",
+                background: "linear-gradient(90deg, #00B5B5, #FF7F7F, #00B5B5)",
                 backgroundSize: "300% auto",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -170,7 +170,7 @@ export default function HomePage() {
                 <span
                   className="text-5xl md:text-6xl font-bold"
                   style={{
-                    background: "linear-gradient(135deg, #00B5B5, #22d3ee)",
+                    background: "linear-gradient(135deg, #00B5B5, #FF7F7F)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -300,9 +300,9 @@ export default function HomePage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            {/* Liora */}
+            {/* Liora — dark card estilo agencia */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -312,62 +312,82 @@ export default function HomePage() {
             >
               <Link
                 href="/liora"
-                className="group relative overflow-hidden block rounded-2xl"
-                style={{ backgroundColor: "#F5EDE0", minHeight: "300px" }}
+                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-white/8 bg-[#0D1B2A] p-7 h-full transition-all duration-300 hover:border-[#00B5B5]/40"
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 28px 0 rgba(0,181,181,0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                }}
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: "radial-gradient(circle at 70% 30%, rgba(201,168,76,0.2) 0%, transparent 60%)" }} />
-                <div className="relative p-10 h-full flex flex-col justify-between" style={{ minHeight: "300px" }}>
-                  <div>
-                    <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: "#A0522D" }}>
-                      Velas · Toa Alta PR
-                    </p>
-                    <h2 className="text-5xl font-medium italic mb-3" style={{ fontFamily: "var(--font-cormorant), serif", color: "#2C1A0E" }}>
-                      Liora & Co.
-                    </h2>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(44,26,14,0.55)", maxWidth: "260px" }}>
-                      Velas artesanales de soya, hechas a mano con aromas únicos desde Puerto Rico.
-                    </p>
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-[#00B5B5] to-[#C9A84C] opacity-60 group-hover:opacity-100 transition-opacity" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#00B5B5]">E-Commerce · Velas</span>
+                    <span className="text-[10px] font-medium text-white/30">Toa Alta, PR</span>
                   </div>
-                  <div className="flex items-center gap-2 mt-8">
-                    <span className="text-sm font-semibold" style={{ color: "#C9A84C" }}>Ver proyecto</span>
-                    <span className="text-lg transition-transform group-hover:translate-x-2 duration-300" style={{ color: "#C9A84C" }}>→</span>
+                  <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00B5B5] transition-colors duration-300">
+                    Liora & Co.
+                  </h2>
+                  <p className="text-sm text-white/45 leading-relaxed">
+                    Sitio e-commerce con catálogo de velas artesanales, integración Stripe y gestión de inventario en tiempo real.
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    {["Next.js", "Supabase", "Stripe"].map(t => (
+                      <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 text-white/40 border border-white/8">
+                        {t}
+                      </span>
+                    ))}
                   </div>
+                  <span className="text-[#00B5B5] text-lg group-hover:translate-x-1.5 transition-transform duration-300">→</span>
                 </div>
               </Link>
             </motion.div>
 
-            {/* RYA */}
+            {/* RYA — dark card estilo agencia */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              transition={{ delay: 0.12 }}
+              transition={{ delay: 0.1 }}
             >
               <Link
                 href="/rya"
-                className="group relative overflow-hidden block rounded-2xl"
-                style={{ backgroundColor: "#0A0A0A", minHeight: "300px" }}
+                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-white/8 bg-[#0D1B2A] p-7 h-full transition-all duration-300 hover:border-[#FF7F7F]/40"
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 28px 0 rgba(255,127,127,0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                }}
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: "radial-gradient(circle at 30% 70%, rgba(200,169,110,0.15) 0%, transparent 60%)" }} />
-                <div className="relative p-10 h-full flex flex-col justify-between" style={{ minHeight: "300px" }}>
-                  <div>
-                    <p className="text-xs font-semibold tracking-[0.2em] uppercase mb-3" style={{ color: "#C8A96E" }}>
-                      Moda · Puerto Rico
-                    </p>
-                    <h2 className="text-5xl font-medium mb-3" style={{ fontFamily: "var(--font-playfair), serif", color: "#F0EBE1" }}>
-                      RYA Shop
-                    </h2>
-                    <p className="text-sm leading-relaxed" style={{ color: "rgba(240,235,225,0.45)", maxWidth: "260px" }}>
-                      La primera marca thrift curada de PR — moda consciente para almas sofisticadas.
-                    </p>
+                {/* Top accent bar coral */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-[#FF7F7F] to-[#C8A96E] opacity-60 group-hover:opacity-100 transition-opacity" />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#FF7F7F]">Thrift Shop · Moda</span>
+                    <span className="text-[10px] font-medium text-white/30">Puerto Rico</span>
                   </div>
-                  <div className="flex items-center gap-2 mt-8">
-                    <span className="text-sm font-semibold" style={{ color: "#C8A96E" }}>Ver proyecto</span>
-                    <span className="text-lg transition-transform group-hover:translate-x-2 duration-300" style={{ color: "#C8A96E" }}>→</span>
+                  <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-[#FF7F7F] transition-colors duration-300">
+                    RYA Shop
+                  </h2>
+                  <p className="text-sm text-white/45 leading-relaxed">
+                    Tienda de moda thrift curada con galería de productos, sistema de consultas por WhatsApp y gestión de piezas únicas.
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    {["Next.js", "Supabase", "WhatsApp"].map(t => (
+                      <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 text-white/40 border border-white/8">
+                        {t}
+                      </span>
+                    ))}
                   </div>
+                  <span className="text-[#FF7F7F] text-lg group-hover:translate-x-1.5 transition-transform duration-300">→</span>
                 </div>
               </Link>
             </motion.div>
@@ -378,29 +398,26 @@ export default function HomePage() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              transition={{ delay: 0.22 }}
+              transition={{ delay: 0.2 }}
               className="md:col-span-2"
             >
               <a
                 href={wa}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden block rounded-2xl border border-dashed border-white/10 hover:border-[#00B5B5]/50 transition-all duration-300"
-                style={{ minHeight: "90px" }}
+                className="group relative overflow-hidden flex items-center justify-between rounded-2xl border border-dashed border-white/10 hover:border-[#00B5B5]/40 bg-[#0D1B2A]/50 px-8 py-6 transition-all duration-300"
               >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(0,181,181,0.05) 0%, transparent 70%)" }} />
-                <div className="relative p-8 flex items-center justify-between">
-                  <div>
-                    <h2 className="text-xl font-bold text-white/20 group-hover:text-[#00B5B5] transition-colors duration-300">
-                      TU PROYECTO
-                    </h2>
-                    <p className="text-sm text-white/20 mt-1 group-hover:text-white/40 transition-colors">
-                      Reserva tu espacio · Hablemos por WhatsApp
-                    </p>
-                  </div>
-                  <span className="text-2xl text-white/15 group-hover:text-[#00B5B5] group-hover:translate-x-2 transition-all duration-300">→</span>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
+                  style={{ background: "radial-gradient(ellipse at 40% 50%, rgba(0,181,181,0.04) 0%, transparent 70%)" }} />
+                <div className="relative">
+                  <h2 className="text-base font-bold text-white/25 group-hover:text-[#00B5B5] transition-colors duration-300 uppercase tracking-widest">
+                    Tu Proyecto
+                  </h2>
+                  <p className="text-xs text-white/20 mt-0.5 group-hover:text-white/40 transition-colors">
+                    Reserva tu espacio · Hablemos por WhatsApp
+                  </p>
                 </div>
+                <span className="relative text-xl text-white/15 group-hover:text-[#00B5B5] group-hover:translate-x-2 transition-all duration-300">→</span>
               </a>
             </motion.div>
 
