@@ -1,96 +1,81 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
-const wa = "https://wa.me/17875104504";
+const wa = "https://wa.me/17873243240";
 
-/* ─── Animated counter ──────────────────────────── */
-function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [displayed, setDisplayed] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const duration = 1800;
-    const step = 16;
-    const increment = to / (duration / step);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= to) { setDisplayed(to); clearInterval(timer); }
-      else setDisplayed(Math.floor(start));
-    }, step);
-    return () => clearInterval(timer);
-  }, [inView, to]);
-
-  return (
-    <span ref={ref}>
-      {displayed}{suffix}
-    </span>
-  );
-}
-
-/* ─── Section fade-up wrapper ───────────────────── */
 const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+};
+
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 export default function HomePage() {
   return (
-    <div className="bg-[#0F1B2D] text-white overflow-x-hidden">
+    <div className="text-[#1E3A5F] overflow-x-hidden">
 
       {/* ══════════════════════════════════════════
           HERO
       ══════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#F8F8F8] overflow-hidden px-6 text-center">
 
-        {/* Dot grid background */}
+        {/* Dot grid sutil teal */}
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(0,181,181,0.45) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
+            backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
         />
+        {/* Glow teal sutil */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl pointer-events-none"
+          style={{ backgroundColor: "rgba(0,181,181,0.04)" }} />
 
-        {/* Glow blobs */}
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-[#00B5B5]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#FF7F7F]/8 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
-
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={stagger}
+          className="relative z-10 max-w-3xl"
+        >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/30 bg-[#00B5B5]/10 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase text-[#00B5B5]"
+          <motion.div variants={fadeUp}
+            className="mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-semibold tracking-[0.18em] uppercase"
+            style={{ borderColor: "rgba(0,181,181,0.25)", backgroundColor: "rgba(0,181,181,0.06)", color: "#00B5B5" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5]" />
             Puerto Rico · Diseño Web · Automatización IA
+          </motion.div>
+
+          {/* Logo grande */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+            <Image
+              src="/logo-paginalo.png"
+              alt="Páginalo"
+              width={200}
+              height={56}
+              className="h-12 w-auto object-contain md:h-14"
+              priority
+            />
           </motion.div>
 
           {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+            variants={fadeUp}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-[#1E3A5F]"
           >
             Tu negocio merece{" "}
             <span
-              className="inline-block"
               style={{
-                background: "linear-gradient(90deg, #00B5B5, #FF7F7F, #00B5B5)",
-                backgroundSize: "300% auto",
+                background: "linear-gradient(90deg, #00B5B5, #FF7F7F)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-                animation: "gradientFlow 5s ease infinite",
               }}
             >
               estar en internet
@@ -99,115 +84,49 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.22 }}
-            className="mt-6 max-w-xl mx-auto text-base md:text-lg text-white/55 leading-relaxed"
+            variants={fadeUp}
+            className="mt-5 max-w-xl mx-auto text-base md:text-lg leading-relaxed text-[#1E3A5F]/55"
           >
             Creamos sitios web profesionales, automatizamos procesos con IA y construimos
             tu presencia digital desde San Juan, Puerto Rico.
           </motion.p>
 
-          {/* CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.34 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-          >
+          {/* CTAs */}
+          <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href={wa}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-shimmer inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#00B5B5]/25 transition-all hover:shadow-[#00B5B5]/40 hover:scale-[1.03]"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
+              style={{ backgroundColor: "#FF7F7F", boxShadow: "0 4px 24px rgba(255,127,127,0.25)" }}
             >
-              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
               Contáctanos gratis
             </a>
             <a
               href="#portafolio"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-8 py-3.5 text-sm font-semibold text-white/80 hover:border-white/40 hover:text-white transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full border px-8 py-3.5 text-sm font-semibold transition-all duration-200 hover:border-[#1E3A5F] hover:bg-[#1E3A5F]/5"
+              style={{ borderColor: "rgba(30,58,95,0.25)", color: "#1E3A5F" }}
             >
               Ver portafolio
-              <span className="text-base">↓</span>
+              <span>↓</span>
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
-        >
-          <span className="text-xs text-white/30 tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-10 bg-gradient-to-b from-white/20 to-transparent" />
-        </motion.div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          STATS
-      ══════════════════════════════════════════ */}
-      <section className="bg-[#0A1220] border-y border-white/5">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center"
-          >
-            {[
-              { value: 25, suffix: "+", label: "Clientes activos" },
-              { value: 40, suffix: "+", label: "Proyectos completados" },
-              { value: 3,  suffix: " años", label: "De experiencia" },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-2">
-                <span
-                  className="text-5xl md:text-6xl font-bold"
-                  style={{
-                    background: "linear-gradient(135deg, #00B5B5, #FF7F7F)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  <StatCounter to={s.value} suffix={s.suffix} />
-                </span>
-                <p className="text-sm text-white/40 tracking-wide">{s.label}</p>
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════
-          BRAND CAROUSEL
-      ══════════════════════════════════════════ */}
-      <section className="bg-[#0F1B2D] border-b border-white/5 py-6 overflow-hidden">
-        <div className="flex">
-          <div className="animate-marquee flex shrink-0 items-center gap-16 pr-16">
-            {[
-              "✦ Liora & Co.", "✦ RYA Shop", "✦ Tu Marca", "✦ Puerto Rico 🇵🇷",
-              "✦ Diseño Web", "✦ IA Automation", "✦ WhatsApp Bots",
-              "✦ Liora & Co.", "✦ RYA Shop", "✦ Tu Marca", "✦ Puerto Rico 🇵🇷",
-              "✦ Diseño Web", "✦ IA Automation", "✦ WhatsApp Bots",
-            ].map((item, i) => (
-              <span key={i} className="text-sm font-semibold tracking-widest uppercase text-white/25 whitespace-nowrap hover:text-[#00B5B5] transition-colors">
-                {item}
-              </span>
-            ))}
-          </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+          <span className="text-[10px] text-[#1E3A5F]/30 tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-[#00B5B5]/30 to-transparent" />
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
           SERVICIOS
       ══════════════════════════════════════════ */}
-      <section id="servicios" className="bg-[#0F1B2D]">
+      <section id="servicios" className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <motion.div
             variants={fadeUp}
@@ -215,8 +134,8 @@ export default function HomePage() {
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Servicios</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
+            <p className="mb-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Servicios</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A5F] mb-14">
               Lo que construimos para ti
             </h2>
           </motion.div>
@@ -230,18 +149,8 @@ export default function HomePage() {
                   </svg>
                 ),
                 title: "Diseño Web",
-                body: "Sitios rápidos, modernos y optimizados para convertir visitantes en clientes desde el primer día.",
+                body: "Sitios rápidos, modernos y optimizados para convertir visitantes en clientes. Tu negocio visible en Google desde el primer día.",
                 delay: 0,
-              },
-              {
-                icon: (
-                  <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-                  </svg>
-                ),
-                title: "Automatización con IA",
-                body: "Chatbots, citas automáticas y flujos de WhatsApp que trabajan por ti 24/7 sin que muevas un dedo.",
-                delay: 0.1,
               },
               {
                 icon: (
@@ -249,8 +158,18 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" />
                   </svg>
                 ),
-                title: "Presencia Digital",
-                body: "Google Maps, redes sociales y anuncios para que te encuentren primero cuando busquen lo que ofreces.",
+                title: "Marketing Digital",
+                body: "Google Maps, redes sociales y anuncios estratégicos para que tus clientes ideales te encuentren a ti primero, no a la competencia.",
+                delay: 0.1,
+              },
+              {
+                icon: (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                  </svg>
+                ),
+                title: "Automatización con IA",
+                body: "Tu propio empleado digital: Contestamos las preguntas frecuentes de tus clientes por WhatsApp 24/7, para que tú solo tengas que enfocarte en entregar el servicio.",
                 delay: 0.2,
               },
             ].map((s) => (
@@ -261,21 +180,13 @@ export default function HomePage() {
                 whileInView="show"
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ delay: s.delay }}
-                whileHover={{ y: -4 }}
-                className="group relative rounded-2xl border border-white/8 bg-[#0D1B2A] p-8 cursor-default transition-all duration-300"
-                style={{ boxShadow: "0 0 0 0 rgba(0,181,181,0)" }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 32px 0 rgba(0,181,181,0.12), 0 0 0 1px rgba(0,181,181,0.2)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 0 0 rgba(0,181,181,0)";
-                }}
+                className="group rounded-2xl border border-gray-100 bg-white p-8 shadow-sm cursor-default transition-all duration-300 hover:shadow-md hover:border-[#00B5B5]/30"
               >
-                <div className="mb-5 inline-flex items-center justify-center h-11 w-11 rounded-xl bg-[#00B5B5]/10 text-[#00B5B5] group-hover:bg-[#00B5B5]/20 transition-colors">
+                <div className="mb-5 inline-flex items-center justify-center h-11 w-11 rounded-xl bg-[#00B5B5]/10 text-[#00B5B5] group-hover:bg-[#00B5B5]/18 transition-colors">
                   {s.icon}
                 </div>
-                <h3 className="mb-2 text-lg font-bold text-white">{s.title}</h3>
-                <p className="text-sm text-white/50 leading-relaxed">{s.body}</p>
+                <h3 className="mb-2 text-lg font-bold text-[#1E3A5F]">{s.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{s.body}</p>
               </motion.div>
             ))}
           </div>
@@ -283,9 +194,9 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          PORTAFOLIO / CLIENTES
+          PORTAFOLIO
       ══════════════════════════════════════════ */}
-      <section id="portafolio" className="bg-[#0A1220]">
+      <section id="portafolio" className="bg-[#F8F8F8]">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <motion.div
             variants={fadeUp}
@@ -293,133 +204,100 @@ export default function HomePage() {
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Portafolio</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-14">
+            <p className="mb-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Portafolio</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A5F] mb-14">
               Marcas que hemos llevado al mundo digital
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-            {/* Liora — dark card estilo agencia */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: 0 }}
-            >
-              <Link
-                href="/liora"
-                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-white/8 bg-[#0D1B2A] p-7 h-full transition-all duration-300 hover:border-[#00B5B5]/40"
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 28px 0 rgba(0,181,181,0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-                }}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                href: "/liora",
+                external: false,
+                bg: "bg-[#FEFAF5]",
+                badge: "E-Commerce · Velas",
+                location: "Toa Alta, PR",
+                title: "Liora & Co.",
+                description: "Una tienda online lista para recibir órdenes a cualquier hora. Automatizamos todo el proceso de compra para que Liora pueda vender sus velas a todo Puerto Rico sin tener que contestar mensajes para cobrar.",
+                tags: ["Tienda 24/7", "Cobros Automáticos", "Cero Estrés"],
+                accentColor: "#C9A84C",
+                delay: 0,
+              },
+              {
+                href: "/rya",
+                external: false,
+                bg: "bg-white",
+                badge: "Thrift Shop · Moda",
+                location: "Puerto Rico",
+                title: "RYA Shop",
+                description: "Una vitrina elegante que proyecta confianza. Conectamos su inventario exclusivo directamente con un botón a WhatsApp, cerrando la distancia entre el cliente y la venta de forma rápida y personal.",
+                tags: ["Catálogo Digital", "Ventas por WhatsApp", "Diseño Custom"],
+                accentColor: "#C8A96E",
+                delay: 0.1,
+              },
+              {
+                href: "#proximamente",
+                external: false,
+                bg: "bg-[#F5FAFA]",
+                badge: "CRM · Energía Solar",
+                location: "Puerto Rico",
+                title: "CRM Solar",
+                description: "Plataforma a la medida para equipos de ventas de energía solar. Cotizaciones, leads y seguimiento en un solo lugar.",
+                tags: ["Herramienta de Ventas", "Cotizador Rápido", "Eficiencia"],
+                accentColor: "#00B5B5",
+                delay: 0.2,
+              },
+            ].map((p) => (
+              <motion.div
+                key={p.title}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: p.delay }}
+                className="h-full"
               >
-                {/* Top accent bar */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-[#00B5B5] to-[#C9A84C] opacity-60 group-hover:opacity-100 transition-opacity" />
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#00B5B5]">E-Commerce · Velas</span>
-                    <span className="text-[10px] font-medium text-white/30">Toa Alta, PR</span>
-                  </div>
-                  <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00B5B5] transition-colors duration-300">
-                    Liora & Co.
-                  </h2>
-                  <p className="text-sm text-white/45 leading-relaxed">
-                    Sitio e-commerce con catálogo de velas artesanales, integración Stripe y gestión de inventario en tiempo real.
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="flex gap-1.5">
-                    {["Next.js", "Supabase", "Stripe"].map(t => (
-                      <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 text-white/40 border border-white/8">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="text-[#00B5B5] text-lg group-hover:translate-x-1.5 transition-transform duration-300">→</span>
-                </div>
-              </Link>
-            </motion.div>
+                <Link
+                  href={p.href}
+                  className={`group relative flex flex-col justify-between h-full rounded-2xl border border-gray-100 ${p.bg} p-7 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#00B5B5]/25`}
+                  onClick={p.href === "#proximamente" ? (e) => e.preventDefault() : undefined}
+                >
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl opacity-50 group-hover:opacity-100 transition-opacity"
+                    style={{ background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }} />
 
-            {/* RYA — dark card estilo agencia */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
-              <Link
-                href="/rya"
-                className="group relative overflow-hidden flex flex-col justify-between rounded-2xl border border-white/8 bg-[#0D1B2A] p-7 h-full transition-all duration-300 hover:border-[#FF7F7F]/40"
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 28px 0 rgba(255,127,127,0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-                }}
-              >
-                {/* Top accent bar coral */}
-                <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-[#FF7F7F] to-[#C8A96E] opacity-60 group-hover:opacity-100 transition-opacity" />
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#FF7F7F]">Thrift Shop · Moda</span>
-                    <span className="text-[10px] font-medium text-white/30">Puerto Rico</span>
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">{p.badge}</span>
+                      <span className="text-[10px] font-medium text-[#1E3A5F]/35">{p.location}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-[#1E3A5F] mb-3 group-hover:text-[#00B5B5] transition-colors duration-300">
+                      {p.title}
+                      {p.href === "#proximamente" && (
+                        <span className="ml-2 text-[9px] font-semibold tracking-widest uppercase bg-[#00B5B5]/10 text-[#00B5B5] px-2 py-0.5 rounded-full">Próximamente</span>
+                      )}
+                    </h3>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      {p.description}
+                    </p>
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-[#FF7F7F] transition-colors duration-300">
-                    RYA Shop
-                  </h2>
-                  <p className="text-sm text-white/45 leading-relaxed">
-                    Tienda de moda thrift curada con galería de productos, sistema de consultas por WhatsApp y gestión de piezas únicas.
-                  </p>
-                </div>
-                <div className="mt-6 flex items-center justify-between">
-                  <div className="flex gap-1.5">
-                    {["Next.js", "Supabase", "WhatsApp"].map(t => (
-                      <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-white/5 text-white/40 border border-white/8">
-                        {t}
-                      </span>
-                    ))}
+
+                  <div className="mt-6 flex items-center justify-between">
+                    <div className="flex flex-wrap gap-1.5">
+                      {p.tags.map(t => (
+                        <span key={t} className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#00B5B5]/10 text-[#00B5B5]">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    {p.href !== "#proximamente" && (
+                      <span className="text-[#00B5B5] text-lg group-hover:translate-x-1.5 transition-transform duration-300 shrink-0 ml-2">→</span>
+                    )}
                   </div>
-                  <span className="text-[#FF7F7F] text-lg group-hover:translate-x-1.5 transition-transform duration-300">→</span>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Tu proyecto */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="md:col-span-2"
-            >
-              <a
-                href={wa}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden flex items-center justify-between rounded-2xl border border-dashed border-white/10 hover:border-[#00B5B5]/40 bg-[#0D1B2A]/50 px-8 py-6 transition-all duration-300"
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                  style={{ background: "radial-gradient(ellipse at 40% 50%, rgba(0,181,181,0.04) 0%, transparent 70%)" }} />
-                <div className="relative">
-                  <h2 className="text-base font-bold text-white/25 group-hover:text-[#00B5B5] transition-colors duration-300 uppercase tracking-widest">
-                    Tu Proyecto
-                  </h2>
-                  <p className="text-xs text-white/20 mt-0.5 group-hover:text-white/40 transition-colors">
-                    Reserva tu espacio · Hablemos por WhatsApp
-                  </p>
-                </div>
-                <span className="relative text-xl text-white/15 group-hover:text-[#00B5B5] group-hover:translate-x-2 transition-all duration-300">→</span>
-              </a>
-            </motion.div>
-
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -427,16 +305,13 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════
           CTA FINAL
       ══════════════════════════════════════════ */}
-      <section id="contacto" className="relative overflow-hidden">
-        {/* Gradient bg */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(135deg, #0F1B2D 0%, #0a2a3a 50%, #0F1B2D 100%)",
-          }}
-        />
-        {/* Teal glow top-center */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-[#00B5B5]/40 to-transparent" />
+      <section id="contacto" className="relative overflow-hidden bg-[#1E3A5F]">
+        {/* Teal line top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(0,181,181,0.5), transparent)" }} />
+        {/* Glow sutil */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full blur-3xl pointer-events-none"
+          style={{ backgroundColor: "rgba(0,181,181,0.08)" }} />
 
         <div className="relative mx-auto max-w-4xl px-6 py-28 text-center">
           <motion.div
@@ -448,17 +323,18 @@ export default function HomePage() {
             <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">
               Consulta gratuita · Sin compromiso
             </p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-5">
               ¿Hacemos brillar<br />tu negocio?
             </h2>
-            <p className="text-white/40 text-base mb-12 max-w-md mx-auto">
+            <p className="text-white/45 text-base mb-12 max-w-md mx-auto">
               Escríbenos hoy y en 24 horas te decimos exactamente cómo llevar tu negocio al próximo nivel.
             </p>
             <a
               href={wa}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-shimmer inline-flex items-center gap-3 rounded-full px-10 py-4 text-sm font-bold text-white shadow-2xl shadow-[#00B5B5]/20 hover:shadow-[#00B5B5]/40 hover:scale-[1.04] transition-all duration-300"
+              className="inline-flex items-center gap-3 rounded-full px-10 py-4 text-sm font-bold text-white transition-all duration-300 hover:scale-[1.04] hover:shadow-2xl"
+              style={{ backgroundColor: "#FF7F7F", boxShadow: "0 4px 32px rgba(255,127,127,0.3)" }}
             >
               <svg className="h-5 w-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -470,7 +346,7 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════
-          FLOATING WHATSAPP — con pulse ring
+          FLOATING WHATSAPP
       ══════════════════════════════════════════ */}
       <a
         href={wa}
@@ -479,7 +355,6 @@ export default function HomePage() {
         aria-label="WhatsApp"
         className="fixed bottom-6 right-6 z-50"
       >
-        {/* Pulse ring */}
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-pulse-ring" />
         <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-[#25D366]/30 hover:bg-[#1ebe5d] hover:scale-110 transition-all duration-200">
           <svg className="h-7 w-7 text-white" fill="currentColor" viewBox="0 0 24 24">
