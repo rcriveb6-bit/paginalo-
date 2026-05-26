@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView, useAnimate } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const wa = "https://wa.me/17875104504";
@@ -10,7 +10,6 @@ const wa = "https://wa.me/17875104504";
 function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [scope, animate] = useAnimate();
   const [displayed, setDisplayed] = useState(0);
 
   useEffect(() => {
@@ -29,7 +28,7 @@ function StatCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
 
   return (
     <span ref={ref}>
-      <span ref={scope}>{displayed}</span>{suffix}
+      {displayed}{suffix}
     </span>
   );
 }
