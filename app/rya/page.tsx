@@ -1,96 +1,141 @@
 import Link from "next/link";
+import Image from "next/image";
+import type { Metadata } from "next";
 
-export default function RyaInfoPage() {
+export const metadata: Metadata = {
+  title: "RYA SHOP — Moda Consciente · San Juan, Puerto Rico",
+  description: "Moda de segunda mano curada en San Juan, Puerto Rico. Piezas únicas seleccionadas con criterio y estilo.",
+};
+
+const products = [
+  { img: "/rya/item-1.png", name: "Biker Jacket Vintage", price: "$45", tag: "Chaquetas" },
+  { img: "/rya/item-2.png", name: "Bomber Jacket Borgoña", price: "$38", tag: "Chaquetas" },
+  { img: "/rya/item-3.png", name: "Crop Top Satén V", price: "$22", tag: "Tops" },
+  { img: "/rya/item-4.png", name: "Co-ord Lino Navy", price: "$55", tag: "Sets" },
+  { img: "/rya/item-5.png", name: "Bralette Crochet Sol", price: "$28", tag: "Tops" },
+  { img: "/rya/item-6.png", name: "Nike Hoodie Clásico", price: "$35", tag: "Abrigos" },
+];
+
+const events = [
+  { date: "Jun 14, 2025", name: "Pop-Up RYA", place: "Santurce, San Juan" },
+  { date: "Jul 5, 2025", name: "Mercado de Diseñadores", place: "Miramar, San Juan" },
+  { date: "Ago 2, 2025", name: "Flea Market La Placita", place: "Río Piedras, San Juan" },
+];
+
+export default function RyaPage() {
+  const wa = "https://wa.me/17875104504?text=Hola,%20me%20interesa%20algo%20de%20RYA%20SHOP";
+  const ig = "https://instagram.com/rya.shop2025";
+
   return (
-    <div className="relative min-h-screen bg-[#0D0D0D] text-[#F7F5F1] selection:bg-[#C8A96E] selection:text-black overflow-hidden pb-20">
-      {/* Decorative Shimmer */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-[radial-gradient(ellipse_at_top,rgba(200,169,110,0.08)_0%,transparent_70%)] pointer-events-none" />
-
-      {/* Main Info Section */}
-      <section className="relative mx-auto max-w-4xl px-6 pt-20 pb-16 text-center">
-        <div className="mx-auto mb-6 flex max-w-max items-center gap-3 rounded-full border border-[#C8A96E]/20 bg-[#C8A96E]/5 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-[#C8A96E]">
-          <span>✦ Segunda Mano Curada · Puerto Rico</span>
+    <div className="rya-brand min-h-screen">
+      {/* ── SUB-HEADER ── */}
+      <div className="border-b border-[#DDD9D2] bg-[#F7F5F1]">
+        <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
+          <Image
+            src="/rya/logo-rya.jpeg"
+            alt="RYA SHOP"
+            width={80}
+            height={32}
+            className="h-8 w-auto object-contain"
+          />
+          <Link href="/" className="text-sm text-[#9A9A9A] hover:text-[#0D0D0D] transition-colors">
+            ← Volver a Páginalo
+          </Link>
         </div>
+      </div>
 
-        <h1 className="font-outfit text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl uppercase" style={{ letterSpacing: "0.08em" }}>
-          RYA SHOP
+      {/* ── HERO ── */}
+      <section className="mx-auto max-w-6xl px-6 pt-20 pb-16 text-center">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#0D0D0D]" style={{ fontFamily: "var(--font-playfair), serif" }}>
+          Moda consciente<br />para almas sofisticadas
         </h1>
-        <p className="mt-2 text-xs italic tracking-widest text-[#C8A96E]" style={{ letterSpacing: "0.2em" }}>
-          — Moda consciente para almas sofisticadas —
+        <p className="mt-5 text-base text-[#9A9A9A]">
+          Segunda mano curada · San Juan, Puerto Rico
         </p>
-
-        <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-zinc-400">
-          RYA Shop es la primera marca de ropa de segunda mano curada y de alta calidad en San Juan, Puerto Rico. Creemos que la moda y la sostenibilidad pueden coexistir en armonía, ofreciéndote piezas exclusivas seleccionadas a mano.
-        </p>
-      </section>
-
-      {/* Brand Values / Details */}
-      <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8">
-            <h3 className="font-outfit text-lg font-bold text-[#C8A96E] mb-3">La Curaduría</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Cada prenda en RYA Shop pasa por un riguroso proceso de inspección, limpieza y restauración. No vendemos ropa usada común; seleccionamos piezas con carácter, cortes clásicos, excelentes textiles y en condiciones impecables.
-            </p>
-          </div>
-
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8">
-            <h3 className="font-outfit text-lg font-bold text-[#C8A96E] mb-3">Estilo con Propósito</h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              El consumo de moda rápida (fast fashion) genera toneladas de desperdicios textiles anualmente. RYA Shop te invita a practicar un lujo responsable sin culpa, adquiriendo piezas de diseñador y vintage que merecen una segunda oportunidad.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Concept Pieces / Carousel Placeholders */}
-      <section className="mx-auto max-w-4xl px-6 py-12 text-center">
-        <h3 className="font-outfit text-xl font-bold text-white mb-8">Nuestras Categorías</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="group rounded-xl border border-white/5 bg-zinc-950/40 p-4 text-center">
-            <div className="aspect-[3/4] w-full rounded bg-neutral-900 flex items-center justify-center text-3xl mb-3">👔</div>
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">Sacos & Blazers</span>
-          </div>
-
-          <div className="group rounded-xl border border-white/5 bg-zinc-950/40 p-4 text-center">
-            <div className="aspect-[3/4] w-full rounded bg-neutral-900 flex items-center justify-center text-3xl mb-3">👗</div>
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">Vestidos</span>
-          </div>
-
-          <div className="group rounded-xl border border-white/5 bg-zinc-950/40 p-4 text-center">
-            <div className="aspect-[3/4] w-full rounded bg-neutral-900 flex items-center justify-center text-3xl mb-3">👖</div>
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">Pantalones</span>
-          </div>
-
-          <div className="group rounded-xl border border-white/5 bg-zinc-950/40 p-4 text-center">
-            <div className="aspect-[3/4] w-full rounded bg-neutral-900 flex items-center justify-center text-3xl mb-3">👜</div>
-            <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">Accesorios</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to action */}
-      <section className="mx-auto max-w-2xl px-6 py-16 text-center border-t border-white/5 mt-12">
-        <h2 className="font-outfit text-2xl font-bold text-white mb-4">¿Te interesa conocer el catálogo?</h2>
-        <p className="text-xs text-zinc-400 mb-8 leading-relaxed">
-          Nuestros drops son exclusivos y semanales. Síguenos en Instagram para no perderte las novedades o escríbenos directamente para consultas sobre tallas y disponibilidad.
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex items-center justify-center gap-4">
           <a
-            href="https://instagram.com/rya.shop2025"
+            href={ig}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-[#C8A96E] px-8 py-3 text-xs font-bold uppercase tracking-widest text-black transition-all hover:bg-white"
+            className="border border-[#0D0D0D] px-8 py-3 text-sm font-semibold text-[#0D0D0D] hover:bg-[#0D0D0D] hover:text-white transition-all"
           >
-            Ver Instagram
+            Instagram
           </a>
-          <Link
-            href="/"
-            className="rounded-full border border-white/10 bg-white/5 px-8 py-3 text-xs font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10"
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#0D0D0D] px-8 py-3 text-sm font-semibold text-white hover:bg-[#1E3A5F] transition-colors"
           >
-            Volver al Portal
-          </Link>
+            WhatsApp
+          </a>
+        </div>
+      </section>
+
+      {/* ── PRODUCTOS ── */}
+      <section className="border-t border-[#DDD9D2] bg-[#FAF8F4]">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <p className="mb-10 text-xs font-semibold tracking-[0.2em] uppercase text-[#9A9A9A]">
+            Colección
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {products.map((p) => (
+              <div key={p.name} className="group">
+                <div className="relative aspect-square w-full overflow-hidden bg-[#E8E4DD]">
+                  <Image
+                    src={p.img}
+                    alt={p.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="mt-3">
+                  <p className="text-[10px] font-semibold tracking-widest uppercase text-[#9A9A9A]">{p.tag}</p>
+                  <h3 className="text-sm font-bold text-[#0D0D0D] mt-0.5">{p.name}</h3>
+                  <p className="text-sm font-semibold text-[#1E3A5F] mt-1">{p.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── EVENTOS ── */}
+      <section className="border-t border-[#DDD9D2]">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <p className="mb-10 text-xs font-semibold tracking-[0.2em] uppercase text-[#9A9A9A]">
+            Próximos Eventos
+          </p>
+          <div className="space-y-0">
+            {events.map((e) => (
+              <div key={e.name} className="flex items-center justify-between border-b border-[#DDD9D2] py-6">
+                <div>
+                  <h3 className="text-base font-bold text-[#0D0D0D]">{e.name}</h3>
+                  <p className="text-sm text-[#9A9A9A] mt-0.5">{e.place}</p>
+                </div>
+                <p className="text-sm font-semibold text-[#1E3A5F]">{e.date}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="border-t border-[#DDD9D2] bg-[#0D0D0D]">
+        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
+          <h3 className="text-3xl font-bold text-white" style={{ fontFamily: "var(--font-playfair), serif" }}>
+            ¿Te interesa alguna pieza?
+          </h3>
+          <p className="mt-3 text-sm text-white/50">Escríbenos y la apartamos para ti</p>
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-2 bg-white px-10 py-4 text-sm font-semibold text-[#0D0D0D] hover:bg-[#F7F5F1] transition-colors"
+          >
+            Pedir por WhatsApp
+          </a>
         </div>
       </section>
     </div>
