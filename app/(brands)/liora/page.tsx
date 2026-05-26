@@ -38,14 +38,14 @@ function ProductCard({ product }: { product: LioraProduct }) {
         )}
       </div>
       <p className="text-[10px] font-semibold tracking-[0.2em] uppercase mb-1" style={{ color: "#A0522D" }}>
-        {product.category}
+        {product.category === 'especial' ? 'Especial' : product.category === 'floral' ? 'Floral' : product.category === 'frutal' ? 'Frutal' : 'Fresco'}
       </p>
       <h3 className="text-base font-semibold" style={{ fontFamily: "var(--font-cormorant), serif", color: "#2C1A0E", fontSize: "1.15rem" }}>
         {product.name}
       </h3>
-      {product.aroma_notes && (
+      {product.note && (
         <p className="text-xs mt-1 leading-relaxed" style={{ color: "rgba(44,26,14,0.55)" }}>
-          {product.aroma_notes}
+          {product.note}
         </p>
       )}
       <p className="mt-2 text-sm font-semibold" style={{ color: "#C9A84C" }}>

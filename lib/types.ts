@@ -1,34 +1,41 @@
+// Matches actual Supabase "products" table schema
 export interface LioraProduct {
-  id: string;
+  id: number;
   name: string;
-  description: string | null;
+  category: 'frutal' | 'floral' | 'fresco' | 'especial';
+  note: string | null;
   price: number;
-  category: 'permanente' | 'temporada';
+  stock: number;
+  stripe_price_id: string | null;
   image_url: string | null;
-  aroma_notes: string | null;
-  featured: boolean;
+  bg_color: string | null;
+  wax_color: string | null;
+  active: boolean;
   created_at: string;
 }
 
 export interface RyaService {
-  id: string;
+  id: number;
   title: string;
   description: string | null;
   icon: string | null;
   order_index: number;
+  created_at: string;
 }
 
 export interface RyaTestimonial {
-  id: string;
+  id: number;
   client_name: string;
   text: string;
   rating: number;
   avatar_url: string | null;
+  created_at: string;
 }
 
 export interface SiteSetting {
-  id: string;
+  id: number;
   brand: string;
   key: string;
   value: string | null;
+  created_at: string;
 }
