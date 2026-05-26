@@ -43,49 +43,22 @@ export default function HomePage() {
           variants={stagger}
           className="relative z-10 max-w-3xl"
         >
-          {/* Badge */}
-          <motion.div variants={fadeUp}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[10px] font-semibold tracking-[0.18em] uppercase"
-            style={{ borderColor: "rgba(0,181,181,0.25)", backgroundColor: "rgba(0,181,181,0.06)", color: "#00B5B5" }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5]" />
-            Puerto Rico · Diseño Web · Automatización IA
-          </motion.div>
-
-          {/* Logo grande */}
-          <motion.div variants={fadeUp} className="flex justify-center mb-8">
+          {/* Logo hero — incluye ícono, nombre y tagline */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-10">
             <Image
-              src="/logo-paginalo.png"
-              alt="Páginalo"
-              width={200}
-              height={56}
-              className="h-12 w-auto object-contain md:h-14"
+              src="/paginalo-hero.png"
+              alt="Páginalo — Tu negocio merece estar en internet"
+              width={560}
+              height={180}
+              className="w-full max-w-[420px] md:max-w-[520px] h-auto object-contain"
               priority
             />
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            variants={fadeUp}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-[#1E3A5F]"
-          >
-            Tu negocio merece{" "}
-            <span
-              style={{
-                background: "linear-gradient(90deg, #00B5B5, #FF7F7F)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              estar en internet
-            </span>
-          </motion.h1>
-
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
-            className="mt-5 max-w-xl mx-auto text-base md:text-lg leading-relaxed text-[#1E3A5F]/55"
+            className="max-w-lg mx-auto text-base md:text-lg leading-relaxed text-[#1E3A5F]/55"
           >
             Creamos sitios web profesionales, automatizamos procesos con IA y construimos
             tu presencia digital desde San Juan, Puerto Rico.
