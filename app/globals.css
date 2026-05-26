@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------
+   PÁGINALO PR — GLOBAL STYLE RESET AND DEFAULT STYLES
+   ------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background-color: #090909;
+  color: #FAF9F6;
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar sutil global */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090909;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8A96E;
+  border-radius: 3px;
+}
+
+/* -------------------------------------------------------------
+   LIORA BRAND SCOPING
+   ------------------------------------------------------------- */
+.liora-brand {
+  --black: #0D0D0D;
+  --off-black: #1A1A1A;
+  --gold: #C9A84C;
+  --gold-light: #E8D08A;
+  --gold-pale: #F5EDD0;
+  --white: #FFFFFF;
+  --cream: #FAF7F1;
+  --ivory: #F3EDE0;
+  --warm-gray: #EDEAD3;
+  --gray-mid: #9A9A9A;
+  --gray-light: #D8D4CC;
+  --border: rgba(0, 0, 0, 0.09);
+  --border-gold: rgba(201, 168, 76, 0.35);
+
+  background-color: var(--cream) !important;
+  color: var(--black) !important;
+  font-family: var(--font-outfit), 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.liora-brand h1, 
+.liora-brand h2, 
+.liora-brand h3, 
+.liora-brand h4, 
+.liora-brand h5, 
+.liora-brand h6 {
+  font-family: var(--font-playfair), 'Playfair Display', serif;
+}
+
+/* LIORA Keyframes & Animations */
+@keyframes flicker {
+  0%, 100% { transform: rotate(-1.5deg) scaleX(1); }
+  20%       { transform: rotate(2deg) scaleX(0.88); }
+  40%       { transform: rotate(-1deg) scaleX(1.07); }
+  60%       { transform: rotate(1.5deg) scaleX(0.93); }
+  80%       { transform: rotate(-0.5deg) scaleX(1.03); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes tickerMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.liora-brand .flicker {
+  animation: flicker 2.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.liora-brand .glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.liora-brand .ticker-track {
+  animation: tickerMove 28s linear infinite;
+}
+
+/* -------------------------------------------------------------
+   RYA SHOP BRAND SCOPING
+   ------------------------------------------------------------- */
+.rya-brand {
+  --color-bg: #0D0D0D;
+  --color-cream: #F7F5F1;
+  --color-warm-white: #EDE9E2;
+  --color-gold: #C8A96E;
+  --color-slate: #7A7A7A;
+  --color-dark-surface: #161616;
+
+  background-color: var(--color-bg) !important;
+  color: var(--color-cream) !important;
+  font-family: var(--font-jost), system-ui, sans-serif;
+}
+
+.rya-brand h1, 
+.rya-brand h2, 
+.rya-brand h3, 
+.rya-brand h4, 
+.rya-brand h5, 
+.rya-brand h6 {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.rya-brand .dot-texture {
+  background-image: radial-gradient(circle, rgba(200, 169, 110, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.rya-brand .btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  border: 1px solid var(--color-gold);
+  font-family: var(--font-jost), sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.rya-brand .btn-gold:hover {
+  background-color: transparent;
+  color: var(--color-gold);
+}
+
+.rya-brand .btn-outline {
+  background-color: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+  font-family: var(--font-jost), sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.rya-brand .btn-outline:hover {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+}
