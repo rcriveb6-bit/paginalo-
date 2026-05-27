@@ -52,11 +52,20 @@ const services = [
   {
     icon: (
       <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+      </svg>
+    ),
+    title: "Automatización con IA",
+    body: "Un empleado digital que contesta preguntas, califica leads y agenda citas por WhatsApp las 24 horas — sin que tú muevas un dedo.",
+  },
+  {
+    icon: (
+      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
       </svg>
     ),
     title: "Diseño Web",
-    body: "Sitios rápidos, modernos y optimizados para convertir visitantes en clientes. Visible en Google desde el primer día.",
+    body: "Sitios rápidos, modernos y optimizados para convertir visitantes en clientes. Lanzamos en 2 semanas. Sin tecnicismos.",
   },
   {
     icon: (
@@ -65,16 +74,7 @@ const services = [
       </svg>
     ),
     title: "Marketing Digital",
-    body: "Google Maps, redes sociales y anuncios estratégicos para que tus clientes ideales te encuentren a ti primero.",
-  },
-  {
-    icon: (
-      <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-      </svg>
-    ),
-    title: "Automatización con IA",
-    body: "Tu empleado digital: responde preguntas frecuentes por WhatsApp las 24 horas para que tú te enfoques en entregar el servicio.",
+    body: "Google Maps, redes sociales y anuncios estratégicos para que tus clientes ideales te encuentren a ti primero, no a la competencia.",
   },
 ];
 
@@ -84,56 +84,71 @@ export default function HomePage() {
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
       <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0A1628] overflow-hidden px-6 text-center">
-        {/* Subtle grid texture */}
+        {/* Grid texture */}
         <div className="absolute inset-0 opacity-[0.035]" style={{
           backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }} />
         {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-20"
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[120px] pointer-events-none opacity-15"
           style={{ background: "radial-gradient(ellipse, #00B5B5 0%, #FF7F7F 100%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-4xl w-full">
+
+          {/* Logo — pequeño, arriba */}
           <motion.div variants={fadeUp} className="flex justify-center mb-10">
             <Image
-              src="/paginalo-hero.png"
+              src="/logo-paginalo.png"
               alt="Páginalo"
-              width={380}
-              height={120}
-              className="w-full max-w-[240px] sm:max-w-[300px] md:max-w-[360px] h-auto object-contain brightness-[1.15]"
+              width={140}
+              height={40}
+              className="h-8 w-auto object-contain brightness-[5] opacity-80"
               priority
             />
           </motion.div>
 
+          {/* Badge */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-6">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00B5B5]/30 px-3 py-1 text-[11px] font-semibold tracking-[0.15em] uppercase text-[#00B5B5]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5] animate-pulse" />
+              Agencia IA · Puerto Rico
+            </span>
+          </motion.div>
+
+          {/* Headline — IA primero */}
           <motion.h1 variants={fadeUp}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight mb-8"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.92] tracking-tight mb-8"
           >
-            Tu negocio<br />
+            Ponemos{" "}
             <span style={{
               background: "linear-gradient(90deg, #00B5B5, #FF7F7F)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}>
-              merece
-            </span>{" "}
-            <span className="text-white">estar</span><br />
-            en internet
+              IA
+            </span>
+            <br />a trabajar<br />
+            <span className="text-white/50">en tu negocio</span>
           </motion.h1>
 
           <motion.p variants={fadeUp}
-            className="max-w-md mx-auto text-sm md:text-base text-white/40 mb-10 leading-relaxed"
+            className="max-w-sm mx-auto text-sm md:text-base text-white/40 mb-10 leading-relaxed"
           >
-            Creamos sitios web profesionales y automatizamos procesos con IA.<br className="hidden md:block" />
-            Desde San Juan, Puerto Rico.
+            Automatizamos, construimos y hacemos crecer negocios locales en Puerto Rico — con sitios web, IA y marketing digital.
           </motion.p>
 
-          <motion.div variants={fadeUp}>
+          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href={wa} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-sm font-bold text-white transition-all duration-200 hover:scale-[1.04] hover:brightness-110"
+              className="inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-sm font-bold text-white transition-all duration-200 hover:scale-[1.04] hover:brightness-110"
               style={{ backgroundColor: "#FF7F7F", boxShadow: "0 0 40px rgba(255,127,127,0.25)" }}
             >
-              <WaIcon /> Contáctanos gratis
+              <WaIcon /> Consulta gratis
+            </a>
+            <a href="#portafolio"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 px-8 py-4 text-sm font-semibold text-white/60 hover:text-white hover:border-white/20 transition-all duration-200"
+            >
+              Ver trabajo →
             </a>
           </motion.div>
         </motion.div>
@@ -149,12 +164,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ MARQUEE ══════════════════════════════════════════════════════ */}
+      {/* ══ MARQUEE — resultados reales ══════════════════════════════════ */}
       <div className="bg-[#00B5B5] py-3.5 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(4)].map((_, i) => (
-            <span key={i} className="mx-8 text-white text-xs font-semibold tracking-[0.2em] uppercase shrink-0">
-              Diseño Web · Marketing Digital · Automatización IA · Puerto Rico ·
+            <span key={i} className="mx-10 text-white text-xs font-semibold tracking-[0.18em] uppercase shrink-0">
+              3 Negocios Lanzados · Tienda Online 24/7 · CRM con 200+ Leads · Chatbots IA Activos · Puerto Rico ·
             </span>
           ))}
         </div>
@@ -182,12 +197,9 @@ export default function HomePage() {
                   transition={{ delay: i * 0.08 }}
                   className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-8 px-4 -mx-4 rounded-xl transition-all duration-300 ${p.live ? "cursor-pointer hover:bg-[#F8F8F8]" : "cursor-default"}`}
                 >
-                  {/* Number */}
                   <span className="text-5xl font-black text-gray-100 group-hover:text-[#00B5B5]/20 transition-colors duration-300 leading-none shrink-0 w-16 select-none">
                     {p.num}
                   </span>
-
-                  {/* Main info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <h3 className={`text-xl font-black text-[#0A1628] ${p.live ? "group-hover:text-[#00B5B5]" : ""} transition-colors duration-300`}>
@@ -204,8 +216,6 @@ export default function HomePage() {
                     </div>
                     <p className="text-sm text-gray-400 leading-relaxed max-w-xl">{p.description}</p>
                   </div>
-
-                  {/* Arrow */}
                   {p.live && (
                     <span className="text-gray-200 group-hover:text-[#00B5B5] group-hover:translate-x-1 transition-all duration-300 text-2xl font-light shrink-0 hidden md:block">
                       →
@@ -213,7 +223,6 @@ export default function HomePage() {
                   )}
                 </motion.div>
               );
-
               return p.href ? (
                 <a key={p.title} href={p.href} target="_blank" rel="noopener noreferrer" className="block">
                   {row}
@@ -226,20 +235,67 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══ PROCESO ══════════════════════════════════════════════════════ */}
+      <section className="bg-[#0A1628]">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-16"
+          >
+            <p className="mb-2 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Cómo trabajamos</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">
+              De la idea al lanzamiento<br className="hidden md:block" />en 3 pasos
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+            {[
+              {
+                step: "01",
+                title: "Consulta gratuita",
+                body: "Nos escribes por WhatsApp, conversamos sobre tu negocio y en 24 horas tienes una propuesta clara con precio y tiempo.",
+                color: "#00B5B5",
+              },
+              {
+                step: "02",
+                title: "Diseño y construcción",
+                body: "Construimos tu sitio o automatización. Tú apruebas cada paso. Sin sorpresas, sin tecnicismos, sin delays.",
+                color: "#FF7F7F",
+              },
+              {
+                step: "03",
+                title: "Lanzamiento y soporte",
+                body: "Tu negocio queda online y funcionando. Incluimos capacitación y soporte post-lanzamiento para que no estés solo.",
+                color: "#C8A96E",
+              },
+            ].map((s, i) => (
+              <motion.div key={s.step}
+                variants={fadeUp} initial="hidden" whileInView="show"
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.1 }}
+                className="relative"
+              >
+                <div className="text-6xl font-black mb-4 leading-none" style={{ color: `${s.color}20` }}>{s.step}</div>
+                <div className="w-8 h-0.5 mb-4 rounded-full" style={{ backgroundColor: s.color }} />
+                <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
+                <p className="text-sm text-white/35 leading-relaxed">{s.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ══ SERVICIOS ════════════════════════════════════════════════════ */}
       <section id="servicios" className="bg-[#F8F8F8]">
         <div className="mx-auto max-w-6xl px-6 py-24">
           <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-
-            {/* Left — statement */}
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-80px" }}
               className="md:sticky md:top-28"
             >
               <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">Servicios</p>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#0A1628] leading-tight">
-                Construimos tu presencia.
+                Lanzamos en<br />2 semanas.
                 <br />
-                <span className="text-[#0A1628]/30">Tú te enfocas en lo tuyo.</span>
+                <span className="text-[#0A1628]/25">Sin tecnicismos.</span>
               </h2>
               <div className="mt-10 hidden md:block">
                 <a href={wa} target="_blank" rel="noopener noreferrer"
@@ -250,7 +306,6 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* Right — service list */}
             <div className="divide-y divide-gray-200">
               {services.map((s, i) => (
                 <motion.div key={s.title}
