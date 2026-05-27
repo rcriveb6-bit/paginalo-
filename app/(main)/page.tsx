@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -127,6 +128,15 @@ export default function HomePage() {
           style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.10) 0%, rgba(255,127,127,0.06) 100%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-2xl w-full">
+          {/* Logo en contenedor glass */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-7">
+            <div className="inline-flex items-center justify-center rounded-2xl px-5 py-2.5"
+              style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              <Image src="/logo-paginalo.png" alt="Páginalo" width={130} height={38}
+                className="h-8 w-auto object-contain" priority />
+            </div>
+          </motion.div>
+
           <motion.div variants={fadeUp} className="flex justify-center mb-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/30 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5] animate-pulse shrink-0" />
