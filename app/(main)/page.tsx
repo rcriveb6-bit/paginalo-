@@ -52,7 +52,7 @@ const Check = () => (
 );
 
 const XIcon = () => (
-  <svg className="h-4 w-4 text-[#FF7F7F] shrink-0 mt-1" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+  <svg className="h-3.5 w-3.5 text-[#FF7F7F]/60 shrink-0 mt-1" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
@@ -93,7 +93,6 @@ const packages = [
     icon: <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>,
     title: "Automatización con IA",
     items: ["Chatbot en WhatsApp activo 24/7", "Responde preguntas frecuentes solo", "Califica leads antes de pasarlos a ti", "Configurado para tu negocio específico"],
-    featured: true,
   },
   {
     icon: <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" /></svg>,
@@ -207,9 +206,13 @@ export default function HomePage() {
                 "La competencia ya tiene presencia digital — tú todavía no",
                 "No sabes por dónde empezar ni cuánto cuesta",
               ].map((item) => (
-                <motion.div key={item} variants={fadeUp} className="flex items-start gap-3 rounded-lg bg-gray-50 px-4 py-3 border border-gray-100">
-                  <XIcon />
-                  <p className="text-sm text-gray-600 leading-relaxed">{item}</p>
+                <motion.div key={item} variants={fadeUp} className="flex items-start gap-3 px-4 py-2.5 border-b border-gray-100 last:border-0">
+                  <div className="h-5 w-5 rounded-full border-2 border-[#FF7F7F]/30 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg className="h-2.5 w-2.5 text-[#FF7F7F]/50" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <p className="text-sm text-gray-500 leading-relaxed">{item}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -230,30 +233,20 @@ export default function HomePage() {
               Todo lo que necesitas para vender en internet
             </motion.h2>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-4 md:gap-5 items-start">
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {packages.map((pkg, i) => (
               <motion.div key={pkg.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className={`relative rounded-2xl border p-6 transition-all duration-300 ${
-                  pkg.featured
-                    ? "bg-white border-[#00B5B5]/40 shadow-xl shadow-[#00B5B5]/10 md:scale-[1.05] md:-translate-y-1 border-t-2 border-t-[#00B5B5]"
-                    : "bg-white border-gray-100 border-t-2 border-t-[#00B5B5]/20"
-                }`}
+                className="bg-white rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20"
+                style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}
               >
-                {pkg.featured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-black tracking-[0.15em] uppercase text-white" style={{ background: "linear-gradient(90deg, #00B5B5, #FF7F7F)" }}>
-                      ✦ Más Popular
-                    </span>
-                  </div>
-                )}
-                <div className={`inline-flex items-center justify-center h-10 w-10 rounded-lg mb-4 ${pkg.featured ? "bg-[#00B5B5]/15 text-[#00B5B5]" : "bg-[#00B5B5]/10 text-[#00B5B5]"}`}>
+                <div className="inline-flex items-center justify-center h-11 w-11 rounded-xl mb-5 bg-[#EEF7F7] text-[#00B5B5]">
                   {pkg.icon}
                 </div>
                 <h3 className="font-black text-[#1E3A5F] mb-4 text-base">{pkg.title}</h3>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {pkg.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
+                    <li key={item} className="flex items-start gap-2.5">
                       <Check />
                       <span className="text-sm text-gray-500 leading-relaxed">{item}</span>
                     </li>
@@ -281,12 +274,12 @@ export default function HomePage() {
               Páginalo es ideal si eres...
             </motion.h2>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-5">
+<div className="grid md:grid-cols-3 gap-6">
             {personas.map((p, i) => (
               <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-gray-100 p-6 border-l-4 border-l-[#00B5B5]/30"
-                style={{ background: "#FAFCFF" }}
+                className="rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20"
+                style={{ background: "#FAFCFF", boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}
               >
                 <span className="text-2xl mb-3 block">{p.emoji}</span>
                 <h3 className="font-black text-[#1E3A5F] text-sm mb-2">{p.title}</h3>
@@ -326,7 +319,7 @@ export default function HomePage() {
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="font-black text-[#1E3A5F] text-base">{p.title}</h3>
-                    {!p.live && <span className="text-[10px] font-bold tracking-widest uppercase bg-gray-100 text-gray-400 px-2 py-0.5 rounded-full">Próximamente</span>}
+                    {!p.live && <span className="text-[10px] font-bold tracking-widest uppercase bg-gray-100 text-gray-400 px-2.5 py-1 rounded-full">Próximamente</span>}
                   </div>
                   <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.desc}</p>
                   {p.live ? (
@@ -357,7 +350,7 @@ export default function HomePage() {
             <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-8 leading-tight">
               ¿Tienes dudas?
             </motion.h2>
-            <motion.div variants={fadeUp} className="bg-gray-50 rounded-2xl border border-gray-100 px-5 max-w-2xl divide-y divide-gray-100">
+            <motion.div variants={fadeUp} className="bg-white rounded-2xl border border-gray-100 px-5 max-w-2xl divide-y divide-gray-100" style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}>
               {faqs.map((f) => <FaqItem key={f.q} q={f.q} a={f.a} />)}
             </motion.div>
           </motion.div>
