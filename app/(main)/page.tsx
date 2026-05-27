@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -36,9 +35,13 @@ const WaBtn = ({ label }: { label: string }) => (
 
 const SectionLabel = ({ text }: { text: string }) => (
   <div className="mb-5">
-    <div className="w-5 h-0.5 bg-[#00B5B5] mb-3 rounded-full" />
-    <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#00B5B5]">{text}</p>
+    <div className="w-8 h-[3px] bg-[#00B5B5] mb-3 rounded-full" />
+    <p className="text-[11px] font-black tracking-[0.25em] uppercase text-[#00B5B5]">{text}</p>
   </div>
+);
+
+const Divider = () => (
+  <div className="h-px bg-gradient-to-r from-transparent via-[#00B5B5]/20 to-transparent" />
 );
 
 const Check = () => (
@@ -89,6 +92,7 @@ const packages = [
     icon: <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>,
     title: "Automatización con IA",
     items: ["Chatbot en WhatsApp activo 24/7", "Responde preguntas frecuentes solo", "Califica leads antes de pasarlos a ti", "Configurado para tu negocio específico"],
+    featured: true,
   },
   {
     icon: <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46" /></svg>,
@@ -128,13 +132,11 @@ export default function HomePage() {
           style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.10) 0%, rgba(255,127,127,0.06) 100%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-2xl w-full">
-          {/* Logo en contenedor glass */}
+          {/* Wordmark tipográfico */}
           <motion.div variants={fadeUp} className="flex justify-center mb-7">
-            <div className="inline-flex items-center justify-center rounded-2xl px-5 py-2.5"
-              style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}>
-              <Image src="/logo-paginalo.png" alt="Páginalo" width={130} height={38}
-                className="h-8 w-auto object-contain" priority />
-            </div>
+            <span className="text-3xl font-black tracking-tight" style={gradient}>
+              Páginalo
+            </span>
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex justify-center mb-6">
@@ -164,12 +166,12 @@ export default function HomePage() {
         </motion.div>
 
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #F0F7F7)" }} />
+          style={{ background: "linear-gradient(to bottom, transparent, #EEF7F7)" }} />
       </section>
 
       {/* ══ STATS ════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F0F7F7] py-8 border-b border-[#00B5B5]/10">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="py-10 border-b border-[#00B5B5]/10" style={{ background: "#EEF7F7" }}>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="grid grid-cols-3 gap-4 text-center">
             {[{ num: "3+", label: "Negocios lanzados" }, { num: "24/7", label: "Chatbot activo" }, { num: "2 sem.", label: "Tiempo de entrega" }].map((s) => (
               <div key={s.label}>
@@ -181,48 +183,80 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* ══ EL PROBLEMA ══════════════════════════════════════════════════ */}
-      <section className="bg-[#FAFAFA] py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
-            <motion.div variants={fadeUp}><SectionLabel text="El problema" /></motion.div>
-            <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-8 leading-tight">
-              ¿Por qué tu negocio todavía<br className="hidden md:block" /> no vende en internet?
-            </motion.h2>
-            <motion.div variants={stagger} className="space-y-3 mb-8 max-w-lg">
-              {["No tienes tiempo para manejar un sitio web", "Contestas los mismos mensajes de WhatsApp 50 veces al día", "Tus clientes no te encuentran en Google", "La competencia ya tiene presencia digital — tú todavía no", "No sabes por dónde empezar ni cuánto cuesta"].map((item) => (
-                <motion.div key={item} variants={fadeUp} className="flex items-start gap-3">
+      <section className="relative bg-white py-20 overflow-hidden">
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>01</span>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+            {/* Columna izquierda */}
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
+              <motion.div variants={fadeUp}><SectionLabel text="El problema" /></motion.div>
+              <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-8 leading-tight">
+                ¿Por qué tu negocio todavía no vende en internet?
+              </motion.h2>
+              <motion.div variants={fadeUp} className="inline-block rounded-xl border border-[#00B5B5]/20 px-5 py-4" style={{ background: "#EEF7F7" }}>
+                <p className="text-sm font-semibold text-[#1E3A5F]">
+                  Nosotros resolvemos todo esto por ti.{" "}
+                  <span className="text-[#00B5B5]">En 2 semanas.</span>
+                </p>
+              </motion.div>
+            </motion.div>
+
+            {/* Columna derecha */}
+            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }} className="space-y-3 md:pt-14">
+              {[
+                "No tienes tiempo para manejar un sitio web",
+                "Contestas los mismos mensajes de WhatsApp 50 veces al día",
+                "Tus clientes no te encuentran en Google",
+                "La competencia ya tiene presencia digital — tú todavía no",
+                "No sabes por dónde empezar ni cuánto cuesta",
+              ].map((item) => (
+                <motion.div key={item} variants={fadeUp} className="flex items-start gap-3 rounded-lg bg-gray-50 px-4 py-3 border border-gray-100">
                   <XIcon />
                   <p className="text-sm text-gray-600 leading-relaxed">{item}</p>
                 </motion.div>
               ))}
             </motion.div>
-            <motion.div variants={fadeUp} className="inline-block rounded-xl bg-[#F0F7F7] border border-[#00B5B5]/20 px-5 py-3.5">
-              <p className="text-sm font-semibold text-[#1E3A5F]">
-                Nosotros resolvemos todo esto por ti.{" "}
-                <span className="text-[#00B5B5]">En 2 semanas.</span>
-              </p>
-            </motion.div>
-          </motion.div>
+
+          </div>
         </div>
       </section>
 
+      <Divider />
+
       {/* ══ PAQUETE ══════════════════════════════════════════════════════ */}
-      <section id="servicios" className="bg-[#F0F7F7] py-20">
-        <div className="mx-auto max-w-5xl px-6">
+      <section id="servicios" className="relative py-20 overflow-hidden" style={{ background: "#EEF7F7" }}>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>02</span>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Paquete todo incluido" /></motion.div>
             <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-10 leading-tight">
               Todo lo que necesitas para vender en internet
             </motion.h2>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-5 items-start">
             {packages.map((pkg, i) => (
               <motion.div key={pkg.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-100 p-6 border-t-2 border-t-[#00B5B5]/40"
+                className={`relative rounded-2xl border p-6 transition-all duration-300 ${
+                  pkg.featured
+                    ? "bg-white border-[#00B5B5]/40 shadow-xl shadow-[#00B5B5]/10 md:scale-[1.05] md:-translate-y-1 border-t-2 border-t-[#00B5B5]"
+                    : "bg-white border-gray-100 border-t-2 border-t-[#00B5B5]/20"
+                }`}
               >
-                <div className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-[#00B5B5]/10 text-[#00B5B5] mb-4">{pkg.icon}</div>
+                {pkg.featured && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-black tracking-[0.15em] uppercase text-white" style={{ background: "linear-gradient(90deg, #00B5B5, #FF7F7F)" }}>
+                      ✦ Más Popular
+                    </span>
+                  </div>
+                )}
+                <div className={`inline-flex items-center justify-center h-10 w-10 rounded-lg mb-4 ${pkg.featured ? "bg-[#00B5B5]/15 text-[#00B5B5]" : "bg-[#00B5B5]/10 text-[#00B5B5]"}`}>
+                  {pkg.icon}
+                </div>
                 <h3 className="font-black text-[#1E3A5F] mb-4 text-base">{pkg.title}</h3>
                 <ul className="space-y-2.5">
                   {pkg.items.map((item) => (
@@ -235,27 +269,31 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mt-8 flex flex-col items-start gap-2">
+          <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="mt-10 flex flex-col items-center gap-2">
             <WaBtn label="Quiero saber el precio" />
             <p className="text-xs text-gray-400">Precio exacto en 24 horas · Sin compromiso</p>
           </motion.div>
         </div>
       </section>
 
+      <Divider />
+
       {/* ══ PARA QUIÉN ═══════════════════════════════════════════════════ */}
-      <section className="bg-[#FAFAFA] py-20">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="relative bg-white py-20 overflow-hidden">
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>03</span>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="¿Para quién es?" /></motion.div>
             <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-10 leading-tight">
               Páginalo es ideal si eres...
             </motion.h2>
           </motion.div>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-5">
             {personas.map((p, i) => (
               <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-100 p-6"
+                className="rounded-2xl border border-gray-100 p-6 border-l-4 border-l-[#00B5B5]/30"
+                style={{ background: "#FAFCFF" }}
               >
                 <span className="text-2xl mb-3 block">{p.emoji}</span>
                 <h3 className="font-black text-[#1E3A5F] text-sm mb-2">{p.title}</h3>
@@ -266,23 +304,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* ══ PORTAFOLIO ═══════════════════════════════════════════════════ */}
-      <section id="portafolio" className="bg-[#F0F7F7] py-20">
-        <div className="mx-auto max-w-5xl px-6">
+      <section id="portafolio" className="relative py-20 overflow-hidden" style={{ background: "#EEF7F7" }}>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>04</span>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Portafolio" /></motion.div>
             <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-10 leading-tight">
               Ya lo hicimos para ellos
             </motion.h2>
           </motion.div>
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-[#00B5B5]/10">
             {projects.map((p, i) => {
               const row = (
                 <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
                   viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.08 }}
-                  className={`group flex flex-col md:flex-row md:items-center gap-3 md:gap-6 py-5 rounded-lg transition-colors duration-200 ${p.live ? "cursor-pointer hover:bg-white" : "cursor-default"}`}
+                  className={`group flex flex-col md:flex-row md:items-center gap-3 md:gap-6 py-5 px-4 rounded-lg transition-colors duration-200 ${p.live ? "cursor-pointer hover:bg-white" : "cursor-default"}`}
                 >
-                  <span className="text-3xl font-black text-gray-100 group-hover:text-[#00B5B5]/25 transition-colors leading-none shrink-0 w-12 select-none">{p.num}</span>
+                  <span className="text-3xl font-black select-none leading-none shrink-0 w-12 transition-colors group-hover:text-[#00B5B5]/30" style={{ color: "rgba(0,181,181,0.12)" }}>{p.num}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-0.5">
                       <h3 className={`font-black text-[#1E3A5F] text-base ${p.live ? "group-hover:text-[#00B5B5]" : ""} transition-colors`}>{p.title}</h3>
@@ -291,7 +332,7 @@ export default function HomePage() {
                     </div>
                     <p className="text-sm text-gray-400 leading-relaxed">{p.desc}</p>
                   </div>
-                  {p.live && <span className="text-gray-200 group-hover:text-[#00B5B5] group-hover:translate-x-1 transition-all text-lg shrink-0 hidden md:block">→</span>}
+                  {p.live && <span className="text-gray-300 group-hover:text-[#00B5B5] group-hover:translate-x-1 transition-all text-lg shrink-0 hidden md:block">→</span>}
                 </motion.div>
               );
               return p.href ? (
@@ -302,15 +343,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* ══ FAQ ══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#FAFAFA] py-20">
-        <div className="mx-auto max-w-5xl px-6">
+      <section className="relative bg-white py-20 overflow-hidden">
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>05</span>
+        <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Preguntas frecuentes" /></motion.div>
             <motion.h2 variants={fadeUp} className="text-2xl md:text-3xl font-black text-[#1E3A5F] mb-8 leading-tight">
               ¿Tienes dudas?
             </motion.h2>
-            <motion.div variants={fadeUp} className="bg-white rounded-2xl border border-gray-100 px-5 max-w-2xl divide-y divide-gray-100">
+            <motion.div variants={fadeUp} className="bg-gray-50 rounded-2xl border border-gray-100 px-5 max-w-2xl divide-y divide-gray-100">
               {faqs.map((f) => <FaqItem key={f.q} q={f.q} a={f.a} />)}
             </motion.div>
           </motion.div>
@@ -320,12 +364,12 @@ export default function HomePage() {
       {/* ══ CTA FINAL ════════════════════════════════════════════════════ */}
       <section id="contacto" className="relative bg-[#0A1628] overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, #FAFAFA, transparent)" }} />
+          style={{ background: "linear-gradient(to bottom, white, transparent)" }} />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
 
-        <div className="relative mx-auto max-w-5xl px-6 py-24 text-center">
+        <div className="relative mx-auto max-w-6xl px-6 md:px-10 py-24 text-center">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
-            <motion.p variants={fadeUp} className="mb-3 text-xs font-bold tracking-[0.2em] uppercase text-[#00B5B5]">
+            <motion.p variants={fadeUp} className="mb-3 text-[11px] font-black tracking-[0.25em] uppercase text-[#00B5B5]">
               Consulta gratuita · Sin compromiso
             </motion.p>
             <motion.h2 variants={fadeUp} className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-tight tracking-tight mb-4">
