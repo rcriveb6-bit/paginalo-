@@ -195,9 +195,9 @@ export default function HomePage() {
           <motion.h1 variants={fadeUp}
             className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5"
           >
-            Tu negocio completo<br />
-            en internet<br />
-            <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">Recupera tu tiempo.</span>
+            Recupera tu tiempo.<br />
+            Nosotros automatizamos<br />
+            <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">el resto.</span>
           </motion.h1>
 
           <motion.p variants={fadeUp} className="text-sm md:text-base text-white/60 mb-9 leading-relaxed max-w-md mx-auto">
