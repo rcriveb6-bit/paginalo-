@@ -9,6 +9,7 @@ const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], weight: [
 const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://paginalo-two.vercel.app"),
   title: "Páginalo — Agencia Digital Puerto Rico | Web + IA en 2 Semanas",
   description: "Sitio web profesional + chatbot IA + Google Business para tu negocio en Puerto Rico. Todo incluido, entregamos en 2 semanas. Consulta gratis sin compromiso.",
   openGraph: {
