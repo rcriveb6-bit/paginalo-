@@ -143,7 +143,7 @@ export default function HomePage() {
               height={120}
               priority
               className="object-contain"
-              style={{ width: "min(70vw, 300px)", height: "auto" }}
+              style={{ width: "min(70vw, 300px)", height: "auto", mixBlendMode: "multiply" }}
             />
           </motion.div>
 
