@@ -344,7 +344,7 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.desc}</p>
                   {p.live ? (
-                    <a href={p.href} target="_blank" rel="noopener noreferrer"
+                    <a href={p.href ?? undefined} target="_blank" rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00B5B5] hover:text-[#FF7F7F] transition-colors">
                       Ver proyecto <span>→</span>
                     </a>
