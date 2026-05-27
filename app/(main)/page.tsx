@@ -174,8 +174,10 @@ export default function HomePage() {
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-3xl w-full">
           {/* Logo */}
           <motion.div variants={fadeUp} className="flex justify-center mb-8">
-            <Image src="/logo-paginalo.png" alt="Páginalo" width={120} height={36}
-              className="h-7 w-auto object-contain brightness-[5] opacity-75" priority />
+            <Image src="/logo-paginalo.png" alt="Páginalo" width={140} height={42}
+              className="h-8 w-auto object-contain"
+              style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
+              priority />
           </motion.div>
 
           {/* Badge */}
