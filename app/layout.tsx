@@ -11,11 +11,11 @@ const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["300",
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.paginalo.org"),
-  title: "Páginalo — Agencia Digital Puerto Rico | Web + IA en 2 Semanas",
+  title: "Páginalo — Agencia Digital Puerto Rico | Recupera tu tiempo",
   description: "Sitio web profesional + chatbot IA + Google Business para tu negocio en Puerto Rico. Todo incluido, entregamos en 2 semanas. Consulta gratis sin compromiso.",
   openGraph: {
-    title: "Páginalo — Tu Negocio Completo en Internet en 2 Semanas",
-    description: "Sitio web + chatbot IA + presencia en Google. Todo incluido para negocios en Puerto Rico. Entregamos en 2 semanas.",
+    title: "Páginalo — Recupera tu tiempo. Nosotros automatizamos el resto.",
+    description: "Sitio web + chatbot IA + presencia en Google. Todo incluido para negocios en Puerto Rico. Recupera tu tiempo.",
     siteName: "Páginalo",
     images: [{ url: "/paginalo-hero.png", width: 1200, height: 630, alt: "Páginalo — Agencia Digital Puerto Rico" }],
     locale: "es_PR",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Páginalo — Tu Negocio Completo en Internet en 2 Semanas",
+    title: "Páginalo — Recupera tu tiempo. Nosotros automatizamos el resto.",
     description: "Sitio web + chatbot IA + presencia en Google. Todo incluido para negocios en Puerto Rico.",
     images: ["/paginalo-hero.png"],
   },

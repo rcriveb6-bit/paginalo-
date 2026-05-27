@@ -197,7 +197,7 @@ export default function HomePage() {
           >
             Tu negocio completo<br />
             en internet<br />
-            <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">en 2 semanas</span>
+            <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">Recupera tu tiempo.</span>
           </motion.h1>
 
           <motion.p variants={fadeUp} className="text-sm md:text-base text-white/60 mb-9 leading-relaxed max-w-md mx-auto">
@@ -232,7 +232,7 @@ export default function HomePage() {
               <motion.div variants={fadeUp} className="inline-block rounded-xl border border-[#00B5B5]/20 px-5 py-4" style={{ background: "#EEF7F7" }}>
                 <p className="text-sm font-semibold text-[#1E3A5F]">
                   Nosotros resolvemos todo esto por ti.{" "}
-                  <span className="text-[#00B5B5]">En 2 semanas.</span>
+                  <span className="text-[#00B5B5]">Nosotros automatizamos el resto.</span>
                 </p>
               </motion.div>
             </motion.div>
