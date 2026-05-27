@@ -123,13 +123,29 @@ const faqs = [
 
 export default function HomePage() {
   return (
+    {/* ══ STICKY HEADER ═══════════════════════════════════════════════ */}
+      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: "rgba(30,58,95,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
+        <div className="mx-auto max-w-6xl px-6 md:px-10 h-14 flex items-center justify-between">
+          <Image src="/logo-paginalo.png" alt="Páginalo" width={100} height={28} className="h-7 w-auto object-contain" />
+          <nav className="flex items-center gap-6">
+            <a href="#servicios" className="text-xs font-semibold text-white/60 hover:text-white transition-colors">Servicios</a>
+            <a href="#portafolio" className="text-xs font-semibold text-white/60 hover:text-white transition-colors">Portafolio</a>
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-white bg-[#FF7F7F] px-4 py-1.5 rounded-full hover:brightness-110 transition-all">
+              WhatsApp
+            </a>
+          </nav>
+        </div>
+      </header>
+
     <div className="overflow-x-hidden">
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#1E3A5F] overflow-hidden px-6 text-center pb-20">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#1E3A5F] overflow-hidden px-6 text-center pb-20 pt-16">
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.07) 0%, rgba(255,127,127,0.04) 100%)" }} />
+        <div className="absolute -bottom-20 -right-20 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-60"
+          style={{ background: "radial-gradient(circle, rgba(0,181,181,0.12) 0%, transparent 70%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-2xl w-full">
 
@@ -179,7 +195,7 @@ export default function HomePage() {
 
       {/* ══ EL PROBLEMA ══════════════════════════════════════════════════ */}
       <section className="relative bg-white py-20 overflow-hidden">
-        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>01</span>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.08)" }}>01</span>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
 
@@ -225,7 +241,7 @@ export default function HomePage() {
 
       {/* ══ PAQUETE ══════════════════════════════════════════════════════ */}
       <section id="servicios" className="relative py-20 overflow-hidden" style={{ background: "#EEF7F7" }}>
-        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>02</span>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.08)" }}>02</span>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Paquete todo incluido" /></motion.div>
@@ -237,10 +253,10 @@ export default function HomePage() {
             {packages.map((pkg, i) => (
               <motion.div key={pkg.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20"
+                className="bg-white rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20 group"
                 style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}
               >
-                <div className="inline-flex items-center justify-center h-11 w-11 rounded-xl mb-5 bg-[#EEF7F7] text-[#00B5B5]">
+                <div className="inline-flex items-center justify-center h-11 w-11 rounded-xl mb-5 bg-[#EEF7F7] text-[#00B5B5] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-3deg]">
                   {pkg.icon}
                 </div>
                 <h3 className="font-black text-[#1E3A5F] mb-4 text-base">{pkg.title}</h3>
@@ -266,7 +282,7 @@ export default function HomePage() {
 
       {/* ══ PARA QUIÉN ═══════════════════════════════════════════════════ */}
       <section className="relative bg-white py-20 overflow-hidden">
-        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>03</span>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.08)" }}>03</span>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="¿Para quién es?" /></motion.div>
@@ -278,7 +294,7 @@ export default function HomePage() {
             {personas.map((p, i) => (
               <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
                 viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20"
+                className="rounded-2xl border border-gray-100 p-7 transition-all duration-300 hover:shadow-lg hover:border-[#00B5B5]/20 group"
                 style={{ background: "#FAFCFF", boxShadow: "0 4px 24px rgba(0,0,0,0.04)" }}
               >
                 <span className="text-2xl mb-3 block">{p.emoji}</span>
@@ -294,7 +310,7 @@ export default function HomePage() {
 
       {/* ══ PORTAFOLIO ═══════════════════════════════════════════════════ */}
       <section id="portafolio" className="relative py-20 overflow-hidden" style={{ background: "#EEF7F7" }}>
-        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>04</span>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.08)" }}>04</span>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Portafolio" /></motion.div>
@@ -310,11 +326,37 @@ export default function HomePage() {
                   p.live ? "border-gray-100 hover:shadow-lg hover:shadow-[#00B5B5]/10 hover:-translate-y-0.5 cursor-pointer" : "border-gray-100 opacity-85"
                 }`}
               >
-                <div className="h-44 bg-gradient-to-br from-[#00B5B5]/5 to-[#FF7F7F]/5 flex items-center justify-center overflow-hidden">
-                  <div className="text-center">
-                    <span className="text-5xl font-black text-[#00B5B5]/20">{p.num}</span>
-                    <p className="text-xs text-[#00B5B5]/40 mt-1 uppercase tracking-wider font-medium">{p.category}</p>
+                <div className="h-44 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1E3A5F 0%, #0F1B2D 100%)" }}>
+                  {/* Browser chrome mockup */}
+                  <div className="absolute top-0 left-0 right-0 h-6 bg-black/30 flex items-center px-3 gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-red-400/50" />
+                    <span className="h-2 w-2 rounded-full bg-yellow-400/50" />
+                    <span className="h-2 w-2 rounded-full bg-green-400/50" />
+                    <span className="ml-2 h-2.5 flex-1 max-w-[120px] rounded bg-white/10" />
                   </div>
+                  {/* Content mockup */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pt-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-6 w-6 rounded-full" style={{ background: "linear-gradient(135deg, #00B5B5, #FF7F7F)" }} />
+                      <span className="text-white font-bold text-sm">{p.title}</span>
+                    </div>
+                    <span className="text-[10px] text-white/40 uppercase tracking-wider">{p.category}</span>
+                    {/* Mockup layout lines */}
+                    <div className="mt-3 flex gap-2 w-3/4">
+                      <div className="h-3 flex-1 rounded-sm bg-white/8" />
+                      <div className="h-3 w-6 rounded-sm bg-white/8" />
+                    </div>
+                    <div className="mt-1.5 flex gap-2 w-3/4">
+                      <div className="h-3 w-10 rounded-sm bg-white/8" />
+                      <div className="h-3 flex-1 rounded-sm bg-white/8" />
+                    </div>
+                    <div className="mt-1.5 flex gap-2 w-3/4">
+                      <div className="h-3 flex-1 rounded-sm bg-white/8" />
+                      <div className="h-3 w-8 rounded-sm bg-white/8" />
+                    </div>
+                  </div>
+                  {/* Colored accent bar */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #00B5B5, #FF7F7F)" }} />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-2">
@@ -343,7 +385,7 @@ export default function HomePage() {
 
       {/* ══ FAQ ══════════════════════════════════════════════════════════ */}
       <section className="relative bg-white py-20 overflow-hidden">
-        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.04)" }}>05</span>
+        <span className="absolute right-6 top-4 text-[120px] font-black select-none pointer-events-none leading-none" style={{ color: "rgba(0,181,181,0.08)" }}>05</span>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.div variants={fadeUp}><SectionLabel text="Preguntas frecuentes" /></motion.div>
