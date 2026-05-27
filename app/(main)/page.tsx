@@ -109,9 +109,9 @@ const personas = [
 ];
 
 const projects = [
-  { num: "01", href: "https://liorayco.netlify.app/", live: true, category: "E-Commerce · Velas", title: "Liora & Co.", desc: "Tienda online 24/7 con cobros automáticos e inventario en tiempo real." },
-  { num: "02", href: null, live: false, category: "Thrift Shop · Moda", title: "RYA Shop", desc: "Catálogo digital elegante conectado a WhatsApp para ventas personalizadas." },
-  { num: "03", href: "https://solar-crm-seven-mu.vercel.app/login", live: true, category: "CRM · Energía Solar", title: "CRM Solar", desc: "Plataforma a la medida para equipos de ventas: cotizaciones, leads y seguimiento." },
+  { num: "01", href: "https://liorayco.netlify.app/", live: true, category: "E-Commerce · Velas", title: "Liora & Co.", desc: "Tienda online profesional con cobros automáticos e inventario en tiempo real." },
+  { num: "02", href: null, live: false, category: "E-Commerce · Moda", title: "RYA Shop", desc: "Catálogo digital elegante conectado a WhatsApp para ventas personalizadas." },
+  { num: "03", href: "https://solar-crm-seven-mu.vercel.app/login", live: true, category: "CRM · Ventas", title: "CRM Solar", desc: "Plataforma a la medida para equipos de ventas: cotizaciones, leads y seguimiento." },
 ];
 
 const faqs = [
@@ -176,21 +176,7 @@ export default function HomePage() {
           style={{ background: "linear-gradient(to bottom, transparent, #F8F8F8)" }} />
       </section>
 
-      {/* ══ STATS ════════════════════════════════════════════════════════ */}
-      <section className="py-10 border-b border-[#00B5B5]/10" style={{ background: "#EEF7F7" }}>
-        <div className="mx-auto max-w-6xl px-6 md:px-10">
-          <div className="grid grid-cols-3 gap-4 text-center">
-            {[{ num: "3", label: "Proyectos completados" }, { num: "24/7", label: "Soporte activo" }, { num: "2 sem.", label: "Tiempo de entrega" }].map((s) => (
-              <div key={s.label}>
-                <p className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{s.num}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <Divider />
 
       {/* ══ EL PROBLEMA ══════════════════════════════════════════════════ */}
       <section className="relative bg-white py-20 overflow-hidden">
