@@ -127,61 +127,51 @@ export default function HomePage() {
     <div className="overflow-x-hidden">
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center bg-[#F8F8F8] overflow-hidden px-6 text-center pb-20">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[130px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.08) 0%, rgba(255,127,127,0.05) 100%)" }} />
+      <section className="relative min-h-[88vh] flex flex-col items-center justify-center bg-[#0A1628] overflow-hidden px-6 text-center pb-28">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.10) 0%, rgba(255,127,127,0.06) 100%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-2xl w-full">
 
-          {/* Logo PNG — grande, fondo blanco se mezcla con #F8F8F8 */}
-          <motion.div variants={fadeUp} className="flex justify-center mb-2">
-            <Image
-              src="/logo-paginalo.png"
-              alt="Páginalo"
-              width={400}
-              height={120}
-              priority
-              className="object-contain"
-              style={{ width: "min(70vw, 300px)", height: "auto", mixBlendMode: "multiply" }}
-            />
-          </motion.div>
-
-          {/* Nombre en navy — grande y claro */}
+          {/* Wordmark en gradient sobre fondo oscuro */}
           <motion.div variants={fadeUp} className="flex justify-center mb-7">
             <span
-              className="font-black tracking-tight text-[#1E3A5F]"
-              style={{ fontSize: "clamp(2.5rem, 14vw, 3.5rem)" }}
+              className="font-black tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 14vw, 3.5rem)", ...gradient }}
             >
               Páginalo
             </span>
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex justify-center mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/40 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/30 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5] animate-pulse shrink-0" />
               Agencia IA · Puerto Rico 🇵🇷
             </span>
           </motion.div>
 
           <motion.h1 variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-[#1E3A5F] leading-[1.05] tracking-tight mb-5"
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.05] tracking-tight mb-5"
           >
             Tu negocio completo<br />
             en internet<br />
             <span style={gradient}>en 2 semanas</span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-[#1E3A5F]/50 mb-9 leading-relaxed max-w-md mx-auto">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-white/45 mb-9 leading-relaxed max-w-md mx-auto">
             Sitio web + chatbot IA + presencia en Google.<br />
             Todo incluido. Tú solo te enfocas en tu negocio.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col items-center gap-2.5">
             <WaBtn label="Consulta gratis · Sin compromiso" />
-            <p className="text-[#1E3A5F]/30 text-xs">Respuesta en 24 horas</p>
+            <p className="text-white/25 text-xs">Respuesta en 24 horas</p>
           </motion.div>
         </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, transparent, #EEF7F7)" }} />
       </section>
 
       {/* ══ STATS ════════════════════════════════════════════════════════ */}
