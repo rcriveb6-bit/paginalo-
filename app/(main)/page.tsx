@@ -127,58 +127,60 @@ export default function HomePage() {
     <div className="overflow-x-hidden">
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center bg-[#0A1628] overflow-hidden px-6 text-center pb-28">
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[120px] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.10) 0%, rgba(255,127,127,0.06) 100%)" }} />
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#F8F8F8] overflow-hidden px-6 text-center pb-20">
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.07) 0%, rgba(255,127,127,0.04) 100%)" }} />
 
         <motion.div initial="hidden" animate="show" variants={stagger} className="relative z-10 max-w-2xl w-full">
 
-          {/* Wordmark en gradient sobre fondo oscuro */}
-          <motion.div variants={fadeUp} className="flex justify-center mb-7">
-            <span
-              className="font-black tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 14vw, 3.5rem)", ...gradient }}
-            >
-              Páginalo
-            </span>
+          {/* LOGO GRANDE como imagen */}
+          <motion.div variants={fadeUp} className="flex justify-center mb-6">
+            <Image
+              src="/logo-paginalo.png"
+              alt="Páginalo"
+              width={500}
+              height={140}
+              className="w-[70vw] max-w-[420px] h-auto object-contain"
+              priority
+            />
           </motion.div>
 
           <motion.div variants={fadeUp} className="flex justify-center mb-6">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/30 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#00B5B5]/25 px-4 py-1.5 text-[11px] font-bold tracking-[0.18em] uppercase text-[#00B5B5]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#00B5B5] animate-pulse shrink-0" />
               Agencia IA · Puerto Rico 🇵🇷
             </span>
           </motion.div>
 
           <motion.h1 variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.05] tracking-tight mb-5"
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-[#1E3A5F] leading-[1.08] tracking-tight mb-5"
           >
             Tu negocio completo<br />
             en internet<br />
-            <span style={gradient}>en 2 semanas</span>
+            <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">en 2 semanas</span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-white/45 mb-9 leading-relaxed max-w-md mx-auto">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-[#1E3A5F]/50 mb-9 leading-relaxed max-w-md mx-auto">
             Sitio web + chatbot IA + presencia en Google.<br />
             Todo incluido. Tú solo te enfocas en tu negocio.
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col items-center gap-2.5">
             <WaBtn label="Consulta gratis · Sin compromiso" />
-            <p className="text-white/25 text-xs">Respuesta en 24 horas</p>
+            <p className="text-[#1E3A5F]/30 text-xs">Respuesta en 24 horas</p>
           </motion.div>
         </motion.div>
 
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #EEF7F7)" }} />
+          style={{ background: "linear-gradient(to bottom, transparent, #F8F8F8)" }} />
       </section>
 
       {/* ══ STATS ════════════════════════════════════════════════════════ */}
       <section className="py-10 border-b border-[#00B5B5]/10" style={{ background: "#EEF7F7" }}>
         <div className="mx-auto max-w-6xl px-6 md:px-10">
           <div className="grid grid-cols-3 gap-4 text-center">
-            {[{ num: "3+", label: "Negocios lanzados" }, { num: "24/7", label: "Chatbot activo" }, { num: "2 sem.", label: "Tiempo de entrega" }].map((s) => (
+            {[{ num: "3", label: "Proyectos completados" }, { num: "24/7", label: "Soporte activo" }, { num: "2 sem.", label: "Tiempo de entrega" }].map((s) => (
               <div key={s.label}>
                 <p className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{s.num}</p>
                 <p className="text-xs text-gray-400 mt-0.5">{s.label}</p>
@@ -321,29 +323,39 @@ export default function HomePage() {
               Ya lo hicimos para ellos
             </motion.h2>
           </motion.div>
-          <div className="divide-y divide-[#00B5B5]/10">
-            {projects.map((p, i) => {
-              const row = (
-                <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
-                  viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.08 }}
-                  className={`group flex flex-col md:flex-row md:items-center gap-3 md:gap-6 py-5 px-4 rounded-lg transition-colors duration-200 ${p.live ? "cursor-pointer hover:bg-white" : "cursor-default"}`}
-                >
-                  <span className="text-3xl font-black select-none leading-none shrink-0 w-12 transition-colors group-hover:text-[#00B5B5]/30" style={{ color: "rgba(0,181,181,0.12)" }}>{p.num}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                      <h3 className={`font-black text-[#1E3A5F] text-base ${p.live ? "group-hover:text-[#00B5B5]" : ""} transition-colors`}>{p.title}</h3>
-                      <span className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#00B5B5] bg-[#00B5B5]/10 px-2 py-0.5 rounded-full">{p.category}</span>
-                      {!p.live && <span className="text-[10px] font-bold tracking-widest uppercase bg-gray-100 text-gray-400 px-2 py-0.5 rounded-full">Próximamente</span>}
-                    </div>
-                    <p className="text-sm text-gray-400 leading-relaxed">{p.desc}</p>
+          <div className="grid md:grid-cols-3 gap-5">
+            {projects.map((p, i) => (
+              <motion.div key={p.title} variants={fadeUp} initial="hidden" whileInView="show"
+                viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.1 }}
+                className={`rounded-2xl border bg-white overflow-hidden transition-all duration-200 ${
+                  p.live ? "border-gray-100 hover:shadow-lg hover:shadow-[#00B5B5]/10 hover:-translate-y-0.5 cursor-pointer" : "border-gray-100 opacity-85"
+                }`}
+              >
+                <div className="h-44 bg-gradient-to-br from-[#00B5B5]/5 to-[#FF7F7F]/5 flex items-center justify-center overflow-hidden">
+                  <div className="text-center">
+                    <span className="text-5xl font-black text-[#00B5B5]/20">{p.num}</span>
+                    <p className="text-xs text-[#00B5B5]/40 mt-1 uppercase tracking-wider font-medium">{p.category}</p>
                   </div>
-                  {p.live && <span className="text-gray-300 group-hover:text-[#00B5B5] group-hover:translate-x-1 transition-all text-lg shrink-0 hidden md:block">→</span>}
-                </motion.div>
-              );
-              return p.href ? (
-                <a key={p.title} href={p.href} target="_blank" rel="noopener noreferrer" className="block">{row}</a>
-              ) : <div key={p.title}>{row}</div>;
-            })}
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="font-black text-[#1E3A5F] text-base">{p.title}</h3>
+                    {!p.live && <span className="text-[10px] font-bold tracking-widest uppercase bg-gray-100 text-gray-400 px-2 py-0.5 rounded-full">Próximamente</span>}
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">{p.desc}</p>
+                  {p.live ? (
+                    <a href={p.href} target="_blank" rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00B5B5] hover:text-[#FF7F7F] transition-colors">
+                      Ver proyecto <span>→</span>
+                    </a>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-gray-300">
+                      Ver proyecto <span>→</span>
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
