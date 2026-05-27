@@ -124,7 +124,7 @@ const faqs = [
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    {/* ══ STICKY HEADER ═══════════════════════════════════════════════ */}
+    <div className="overflow-x-hidden">
       <header className="fixed top-0 left-0 right-0 z-50" style={{ background: "rgba(30,58,95,0.95)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid rgba(0,181,181,0.08)" }}>
         <div className="mx-auto max-w-6xl px-6 md:px-10 h-14 md:h-16 flex items-center justify-between">
           <Image src="/logo-paginalo.png" alt="Páginalo" width={120} height={32} className="h-8 w-auto object-contain" />
@@ -162,7 +162,6 @@ export default function HomePage() {
         </AnimatePresence>
       </header>
 
-    <div className="overflow-x-hidden">
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#1E3A5F] overflow-hidden px-6 text-center pb-20 pt-16">
