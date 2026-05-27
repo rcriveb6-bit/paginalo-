@@ -326,7 +326,7 @@ export default function HomePage() {
                   p.live ? "border-gray-100 hover:shadow-lg hover:shadow-[#00B5B5]/10 hover:-translate-y-0.5 cursor-pointer" : "border-gray-100 opacity-85"
                 }`}
               >
-                <div className="h-44 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1E3A5F 0%, #0F1B2D 100%)" }}>
+                <div className="h-44 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1E3A5F 0%, #162D4A 100%)" }}>
                   {/* Browser chrome mockup */}
                   <div className="absolute top-0 left-0 right-0 h-6 bg-black/30 flex items-center px-3 gap-1.5">
                     <span className="h-2 w-2 rounded-full bg-red-400/50" />
@@ -400,7 +400,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ CTA FINAL ════════════════════════════════════════════════════ */}
-      <section id="contacto" className="relative bg-[#0A1628] overflow-hidden">
+      <section id="contacto" className="relative bg-[#1E3A5F] overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
           style={{ background: "linear-gradient(to bottom, white, transparent)" }} />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
