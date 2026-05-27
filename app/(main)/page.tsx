@@ -122,19 +122,44 @@ const faqs = [
 ];
 
 export default function HomePage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     {/* ══ STICKY HEADER ═══════════════════════════════════════════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style={{ background: "rgba(30,58,95,0.92)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
-        <div className="mx-auto max-w-6xl px-6 md:px-10 h-14 flex items-center justify-between">
-          <Image src="/logo-paginalo.png" alt="Páginalo" width={100} height={28} className="h-7 w-auto object-contain" />
-          <nav className="flex items-center gap-6">
-            <a href="#servicios" className="text-xs font-semibold text-white/60 hover:text-white transition-colors">Servicios</a>
-            <a href="#portafolio" className="text-xs font-semibold text-white/60 hover:text-white transition-colors">Portafolio</a>
-            <a href={wa} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-white bg-[#FF7F7F] px-4 py-1.5 rounded-full hover:brightness-110 transition-all">
+      <header className="fixed top-0 left-0 right-0 z-50" style={{ background: "rgba(30,58,95,0.95)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)", borderBottom: "1px solid rgba(0,181,181,0.08)" }}>
+        <div className="mx-auto max-w-6xl px-6 md:px-10 h-14 md:h-16 flex items-center justify-between">
+          <Image src="/logo-paginalo.png" alt="Páginalo" width={120} height={32} className="h-8 w-auto object-contain" />
+          {/* Nav Desktop */}
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#servicios" className="text-sm font-semibold text-white/50 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[#00B5B5] after:transition-all after:duration-200 hover:after:w-full">Servicios</a>
+            <a href="#portafolio" className="text-sm font-semibold text-white/50 hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-[#00B5B5] after:transition-all after:duration-200 hover:after:w-full">Portafolio</a>
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-white bg-[#FF7F7F] px-5 py-2 rounded-full hover:brightness-110 hover:scale-[1.03] transition-all duration-200">
               WhatsApp
             </a>
           </nav>
+          {/* Hamburguesa Mobile */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menú">
+            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-[4.5px]" : ""}`} />
+            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-[4.5px]" : ""}`} />
+          </button>
         </div>
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25 }} className="md:hidden overflow-hidden"
+              style={{ background: "rgba(30,58,95,0.98)", borderTop: "1px solid rgba(0,181,181,0.08)" }}
+            >
+              <div className="px-6 py-5 flex flex-col gap-4">
+                <a href="#servicios" onClick={() => setMenuOpen(false)} className="text-sm font-semibold text-white/60 hover:text-white transition-colors py-2">Servicios</a>
+                <a href="#portafolio" onClick={() => setMenuOpen(false)} className="text-sm font-semibold text-white/60 hover:text-white transition-colors py-2">Portafolio</a>
+                <a href={wa} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="text-sm font-bold text-white bg-[#FF7F7F] px-5 py-3 rounded-full text-center hover:brightness-110 transition-all">
+                  WhatsApp
+                </a>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
     <div className="overflow-x-hidden">
