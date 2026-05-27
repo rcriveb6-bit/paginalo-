@@ -224,8 +224,8 @@ export default function HomePage() {
       </section>
 
       {/* ══ PRUEBA SOCIAL ════════════════════════════════════════════════ */}
-      <section className="bg-[#FAFAFA] py-10">
-        <div className="mx-auto max-w-4xl px-6">
+      <section className="bg-[#F0F7F7] py-10 border-b border-[#00B5B5]/10">
+        <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-3 gap-4 md:gap-12 text-center">
             {[
               { num: "3+", label: "Negocios lanzados" },
@@ -243,7 +243,8 @@ export default function HomePage() {
 
       {/* ══ EL PROBLEMA ══════════════════════════════════════════════════ */}
       <section className="bg-[#FAFAFA] py-20">
-        <div className="mx-auto max-w-3xl px-6">
+        <div className="mx-auto max-w-5xl px-6">
+        <div className="max-w-2xl">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.p variants={fadeUp} className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">
               El problema
@@ -276,6 +277,7 @@ export default function HomePage() {
               </p>
             </motion.div>
           </motion.div>
+        </div>
         </div>
       </section>
 
@@ -369,7 +371,7 @@ export default function HomePage() {
                 <motion.div key={p.title}
                   variants={fadeUp} initial="hidden" whileInView="show"
                   viewport={{ once: true, margin: "-40px" }} transition={{ delay: i * 0.08 }}
-                  className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-7 px-5 -mx-5 rounded-xl transition-all duration-300 ${p.live ? "cursor-pointer hover:bg-white" : "cursor-default"}`}
+                  className={`group flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-7 rounded-xl transition-colors duration-300 ${p.live ? "cursor-pointer hover:bg-white" : "cursor-default"}`}
                 >
                   <span className="text-4xl font-black text-gray-100 group-hover:text-[#00B5B5]/20 transition-colors duration-300 leading-none shrink-0 w-14 select-none">
                     {p.num}
@@ -407,7 +409,8 @@ export default function HomePage() {
 
       {/* ══ FAQ ══════════════════════════════════════════════════════════ */}
       <section className="bg-[#FAFAFA] py-20">
-        <div className="mx-auto max-w-3xl px-6">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="max-w-2xl">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-60px" }}>
             <motion.p variants={fadeUp} className="mb-3 text-xs font-semibold tracking-[0.2em] uppercase text-[#00B5B5]">
               Preguntas frecuentes
@@ -419,14 +422,15 @@ export default function HomePage() {
               {faqs.map((f) => <FaqItem key={f.q} q={f.q} a={f.a} />)}
             </motion.div>
           </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ══ CTA FINAL ════════════════════════════════════════════════════ */}
       <section id="contacto" className="relative bg-[#0A1628] overflow-hidden">
         {/* Fade in from light */}
-        <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, #FAFAFA, transparent)" }} />
+        <div className="absolute top-0 left-0 right-0 h-28 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, #FAFAFA 0%, rgba(10,22,40,0) 100%)" }} />
 
         <div className="relative mx-auto max-w-3xl px-6 py-32 text-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] rounded-full blur-[120px] pointer-events-none"
