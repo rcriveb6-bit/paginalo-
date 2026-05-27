@@ -127,7 +127,7 @@ export default function HomePage() {
     <div className="overflow-x-hidden">
 
       {/* ══ HERO ══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#F8F8F8] overflow-hidden px-6 text-center pb-20">
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center bg-[#1E3A5F] overflow-hidden px-6 text-center pb-20">
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "radial-gradient(circle, #00B5B5 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] rounded-full blur-[140px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse, rgba(0,181,181,0.07) 0%, rgba(255,127,127,0.04) 100%)" }} />
@@ -154,14 +154,14 @@ export default function HomePage() {
           </motion.div>
 
           <motion.h1 variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-black text-[#1E3A5F] leading-[1.08] tracking-tight mb-5"
+            className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.08] tracking-tight mb-5"
           >
             Tu negocio completo<br />
             en internet<br />
             <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">en 2 semanas</span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-[#1E3A5F]/50 mb-9 leading-relaxed max-w-md mx-auto">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-white/60 mb-9 leading-relaxed max-w-md mx-auto">
             Sitio web + chatbot IA + presencia en Google.<br />
             Todo incluido. Tú solo te enfocas en tu negocio.
           </motion.p>
@@ -173,7 +173,7 @@ export default function HomePage() {
         </motion.div>
 
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #F8F8F8)" }} />
+          style={{ background: "linear-gradient(to bottom, transparent, #FFFFFF)" }} />
       </section>
 
 
