@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Cormorant_Garamond, Outfit, Jost } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], weight: ["300", "400", "500", "600", "700"] });
@@ -9,7 +10,7 @@ const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], weight: [
 const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paginalo-two.vercel.app"),
+  metadataBase: new URL("https://www.paginalo.org"),
   title: "Páginalo — Agencia Digital Puerto Rico | Web + IA en 2 Semanas",
   description: "Sitio web profesional + chatbot IA + Google Business para tu negocio en Puerto Rico. Todo incluido, entregamos en 2 semanas. Consulta gratis sin compromiso.",
   openGraph: {
@@ -53,6 +54,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-483V2LR7BX" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-483V2LR7BX');
+          `}
+        </Script>
         {children}
       </body>
     </html>
