@@ -58,7 +58,7 @@ export default function HomePage() {
 
         {/* Burbujas flotantes */}
         {BUBBLES.map((b, i) => (
-          <div key={i} className={`absolute hidden lg:block z-10 rounded-[20px] px-5 py-3.5 pointer-events-none animate-float ${b.cls}`}
+          <div key={i} className={`absolute block z-10 rounded-[20px] px-5 py-3.5 pointer-events-none animate-float ${b.cls}`}
             style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(0,181,181,0.1)" }}>
             <strong className="block text-xs font-semibold text-[#00B5B5] mb-1">{b.strong}</strong>
             <p className="text-[11px] text-white/50 leading-relaxed">{b.text}</p>
@@ -68,7 +68,7 @@ export default function HomePage() {
         <div className="relative z-20 text-center max-w-[720px]">
           <Image src="/logo-paginalo.png" alt="Páginalo" width={500} height={140} className="w-[clamp(240px,60vw,420px)] h-auto mx-auto mb-8" priority />
           <h1 className="text-[clamp(28px,5vw,48px)] font-black leading-[1.15] tracking-tight mb-4">
-            <span style={{ fontWeight: 200, fontSize: "0.45em", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(248,248,248,0.15)" }}>
+            <span style={{ fontWeight: 400, fontSize: "0.55em", letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(248,248,248,0.3)" }}>
               Páginalo
             </span><br />
             Recupera tu tiempo.<br />
