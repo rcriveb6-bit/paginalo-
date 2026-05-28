@@ -68,6 +68,9 @@ export default function HomePage() {
         <div className="relative z-20 text-center max-w-[720px]">
           <Image src="/logo-paginalo.png" alt="Páginalo" width={500} height={140} className="w-[clamp(240px,60vw,420px)] h-auto mx-auto mb-8" priority />
           <h1 className="text-[clamp(28px,5vw,48px)] font-black leading-[1.15] tracking-tight mb-4">
+            <span style={{ fontWeight: 200, fontSize: "0.45em", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(248,248,248,0.15)" }}>
+              Páginalo
+            </span><br />
             Recupera tu tiempo.<br />
             Nosotros automatizamos<br />
             <span className="bg-gradient-to-r from-[#00B5B5] to-[#FF7F7F] bg-clip-text text-transparent">el resto.</span>
