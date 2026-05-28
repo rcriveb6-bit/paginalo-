@@ -169,7 +169,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               { num: "01", cat: "E-Commerce · Velas", title: "Liora & Co.", desc: "Tienda online profesional con cobros automáticos e inventario en tiempo real.", href: "https://liorayco.netlify.app/", live: true },
-              { num: "02", cat: "E-Commerce · Moda", title: "RYA Shop", desc: "Catálogo digital elegante conectado a WhatsApp para ventas personalizadas.", href: null, live: false },
+              { num: "02", cat: "E-Commerce · Moda", title: "RYA Shop", desc: "Catálogo digital elegante conectado a WhatsApp para ventas personalizadas.", href: "https://rya-alpha.vercel.app", live: true },
               { num: "03", cat: "CRM · Ventas", title: "CRM Solar", desc: "Plataforma a la medida para equipos de ventas: cotizaciones, leads y seguimiento.", href: "https://solar-crm-seven-mu.vercel.app/login", live: true },
             ].map((p, i) => (
               <div key={i} className="rounded-2xl p-7 md:p-8 transition-all duration-300 hover:bg-white/[0.06]" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(0,181,181,0.08)" }}>
