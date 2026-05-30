@@ -174,33 +174,16 @@ export default function HomePage() {
                   <div className="w-3 h-3 rounded-full bg-primary/40" />
                 </div>
                 <div className="h-4 w-48 bg-glass-bg rounded-full ml-4 flex items-center px-3">
-                  <span className="text-on-surface-variant text-xs">solar-crm-seven-mu.vercel.app</span>
+                  <span className="text-on-surface-variant text-xs">paginalo.org</span>
                 </div>
               </div>
-              {/* CRM mockup */}
-              <div className="rounded-lg w-full h-64 md:h-80 flex items-center justify-center relative overflow-hidden"
-                style={{ background:"linear-gradient(135deg, #0b1322 0%, #18202e 50%, #0b2233 100%)" }}>
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage:"url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }} />
-                <div className="relative z-10 w-full px-8 py-6 grid grid-cols-3 gap-4">
-                  {[{l:"Leads",v:"142",c:"text-primary"},{l:"Cotizaciones",v:"38",c:"text-bone-white"},{l:"Cierre",v:"68%",c:"text-coral-sunset"}].map(s => (
-                    <div key={s.l} className="glass-card-dark rounded-xl p-4 text-center">
-                      <p className="text-xs text-on-surface-variant mb-1">{s.l}</p>
-                      <p className={`text-2xl font-headline-md ${s.c}`}>{s.v}</p>
-                    </div>
-                  ))}
-                  <div className="col-span-3 glass-card-dark rounded-xl p-4">
-                    <div className="flex gap-2 mb-3">
-                      <div className="h-2 w-2 rounded-full bg-primary mt-1" />
-                      <p className="text-xs text-on-surface-variant">Pipeline mensual</p>
-                    </div>
-                    <div className="flex items-end gap-2 h-12">
-                      {[{h:"40%",bg:"rgba(77,218,218,0.2)"},{h:"60%",bg:"rgba(77,218,218,0.3)"},{h:"80%",bg:"rgba(77,218,218,0.5)"},{h:"65%",bg:"rgba(77,218,218,0.7)"},{h:"100%",bg:"#4ddada"},{h:"85%",bg:"rgba(255,127,127,0.6)"}].map((b,i) => (
-                        <div key={i} className="flex-1 rounded-sm" style={{ height:b.h, background:b.bg }} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Image
+                src="/paginalo-hero.png"
+                alt="Páginalo — Tu negocio merece estar en internet"
+                width={1794}
+                height={592}
+                className="rounded-lg shadow-inner w-full h-auto"
+              />
             </div>
 
             {/* Floating badges */}
