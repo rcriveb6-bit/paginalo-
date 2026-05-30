@@ -323,7 +323,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center md:items-start gap-3">
             <Image src="/logo-paginalo.png" alt="Páginalo" width={110} height={30}
               className="h-8 w-auto object-contain" style={{ mixBlendMode:"screen" }} />
-            <p className="text-on-surface-variant text-body-base">San Juan, Puerto Rico 🇵🇷 · © 2025 Páginalo</p>
+            <p className="text-on-surface-variant text-body-base">San Juan, Puerto Rico 🇵🇷 · © {new Date().getFullYear()} Páginalo</p>
           </div>
           <div className="flex gap-8">
             <a href="mailto:hola@paginalo.co" className="text-on-surface-variant hover:text-bone-white transition-colors text-sm">
