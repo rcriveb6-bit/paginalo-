@@ -9,7 +9,7 @@ const pasos = [
     day: "Día 1",
     description:
       "Entendemos tu negocio, tu cliente ideal y exactamente qué necesitas. Sin suposiciones, sin scope creep. Salimos de esta reunión con un plan claro y un precio exacto.",
-    icon: "🔍",
+    icon: "travel_explore",
   },
   {
     num: "02",
@@ -17,7 +17,7 @@ const pasos = [
     day: "Días 2–4",
     description:
       "Creamos la maqueta visual y tú la apruebas antes de que escribamos una línea de código. Lo que apruebas es exactamente lo que recibes. Sin sorpresas.",
-    icon: "✏️",
+    icon: "draw",
   },
   {
     num: "03",
@@ -25,7 +25,7 @@ const pasos = [
     day: "Días 5–12",
     description:
       "Construcción con Next.js, Supabase y n8n. Ves el progreso en tiempo real — no desaparecemos una semana y reaparecemos con algo que no pediste.",
-    icon: "⚡",
+    icon: "bolt",
   },
   {
     num: "04",
@@ -33,7 +33,7 @@ const pasos = [
     day: "Día 14",
     description:
       "Deploy, dominio, Google Business y 30 días de soporte gratuito incluidos. Te capacitamos para que puedas editar lo que necesites. Tu negocio, tu control.",
-    icon: "🚀",
+    icon: "rocket_launch",
   },
 ];
 
@@ -65,7 +65,11 @@ export default function ProcesoSection() {
               <span className="step-num">{paso.num}</span>
               <span className="step-day">{paso.day}</span>
             </div>
-            <div className="step-icon">{paso.icon}</div>
+            <div className="step-icon">
+              <span className="material-symbols-outlined" style={{ fontSize:"28px", fontVariationSettings:"'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>
+                {paso.icon}
+              </span>
+            </div>
             <h3 className="step-title">{paso.title}</h3>
             <div
               className="step-desc-wrap"
