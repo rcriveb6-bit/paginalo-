@@ -206,10 +206,10 @@ body {
 }
 .trust-logo {
   filter: grayscale(100%);
-  opacity: 0.35;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+  transition: filter 0.4s ease, opacity 0.4s ease;
 }
-.trust-strip:hover .trust-logo {
+section:hover .trust-logo {
   filter: grayscale(0%);
   opacity: 1;
 }

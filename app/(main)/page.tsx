@@ -203,13 +203,12 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* ══ TRUST STRIP ══════════════════════════════════ */}
-        <section className="py-12 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm trust-strip">
-          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 hover:opacity-80 transition-all">
+        {/* ══ TRUST STRIP — tech logos sutiles ══════════ */}
+        <section className="py-8 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm">
+          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 opacity-30 hover:opacity-60 transition-all">
             {logos.map(l => (
-              <div key={l.name} className="trust-logo flex flex-col items-center gap-2">
-                <div style={{ color:l.color }}>{l.svg}</div>
-                <span className="text-xs font-body-bold text-on-surface-variant">{l.name}</span>
+              <div key={l.name} className="trust-logo flex items-center gap-1.5">
+                <div style={{ color:l.color, opacity:0.7 }}>{l.svg}</div>
               </div>
             ))}
           </div>
