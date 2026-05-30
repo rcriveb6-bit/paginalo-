@@ -174,3 +174,6 @@ body {
   filter: grayscale(0%);
   opacity: 1;
 }
+.group:hover .mockup-rotate {
+  transform: rotate(0deg) !important;
+}

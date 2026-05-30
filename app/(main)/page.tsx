@@ -271,7 +271,7 @@ export default function HomePage() {
         <motion.div initial={{ opacity:0, y:32 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.5 }}
           className="relative group w-full max-w-4xl mt-16">
           <div className="coral-glow-dark -bottom-20 -right-20" />
-          <div className="group-hover:[transform:rotate(0deg)] transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden rounded-xl"
+          <div className="mockup-rotate transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden rounded-xl"
             style={{ transform:"rotate(1.5deg)", background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.10)", padding:"1rem" }}>
             {/* Browser bar */}
             <div className="flex items-center gap-2 mb-4 pb-2" style={{ borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
@@ -303,6 +303,21 @@ export default function HomePage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+          {/* Value badges — static row, no overflow */}
+          <div className="flex justify-between gap-3 mt-4 px-1">
+            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(77,218,218,0.2)", boxShadow:"0 0 16px rgba(77,218,218,0.08)" }}>
+              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>ENTREGA</p>
+              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:TEAL }}>2 sem.</p>
+            </div>
+            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(255,127,127,0.2)", boxShadow:"0 0 16px rgba(255,127,127,0.08)" }}>
+              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>SOPORTE IA</p>
+              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:CORAL }}>24/7</p>
+            </div>
+            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(77,218,218,0.1)" }}>
+              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>INCLUIDO</p>
+              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:BONE }}>Todo</p>
             </div>
           </div>
         </motion.div>
@@ -337,17 +352,17 @@ export default function HomePage() {
             { icon:"🤖", title:"Chatbot IA 24/7", desc:"Atención al cliente automatizada con n8n + Claude AI. Responde preguntas, califica leads y nunca duerme.", accent:CORAL, featured:true },
             { icon:"📍", title:"Presencia en Google", desc:"Google Business optimizado, visible en Maps, estrategia de reseñas y redes sociales.", accent:TEAL, featured:false },
           ].map(s => (
-            <div key={s.title} className="glass-card-dark rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300 hover:scale-[1.02]"
-              style={s.featured ? { borderColor:`rgba(255,127,127,0.3)` } : {}}>
+            <div key={s.title} className="glass-card-dark rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300"
+              style={s.featured ? { borderColor:`rgba(255,127,127,0.35)`, boxShadow:"0 0 30px rgba(255,127,127,0.08)" } : {}}>
               {s.featured && (
-                <div className="absolute top-4 right-4">
-                  <span className="text-[10px] font-black tracking-[0.15em] uppercase rounded-full px-3 py-1"
+                <div className="mb-5">
+                  <span className="text-[10px] font-black tracking-[0.15em] uppercase rounded-full px-3 py-1.5"
                     style={{ background:`linear-gradient(90deg, ${TEAL}, ${CORAL})`, color:BONE }}>
-                    MÁS POPULAR
+                    ✦ MÁS POPULAR
                   </span>
                 </div>
               )}
-              <div className="text-5xl mb-5">{s.icon}</div>
+              <div className={`text-5xl ${s.featured ? "mb-4" : "mb-5"}`}>{s.icon}</div>
               <h3 className="text-xl font-black mb-3" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h3>
               <p style={{ color:MUTED }}>{s.desc}</p>
             </div>
