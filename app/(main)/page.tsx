@@ -18,9 +18,9 @@ const logos = [
 ];
 
 const projects = [
-  { title:"Liora & Co.",  category:"E-Commerce · Velas artesanales",    href:"https://www.liorayco.com/",                    portClass:"port-liora",  icon:"candle",      color:"text-primary" },
-  { title:"RYA Shop",     category:"Thrift Shop · Moda curada PR",      href:"https://rya-alpha.vercel.app/",                portClass:"port-rya",    icon:"style",       color:"text-coral-sunset" },
-  { title:"CRM Solar PR", category:"CRM · Energía Solar",               href:"https://solar-crm-seven-mu.vercel.app/",       portClass:"port-crm",    icon:"solar_power", color:"text-bone-white" },
+  { title:"Liora & Co.",  category:"E-Commerce · Velas artesanales",    href:"https://www.liorayco.com/",                    portClass:"port-liora",  icon:"candle",      hex:"#4ddada" },
+  { title:"RYA Shop",     category:"Thrift Shop · Moda curada PR",      href:"https://rya-alpha.vercel.app/",                portClass:"port-rya",    icon:"style",       hex:"#FF7F7F" },
+  { title:"CRM Solar PR", category:"CRM · Energía Solar",               href:"https://solar-crm-seven-mu.vercel.app/",       portClass:"port-crm",    icon:"solar_power", hex:"#F8F8F8" },
 ];
 
 const navLinks = [
@@ -289,7 +289,7 @@ export default function HomePage() {
                 <motion.div key={s.n} className="space-y-4"
                   initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
                   viewport={{ once:true, margin:"-40px" }} transition={{ duration:0.4, ease:"easeOut", delay: i * 0.07 }}>
-                  <div className={`size-16 rounded-2xl glass-card-dark flex items-center justify-center font-headline-md text-headline-md ${s.active ? "text-primary" : "text-bone-white"}`}
+                  <div className={`w-16 h-16 rounded-2xl glass-card-dark flex items-center justify-center font-headline-md text-headline-md ${s.active ? "text-primary" : "text-bone-white"}`}
                     style={s.active ? { borderColor:"rgba(77,218,218,0.2)", background:"rgba(77,218,218,0.05)" } : {}}>
                     {s.n}
                   </div>
@@ -316,8 +316,8 @@ export default function HomePage() {
                 viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.45, ease:"easeOut", delay: i * 0.08 }}>
                 <div className={`relative aspect-video rounded-3xl overflow-hidden mb-6 glass-card-dark w-full ${p.portClass}`}>
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                    <span className={`material-symbols-outlined text-5xl ${p.color}/60`}>{p.icon}</span>
-                    <p className={`font-headline-md text-sm ${p.color}`}>{p.href.replace("https://","").replace(/\/$/, "")}</p>
+                    <span className="material-symbols-outlined text-5xl" style={{ color:p.hex, opacity:0.6, fontSize:"48px" }}>{p.icon}</span>
+                    <p className="font-headline-md text-sm" style={{ color:p.hex }}>{p.href.replace("https://","").replace(/\/$/, "")}</p>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
                     <span className="text-xs font-body-bold text-bone-white flex items-center gap-1">
