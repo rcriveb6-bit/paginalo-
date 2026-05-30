@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import ProcesoSection from "./ProcesoSection";
 
 const wa = "https://wa.me/17875104504";
 const ig = "https://www.instagram.com/paginalo";
@@ -251,39 +252,9 @@ export default function HomePage() {
         </section>
 
         {/* ══ PROCESO ══════════════════════════════════════ */}
-        <section className="py-28" id="proceso"
-          style={{ background:"rgba(6,14,28,0.5)" }}>
-          <div className="max-w-[1100px] mx-auto px-6 md:px-12">
-            <motion.div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" {...viewIn}>
-              <div className="space-y-4">
-                <span className="text-primary font-label-caps">Metodología</span>
-                <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Del acuerdo al lanzamiento</h2>
-              </div>
-              <p className="text-on-surface-variant text-body-base max-w-sm text-pretty">Un proceso ágil y transparente. Sin sorpresas, sin retrasos.</p>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-              <div className="hidden md:block absolute top-8 left-0 w-full h-px" style={{ background:"rgba(255,255,255,0.07)" }} />
-              {[
-                { n:"01", title:"Análisis",    desc:"Entendemos tu negocio y definimos qué necesita exactamente.", day:"Día 1",    active:true },
-                { n:"02", title:"Diseño",      desc:"Creamos la maqueta y tú la apruebas antes de codificar.",     day:"Días 2–4",  active:false },
-                { n:"03", title:"Desarrollo",  desc:"Construcción con tecnologías modernas. Tú ves el progreso.",  day:"Días 5–12", active:false },
-                { n:"04", title:"Lanzamiento", desc:"Deploy, capacitación y 30 días de soporte gratuito.",         day:"Día 14",   active:false },
-              ].map((s, i) => (
-                <motion.div key={s.n} className="space-y-4"
-                  initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
-                  viewport={{ once:true, margin:"-40px" }} transition={{ duration:0.4, ease:"easeOut", delay: i * 0.07 }}>
-                  <div className={`w-16 h-16 rounded-2xl glass-card-dark flex items-center justify-center font-headline-md text-headline-md ${s.active ? "text-primary" : "text-bone-white"}`}
-                    style={s.active ? { borderColor:"rgba(77,218,218,0.2)", background:"rgba(77,218,218,0.05)" } : {}}>
-                    {s.n}
-                  </div>
-                  <h4 className="font-headline-md text-bone-white">{s.title}</h4>
-                  <p className="text-sm text-on-surface-variant text-pretty">{s.desc}</p>
-                  <span className={`text-label-caps font-label-caps ${s.active ? "text-primary" : "text-on-surface-variant"}`}>{s.day}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <div style={{ background:"rgba(6,14,28,0.5)" }}>
+          <ProcesoSection />
+        </div>
 
         {/* ══ PORTAFOLIO ═══════════════════════════════════ */}
         <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="portafolio">
