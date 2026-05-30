@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${outfit.variable} ${jost.variable} ${syne.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"

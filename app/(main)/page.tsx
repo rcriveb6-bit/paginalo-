@@ -207,64 +207,72 @@ export default function HomePage() {
 
       {/* ══ HERO ════════════════════════════════════════ */}
       <section className="pt-40 pb-24 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center overflow-hidden">
-        <div className="hero-glow-dark -top-20 left-1/2 -translate-x-1/2" />
+        <div className="hero-glow-dark -top-20 -left-40" />
 
-        {/* Badge */}
-        <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8 text-[11px] font-black tracking-[0.2em] uppercase"
-          style={{ background: "rgba(77,218,218,0.1)", border: "1px solid rgba(77,218,218,0.2)", color: TEAL }}>
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: TEAL }} />
-            <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: TEAL }} />
-          </span>
-          Agencia IA · Puerto Rico 🇵🇷
-        </motion.div>
+        {/* Hero content — space-y-8 igual que el proto */}
+        <motion.div initial="hidden" animate="show"
+          variants={{ hidden:{}, show:{ transition:{ staggerChildren:0.1 } } }}
+          className="flex flex-col items-center space-y-8 w-full">
 
-        {/* H1 */}
-        <motion.h1 initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, delay:0.1 }}
-          className="font-black mb-6 max-w-3xl"
-          style={{ fontFamily: "var(--font-syne), sans-serif", color: BONE, fontSize: "clamp(32px, 5.5vw, 48px)", lineHeight: "1.15", letterSpacing: "-0.02em" }}>
-          Recupera tu tiempo.<br/>
-          <span style={{ background: `linear-gradient(90deg, ${TEAL}, ${CORAL})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-            Nosotros automatizamos el resto.
-          </span>
-        </motion.h1>
+          {/* Badge */}
+          <motion.div variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.5}} }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-black tracking-[0.2em] uppercase"
+            style={{ background: "rgba(77,218,218,0.1)", border: "1px solid rgba(77,218,218,0.2)", color: TEAL }}>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: TEAL }} />
+              <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: TEAL }} />
+            </span>
+            Agencia IA · Puerto Rico 🇵🇷
+          </motion.div>
 
-        {/* Subtext */}
-        <motion.p initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.55, delay:0.2 }}
-          className="text-lg max-w-2xl mb-10 leading-relaxed" style={{ color: MUTED }}>
-          Sitio web profesional + chatbot IA + presencia en Google. Todo incluido para tu negocio en Puerto Rico. Entregamos en 2 semanas.
-        </motion.p>
+          {/* H1 */}
+          <motion.h1 variants={{ hidden:{opacity:0,y:20}, show:{opacity:1,y:0,transition:{duration:0.6}} }}
+            className="font-black max-w-4xl text-center"
+            style={{ fontFamily: "var(--font-syne), sans-serif", color: BONE, fontSize: "clamp(32px, 5.5vw, 48px)", lineHeight: "1.15", letterSpacing: "-0.02em" }}>
+            Recupera tu tiempo.<br/>
+            <span style={{ background: `linear-gradient(90deg, ${TEAL}, ${CORAL})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              Nosotros automatizamos el resto.
+            </span>
+          </motion.h1>
 
-        {/* CTAs */}
-        <motion.div initial={{ opacity:0, y:12 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5, delay:0.3 }}
-          className="flex flex-wrap gap-4 justify-center mb-10">
-          <a href={wa} target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold text-sm transition-all hover:scale-105 active:scale-95"
-            style={{ background: CORAL, color: BONE, boxShadow: "0 20px 60px rgba(255,127,127,0.25)" }}>
-            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Consulta gratis
-          </a>
-          <a href="#portafolio"
-            className="glass-card-dark inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold text-sm transition-all hover:bg-white/5"
-            style={{ color: BONE }}>
-            Ver proyectos
-          </a>
-        </motion.div>
+          {/* Subtext */}
+          <motion.p variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.55}} }}
+            className="text-lg max-w-2xl leading-relaxed text-center" style={{ color: MUTED }}>
+            Sitio web profesional + chatbot IA + presencia en Google. Todo incluido para tu negocio en Puerto Rico. Entregamos en 2 semanas.
+          </motion.p>
 
-        {/* Trust badges */}
-        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ duration:0.5, delay:0.4 }}
-          className="flex flex-wrap items-center gap-6 justify-center pb-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.5rem" }}>
-          {[
-            { icon:"⏱", text:"2 semanas de entrega" },
-            { icon:"📍", text:"San Juan, PR" },
-            { icon:"🤖", text:"Chatbot IA 24/7" },
-          ].map(b => (
-            <div key={b.text} className="flex items-center gap-2 text-sm font-bold" style={{ color: "#dbe2f7" }}>
-              <span>{b.icon}</span> {b.text}
-            </div>
-          ))}
+          {/* CTAs */}
+          <motion.div variants={{ hidden:{opacity:0,y:12}, show:{opacity:1,y:0,transition:{duration:0.5}} }}
+            className="flex flex-wrap gap-4 justify-center">
+            <a href={wa} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold text-sm transition-all hover:scale-105 active:scale-95"
+              style={{ background: CORAL, color: BONE, boxShadow: "0 20px 60px rgba(255,127,127,0.25)" }}>
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Consulta gratis
+            </a>
+            <a href="#portafolio"
+              className="glass-card-dark inline-flex items-center gap-2 rounded-full px-8 py-4 font-bold text-sm transition-all hover:bg-white/5"
+              style={{ color: BONE }}>
+              Ver proyectos
+            </a>
+          </motion.div>
+
+          {/* Trust badges */}
+          <motion.div variants={{ hidden:{opacity:0}, show:{opacity:1,transition:{duration:0.5}} }}
+            className="flex flex-wrap items-center gap-6 justify-center pt-4"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+            {[
+              { icon:"schedule", text:"2 semanas de entrega" },
+              { icon:"location_on", text:"San Juan, PR" },
+              { icon:"support_agent", text:"Chatbot 24/7" },
+            ].map(b => (
+              <div key={b.text} className="flex items-center gap-2 text-sm font-bold" style={{ color: "#dbe2f7" }}>
+                <span className="material-symbols-outlined text-base" style={{ color: TEAL }}>{b.icon}</span>
+                {b.text}
+              </div>
+            ))}
+          </motion.div>
+
         </motion.div>
 
         {/* Hero mockup card */}
@@ -284,23 +292,34 @@ export default function HomePage() {
                 solar-crm-seven-mu.vercel.app
               </div>
             </div>
-            {/* Mock CRM dashboard */}
-            <div className="rounded-lg w-full h-48 md:h-56 flex flex-col gap-3 p-4"
-              style={{ background:"linear-gradient(135deg, #0b1322 0%, #18202e 60%, #0b2030 100%)" }}>
-              <div className="grid grid-cols-3 gap-4">
+            {/* Mock CRM dashboard — altura proto */}
+            <div className="rounded-lg w-full h-64 md:h-80 flex items-center justify-center relative overflow-hidden"
+              style={{ background:"linear-gradient(135deg, #0b1322 0%, #18202e 50%, #0b2233 100%)" }}>
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage:"url('https://www.transparenttextures.com/patterns/carbon-fibre.png')" }} />
+              <div className="relative z-10 w-full px-8 py-6 grid grid-cols-3 gap-4">
                 {[{l:"Leads",v:"142",c:TEAL},{l:"Cotizaciones",v:"38",c:BONE},{l:"Cierre",v:"68%",c:CORAL}].map(s => (
                   <div key={s.l} className="glass-card-dark rounded-xl p-4 text-center">
                     <p className="text-xs mb-1" style={{ color:MUTED }}>{s.l}</p>
                     <p className="text-2xl font-black" style={{ fontFamily:"var(--font-syne)", color:s.c }}>{s.v}</p>
                   </div>
                 ))}
-              </div>
-              <div className="glass-card-dark rounded-xl p-4 flex-1">
-                <p className="text-xs mb-3" style={{ color:MUTED }}>Pipeline mensual</p>
-                <div className="flex items-end gap-2 h-16">
-                  {[40,60,80,65,100,85].map((h,i) => (
-                    <div key={i} className="flex-1 rounded-sm transition-all" style={{ height:`${h}%`, background: i === 4 ? TEAL : `rgba(77,218,218,${0.15+i*0.1})` }} />
-                  ))}
+                <div className="col-span-3 glass-card-dark rounded-xl p-4">
+                  <div className="flex gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full mt-1" style={{ background:TEAL }} />
+                    <p className="text-xs" style={{ color:MUTED }}>Pipeline mensual</p>
+                  </div>
+                  <div className="flex items-end gap-2 h-12">
+                    {[
+                      {h:"40%",bg:`rgba(77,218,218,0.2)`},
+                      {h:"60%",bg:`rgba(77,218,218,0.3)`},
+                      {h:"80%",bg:`rgba(77,218,218,0.5)`},
+                      {h:"65%",bg:`rgba(77,218,218,0.7)`},
+                      {h:"100%",bg:TEAL},
+                      {h:"85%",bg:`rgba(255,127,127,0.6)`},
+                    ].map((b,i) => (
+                      <div key={i} className="flex-1 rounded-sm" style={{ height:b.h, background:b.bg }} />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -348,22 +367,32 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon:"🌐", title:"Sitio Web Profesional", desc:"Diseño moderno, rápido y responsive optimizado para Google. WhatsApp y formulario incluidos.", accent:TEAL, featured:false },
-            { icon:"🤖", title:"Chatbot IA 24/7", desc:"Atención al cliente automatizada con n8n + Claude AI. Responde preguntas, califica leads y nunca duerme.", accent:CORAL, featured:true },
-            { icon:"📍", title:"Presencia en Google", desc:"Google Business optimizado, visible en Maps, estrategia de reseñas y redes sociales.", accent:TEAL, featured:false },
+            { msIcon:"web",       title:"Sitio Web Profesional", desc:"Diseño moderno, rápido y responsive optimizado para Google. WhatsApp y formulario incluidos.", featured:false, coral:false },
+            { msIcon:"smart_toy", title:"Chatbot IA 24/7",       desc:"Atención al cliente automatizada con n8n + Claude AI. Responde preguntas, califica leads y nunca duerme.", featured:true,  coral:true  },
+            { msIcon:"language",  title:"Presencia en Google",   desc:"Google Business optimizado, visible en Maps, estrategia de reseñas y redes sociales.", featured:false, coral:false },
           ].map(s => (
-            <div key={s.title} className="glass-card-dark rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300"
-              style={s.featured ? { borderColor:`rgba(255,127,127,0.35)`, boxShadow:"0 0 30px rgba(255,127,127,0.08)" } : {}}>
+            <div key={s.title}
+              className={`glass-card-dark rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group transition-colors duration-300 ${
+                s.coral
+                  ? "hover:border-[rgba(255,127,127,0.4)]"
+                  : "hover:border-[rgba(77,218,218,0.4)]"
+              }`}
+              style={s.featured ? { borderColor:`rgba(255,127,127,0.25)`, boxShadow:"0 0 30px rgba(255,127,127,0.06)" } : {}}>
               {s.featured && (
-                <div className="mb-5">
-                  <span className="text-[10px] font-black tracking-[0.15em] uppercase rounded-full px-3 py-1.5"
-                    style={{ background:`linear-gradient(90deg, ${TEAL}, ${CORAL})`, color:BONE }}>
-                    ✦ MÁS POPULAR
+                <div className="absolute top-4 right-4">
+                  <span className="text-[10px] font-black tracking-[0.12em] uppercase rounded-full px-2 py-0.5 border"
+                    style={{ color:CORAL, borderColor:`rgba(255,127,127,0.3)` }}>
+                    MÁS POPULAR
                   </span>
                 </div>
               )}
-              <div className={`text-5xl ${s.featured ? "mb-4" : "mb-5"}`}>{s.icon}</div>
-              <h3 className="text-xl font-black mb-3" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h3>
+              <div className="mb-6">
+                <span className={`material-symbols-outlined block ${s.coral ? "card-icon-coral" : "card-icon-teal"}`}
+                  style={{ fontSize:"60px" }}>
+                  {s.msIcon}
+                </span>
+              </div>
+              <h3 className="text-xl font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h3>
               <p style={{ color:MUTED }}>{s.desc}</p>
             </div>
           ))}
@@ -412,7 +441,7 @@ export default function HomePage() {
           {projects.map(p => (
             <a key={p.title} href={p.href} target="_blank" rel="noopener noreferrer"
               className="group flex flex-col items-center cursor-pointer">
-              <div className="relative w-full rounded-3xl overflow-hidden mb-5 glass-card-dark" style={{ aspectRatio:"16/9" }}>
+              <div className="relative w-full rounded-3xl overflow-hidden mb-6 glass-card-dark" style={{ aspectRatio:"16/9" }}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient} flex flex-col items-center justify-center gap-3`}>
                   <span className="text-5xl">{p.icon}</span>
                   <span className="text-sm font-bold" style={{ color:p.color }}>{p.href.replace("https://","").replace(/\/$/, "")}</span>
@@ -438,7 +467,7 @@ export default function HomePage() {
           <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25" />
           <div className="relative z-10">
             <p className="text-xs font-black tracking-[0.25em] uppercase mb-4" style={{ color:TEAL }}>Sin compromiso</p>
-            <h2 className="text-5xl md:text-6xl font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE }}>¿Empezamos?</h2>
+            <h2 className="font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE, fontSize:"clamp(32px, 5.5vw, 48px)", lineHeight:"1.15" }}>¿Empezamos?</h2>
             <p className="text-lg max-w-md mx-auto mb-10" style={{ color:MUTED }}>
               Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto.
             </p>
