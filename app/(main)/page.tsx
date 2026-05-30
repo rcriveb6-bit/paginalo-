@@ -206,7 +206,7 @@ export default function HomePage() {
       </nav>
 
       {/* ══ HERO ════════════════════════════════════════ */}
-      <section className="pt-40 pb-24 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
+      <section className="pt-40 pb-24 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center overflow-hidden">
         <div className="hero-glow-dark -top-20 left-1/2 -translate-x-1/2" />
 
         {/* Badge */}
@@ -222,8 +222,8 @@ export default function HomePage() {
 
         {/* H1 */}
         <motion.h1 initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, delay:0.1 }}
-          className="text-5xl sm:text-6xl md:text-7xl font-black leading-tight tracking-tight mb-6 max-w-4xl"
-          style={{ fontFamily: "var(--font-syne), sans-serif", color: BONE }}>
+          className="font-black mb-6 max-w-3xl"
+          style={{ fontFamily: "var(--font-syne), sans-serif", color: BONE, fontSize: "clamp(32px, 5.5vw, 48px)", lineHeight: "1.15", letterSpacing: "-0.02em" }}>
           Recupera tu tiempo.<br/>
           <span style={{ background: `linear-gradient(90deg, ${TEAL}, ${CORAL})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
             Nosotros automatizamos el resto.
@@ -285,7 +285,7 @@ export default function HomePage() {
               </div>
             </div>
             {/* Mock CRM dashboard */}
-            <div className="rounded-lg w-full h-64 md:h-80 flex flex-col gap-4 p-6"
+            <div className="rounded-lg w-full h-48 md:h-56 flex flex-col gap-3 p-4"
               style={{ background:"linear-gradient(135deg, #0b1322 0%, #18202e 60%, #0b2030 100%)" }}>
               <div className="grid grid-cols-3 gap-4">
                 {[{l:"Leads",v:"142",c:TEAL},{l:"Cotizaciones",v:"38",c:BONE},{l:"Cierre",v:"68%",c:CORAL}].map(s => (
@@ -304,15 +304,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
-          {/* Floating badges */}
-          <div className="absolute -left-4 md:-left-8 top-1/4 glass-card-dark p-3 rounded-xl z-20 animate-bounce" style={{ animationDuration:"3s", boxShadow:`0 0 20px rgba(77,218,218,0.15)`, border:"1px solid rgba(77,218,218,0.2)" }}>
-            <p className="text-[10px] font-black tracking-widest uppercase" style={{ color:MUTED }}>ENTREGA</p>
-            <p className="text-xl font-black" style={{ fontFamily:"var(--font-syne)", color:TEAL }}>2 sem.</p>
-          </div>
-          <div className="absolute -right-4 md:-right-8 bottom-1/4 glass-card-dark p-3 rounded-xl z-20" style={{ boxShadow:`0 0 20px rgba(255,127,127,0.15)`, border:"1px solid rgba(255,127,127,0.2)" }}>
-            <p className="text-[10px] font-black tracking-widest uppercase" style={{ color:MUTED }}>SOPORTE IA</p>
-            <p className="text-xl font-black" style={{ fontFamily:"var(--font-syne)", color:CORAL }}>24/7</p>
           </div>
         </motion.div>
       </section>
@@ -365,7 +356,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ PROCESO ═══════════════════════════════════════ */}
-      <section className="py-28 px-6 md:px-12" id="proceso" style={{ background:"rgba(6,14,28,0.6)" }}>
+      <section className="py-28 px-6 md:px-12" id="proceso" style={{ background: SURF_LOW }}>
         <div className="max-w-[1100px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
             <div>
