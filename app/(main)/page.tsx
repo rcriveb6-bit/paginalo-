@@ -106,7 +106,7 @@ export default function HomePage() {
       <main className="relative">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-40 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
+        <section className="pt-48 md:pt-52 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
