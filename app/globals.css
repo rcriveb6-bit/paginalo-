@@ -143,3 +143,34 @@ body {
 .btn-shimmer:hover {
   animation: shimmerBtn 1.4s linear infinite;
 }
+
+/* ─── PÁGINALO DARK — glassmorphism system ────────── */
+.glass-card-dark {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.hero-glow-dark {
+  position: absolute; width:600px; height:600px;
+  background: radial-gradient(circle, rgba(77,218,218,0.15) 0%, rgba(11,19,34,0) 70%);
+  filter: blur(60px); z-index:0; pointer-events:none;
+}
+.coral-glow-dark {
+  position: absolute; width:400px; height:400px;
+  background: radial-gradient(circle, rgba(255,127,127,0.10) 0%, rgba(11,19,34,0) 70%);
+  filter: blur(40px); z-index:0; pointer-events:none;
+}
+.grain-dark {
+  position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.04;
+  background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
+}
+.trust-logo {
+  filter: grayscale(100%);
+  opacity: 0.35;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.trust-strip:hover .trust-logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}

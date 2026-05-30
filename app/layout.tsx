@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Cormorant_Garamond, Outfit, Jost } from "next/font/google";
+import { Inter, Playfair_Display, Cormorant_Garamond, Outfit, Jost, Syne, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -8,6 +8,8 @@ const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["lati
 const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"] });
 const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
+const syne = Syne({ variable: "--font-syne", subsets: ["latin"], weight: ["700", "800"] });
+const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.paginalo.org"),
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${outfit.variable} ${jost.variable} h-full antialiased scroll-smooth`}>
+    <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${outfit.variable} ${jost.variable} ${syne.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
