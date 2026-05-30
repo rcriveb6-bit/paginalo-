@@ -273,7 +273,7 @@ export default function HomePage() {
                 <div className={`relative aspect-video rounded-3xl overflow-hidden mb-6 glass-card-dark w-full ${p.portClass}`}>
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                     <span className="material-symbols-outlined text-5xl" style={{ color:p.hex, opacity:0.6, fontSize:"48px" }}>{p.icon}</span>
-                    <p className="font-headline-md text-sm" style={{ color:p.hex }}>{p.href.replace("https://","").replace(/\/$/, "")}</p>
+                    <p className="text-xs font-body-base" style={{ color:p.hex, opacity:0.35 }}>{p.href.replace("https://","").replace(/\/$/, "")}</p>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-4">
                     <span className="text-xs font-body-bold text-bone-white flex items-center gap-1">
