@@ -39,26 +39,39 @@ Agencia digital de Puerto Rico. Landing page principal con portafolio de proyect
 2. RYA Shop — https://rya-alpha.vercel.app/ (Thrift Shop · Moda curada PR)
 3. CRM Solar PR — https://solar-crm-seven-mu.vercel.app/ (CRM · Energía Solar)
 
-## Información de Contacto (NO CAMBIAR)
-- WhatsApp: 787-510-4504 (link wa.me/17875104504)
-- Instagram: @paginalo (https://www.instagram.com/paginalo)
+## Contacto (NO CAMBIAR)
+- WhatsApp: 787-510-4504 (wa.me/17875104504)
+- Instagram: @paginalo (instagram.com/paginalo)
 - Email: hola@paginalo.co
 
 ## Reglas de Diseño
-- Hero en **DARK** (`#0b1322`). NUNCA light.
+
+### Layout & Espaciado
+- Hero **DARK** (`#0b1322`). NUNCA light.
 - `space-y-8` para ritmo vertical del hero content
-- Service cards: Material Symbols Outlined (web, smart_toy, language) — 60px, group hover border + icon color animation
-- Trust strip: SVG logos (Next.js, Supabase, n8n, Anthropic, Vercel, Google) — grayscale → color on hover
-- Portafolio: 3 cards con gradiente placeholder (aspect-video, rounded-3xl, glass-card-dark)
-- NO stats falsos (0+ clientes, etc.)
+- Portafolio con 3 cards visuales del mismo tamaño (aspect-video, rounded-3xl)
+- NO stats falsos, NO carruseles de marcas
 - Footer minimal dark con IG + WA + email
-- Todo responsive mobile first
+- Mobile first, responsive
+- Usar `text-balance` en headings, `text-pretty` en párrafos
+
+### Componentes
+- Service cards: Material Symbols Outlined (web, smart_toy, language) — 60px, group hover border + icon color animation via CSS
+- Trust strip: SVG logos (Next.js, Supabase, n8n, Anthropic, Vercel, Google) — grayscale → color on hover
 - Floating WA button verde `#25D366` con animate-ping
+- `aria-label` en botones solo-icono
+- NUNCA bloquear paste en inputs
+
+### Animaciones (framer-motion)
+- Solo animar `transform` y `opacity` — NUNCA `width`, `height`, `margin`, `padding`
+- Stagger: 30-80ms entre elementos
+- Respetar `prefers-reduced-motion`
+- Usar `ease-out` en entradas, NUNCA `ease-in` en UI
 
 ## Reglas de código
-- page.tsx usa constantes: BG, TEAL, CORAL, BONE, MUTED, SURF_LOW
-- CSS custom classes en globals.css: glass-card-dark, hero-glow-dark, coral-glow-dark, grain-dark, card-icon-teal, card-icon-coral, mockup-rotate, trust-logo, trust-strip
-- Hover effects de iconos via CSS (globals.css) no Tailwind arbitrary hover
+- `page.tsx` usa constantes: `BG`, `TEAL`, `CORAL`, `BONE`, `MUTED`, `SURF_LOW`
+- CSS custom classes en `globals.css`: `glass-card-dark`, `hero-glow-dark`, `coral-glow-dark`, `grain-dark`, `card-icon-teal`, `card-icon-coral`, `mockup-rotate`, `trust-logo`, `trust-strip`
+- Hover de iconos via CSS (globals.css), NO Tailwind arbitrary hover
 - Framer-motion: stagger en hero, whileInView en secciones
 
 ## Dueño
