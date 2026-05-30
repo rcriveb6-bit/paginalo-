@@ -52,7 +52,7 @@ export default function HomePage() {
       {/* ══ NAV ══════════════════════════════════════════ */}
       <nav className="fixed top-0 w-full z-50 bg-glass-bg backdrop-blur-md border-b border-glass-border"
         style={{ paddingTop:"env(safe-area-inset-top)" }}>
-        <div className="max-w-max-width mx-auto px-margin-desktop flex justify-between items-center h-20">
+        <div className="max-w-[1100px] mx-auto px-12 flex justify-between items-center h-20">
           <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Image src="/logo-paginalo.png" alt="Páginalo" width={130} height={36}
               className="h-9 w-auto object-contain" style={{ mixBlendMode:"screen" }} priority />
@@ -105,7 +105,7 @@ export default function HomePage() {
       <main className="relative">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-40 pb-section-gap-desktop px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto relative flex flex-col items-center text-center">
+        <section className="pt-40 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
@@ -219,7 +219,7 @@ export default function HomePage() {
 
         {/* ══ TRUST STRIP ══════════════════════════════════ */}
         <section className="py-12 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm trust-strip">
-          <div className="max-w-max-width mx-auto px-margin-desktop flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 hover:opacity-80 transition-all">
+          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-50 hover:opacity-80 transition-all">
             {logos.map(l => (
               <div key={l.name} className="trust-logo flex flex-col items-center gap-2">
                 <div style={{ color:l.color }}>{l.svg}</div>
@@ -230,7 +230,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ SERVICIOS ════════════════════════════════════ */}
-        <section className="py-section-gap-desktop px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto" id="servicios">
+        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="servicios">
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Lo que hacemos</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Todo lo que necesita tu negocio</h2>
@@ -268,9 +268,9 @@ export default function HomePage() {
         </section>
 
         {/* ══ PROCESO ══════════════════════════════════════ */}
-        <section className="py-section-gap-desktop" id="proceso"
+        <section className="py-28" id="proceso"
           style={{ background:"rgba(6,14,28,0.5)" }}>
-          <div className="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="max-w-[1100px] mx-auto px-6 md:px-12">
             <motion.div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6" {...viewIn}>
               <div className="space-y-4">
                 <span className="text-primary font-label-caps">Metodología</span>
@@ -303,7 +303,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ PORTAFOLIO ═══════════════════════════════════ */}
-        <section className="py-section-gap-desktop px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto" id="portafolio">
+        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="portafolio">
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Trabajo real</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Proyectos que lanzamos</h2>
@@ -333,7 +333,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ CTA BOX ══════════════════════════════════════ */}
-        <section className="py-section-gap-desktop px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
+        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto">
           <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
             <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
             <div className="space-y-4 relative z-10">
@@ -363,7 +363,7 @@ export default function HomePage() {
 
       {/* ══ FOOTER ═══════════════════════════════════════ */}
       <footer className="bg-surface-container-lowest border-t border-glass-border py-16">
-        <div className="max-w-max-width mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="max-w-[1100px] mx-auto px-12 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-3">
             <Image src="/logo-paginalo.png" alt="Páginalo" width={110} height={30}
               className="h-8 w-auto object-contain" style={{ mixBlendMode:"screen" }} />
