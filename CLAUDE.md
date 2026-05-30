@@ -4,31 +4,40 @@
 Agencia digital de Puerto Rico. Landing page principal con portafolio de proyectos.
 
 ## Stack
-- Next.js 14 (App Router)
-- Supabase (base de datos)
-- Vercel (deploy - paginalo-two.vercel.app)
-- Tailwind CSS
+- Next.js 16 (App Router)
+- Vercel (deploy — paginalo.org)
+- Tailwind CSS v4
 - framer-motion (animaciones)
-- Resend (emails)
+- Google Fonts: Syne (headlines 700/800) + DM Sans (body 400/700)
+- Material Symbols Outlined (iconos en service cards y trust badges)
 
 ## Arquitectura
-- Proyecto ÚNICO para landing de Páginalo (NO multi-marca)
-- Liora → Netlify (separado)
-- RYA → Netlify (separado)
-- CRM → Vercel (separado, solar-crm.vercel.app)
+- Proyecto ÚNICO para landing de Páginalo
+- Liora → liorayco.com (Netlify, separado)
+- RYA → rya-alpha.vercel.app (separado)
+- CRM Solar → solar-crm-seven-mu.vercel.app (separado)
 
-## Paleta de Colores OFICIAL (NO CAMBIAR)
-- Bone White: #F8F8F8 (fondo principal)
-- Navy: #1E3A5F (texto principal)
-- Teal: #00B5B5 (acento 1)
-- Coral: #FF7F7F (acento 2)
-- Logo: gradiente teal → coral
-- PROHIBIDO usar #0F1B2D, #0A1628, #0D0D0D, #C8A96E o cualquier color dark en el landing de Páginalo
+## Paleta de Colores OFICIAL — DARK GLASSMORPHISM
+- **Canvas**: `#0b1322` (fondo principal — dark navy)
+- **Surface**: `#18202e` (surface cards)
+- **Surface Low**: `#060e1c` (secciones proceso y footer)
+- **Primary Teal**: `#4ddada` (acento principal — badges, iconos, números)
+- **Coral**: `#FF7F7F` (CTA primario, WhatsApp, acento secundario)
+- **Bone White**: `#F8F8F8` (texto headlines, botones CTA)
+- **Text primary**: `#dbe2f7` (texto general sobre dark)
+- **Text muted**: `#bbc9c9` (texto secundario, labels)
+- **WhatsApp Green**: `#25D366`
+- **Glass card**: `background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08)`
 
-## Proyectos en Portafolio (links externos)
-1. Liora y Co — liorayco.netlify.app
-2. RYA Shop — ropa thrift curada. WhatsApp: (787) 455-5405. IG: @rya.shop2025
-3. Solar CRM — solar-crm.vercel.app
+## Referencia visual
+- **Proto aprobado**: `public/proto.html` — fuente de verdad visual
+- **Arquetipo**: Dark canvas + product UI as protagonist (estilo Linear/Cursor/Warp)
+- El sitio live en `paginalo.org` debe ser 99.9% igual al proto.html
+
+## Proyectos en Portafolio
+1. Liora & Co. — https://www.liorayco.com/ (E-Commerce · Velas artesanales)
+2. RYA Shop — https://rya-alpha.vercel.app/ (Thrift Shop · Moda curada PR)
+3. CRM Solar PR — https://solar-crm-seven-mu.vercel.app/ (CRM · Energía Solar)
 
 ## Información de Contacto (NO CAMBIAR)
 - WhatsApp: 787-510-4504 (link wa.me/17875104504)
@@ -36,16 +45,21 @@ Agencia digital de Puerto Rico. Landing page principal con portafolio de proyect
 - Email: hola@paginalo.co
 
 ## Reglas de Diseño
-- Hero en LIGHT (fondo #F8F8F8). NUNCA en dark.
-- Logo visible como imagen, grande (70% ancho en mobile)
-- Portafolio con 3 CARDS visuales del mismo tamaño
+- Hero en **DARK** (`#0b1322`). NUNCA light.
+- `space-y-8` para ritmo vertical del hero content
+- Service cards: Material Symbols Outlined (web, smart_toy, language) — 60px, group hover border + icon color animation
+- Trust strip: SVG logos (Next.js, Supabase, n8n, Anthropic, Vercel, Google) — grayscale → color on hover
+- Portafolio: 3 cards con gradiente placeholder (aspect-video, rounded-3xl, glass-card-dark)
 - NO stats falsos (0+ clientes, etc.)
-- NO carruseles de logos/marcas
-- Footer minimal
+- Footer minimal dark con IG + WA + email
 - Todo responsive mobile first
+- Floating WA button verde `#25D366` con animate-ping
+
+## Reglas de código
+- page.tsx usa constantes: BG, TEAL, CORAL, BONE, MUTED, SURF_LOW
+- CSS custom classes en globals.css: glass-card-dark, hero-glow-dark, coral-glow-dark, grain-dark, card-icon-teal, card-icon-coral, mockup-rotate, trust-logo, trust-strip
+- Hover effects de iconos via CSS (globals.css) no Tailwind arbitrary hover
+- Framer-motion: stagger en hero, whileInView en secciones
 
 ## Dueño
-Roberto (RC) - Boricua, dueño de Páginalo. Socio: Rogi
-echo 'CLAUDE.md creado. Pega con Cmd+V.'
-
-
+Roberto (RC) — Boricua, dueño de Páginalo. Socio: Rogi
