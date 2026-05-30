@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const wa = "https://wa.me/17875104504";

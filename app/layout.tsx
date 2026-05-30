@@ -12,6 +12,7 @@ const syne = Syne({ variable: "--font-syne", subsets: ["latin"], weight: ["700",
 const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
+  icons: { icon: "/favicon.ico", apple: "/logo-paginalo.png" },
   metadataBase: new URL("https://www.paginalo.org"),
   title: "Páginalo — Agencia Digital Puerto Rico | Recupera tu tiempo",
   description: "Sitio web profesional + chatbot IA + Google Business para tu negocio en Puerto Rico. Todo incluido, entregamos en 2 semanas. Consulta gratis sin compromiso.",
