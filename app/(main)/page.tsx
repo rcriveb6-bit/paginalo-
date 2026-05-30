@@ -206,7 +206,7 @@ export default function HomePage() {
       </nav>
 
       {/* ══ HERO ════════════════════════════════════════ */}
-      <section className="pt-40 pb-24 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center overflow-hidden">
+      <section className="pt-40 pb-24 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
         <div className="hero-glow-dark -top-20 -left-40" />
 
         {/* Hero content — space-y-8 igual que el proto */}
@@ -324,20 +324,16 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          {/* Value badges — static row, no overflow */}
-          <div className="flex justify-between gap-3 mt-4 px-1">
-            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(77,218,218,0.2)", boxShadow:"0 0 16px rgba(77,218,218,0.08)" }}>
-              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>ENTREGA</p>
-              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:TEAL }}>2 sem.</p>
-            </div>
-            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(255,127,127,0.2)", boxShadow:"0 0 16px rgba(255,127,127,0.08)" }}>
-              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>SOPORTE IA</p>
-              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:CORAL }}>24/7</p>
-            </div>
-            <div className="glass-card-dark flex-1 px-4 py-3 rounded-xl" style={{ border:"1px solid rgba(77,218,218,0.1)" }}>
-              <p className="text-[10px] font-black tracking-widest uppercase mb-0.5" style={{ color:MUTED }}>INCLUIDO</p>
-              <p className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:BONE }}>Todo</p>
-            </div>
+          {/* Floating badges — igual que el proto */}
+          <div className="absolute -left-6 top-1/4 glass-card-dark p-3 rounded-lg z-20 animate-bounce"
+            style={{ animationDuration:"3s", border:"1px solid rgba(77,218,218,0.3)", boxShadow:"0 0 15px rgba(77,218,218,0.2)" }}>
+            <p className="text-[10px] font-black tracking-[0.2em] uppercase" style={{ color:MUTED }}>ENTREGA</p>
+            <p className="text-xl font-black" style={{ fontFamily:"var(--font-syne)", color:TEAL }}>2 sem.</p>
+          </div>
+          <div className="absolute -right-6 bottom-1/4 glass-card-dark p-3 rounded-lg z-20 animate-pulse"
+            style={{ border:"1px solid rgba(255,127,127,0.3)", boxShadow:"0 0 15px rgba(255,127,127,0.2)" }}>
+            <p className="text-[10px] font-black tracking-[0.2em] uppercase" style={{ color:MUTED }}>SOPORTE IA</p>
+            <p className="text-xl font-black" style={{ fontFamily:"var(--font-syne)", color:CORAL }}>24/7</p>
           </div>
         </motion.div>
       </section>
@@ -403,7 +399,7 @@ export default function HomePage() {
       </section>
 
       {/* ══ PROCESO ═══════════════════════════════════════ */}
-      <section className="py-28 px-6 md:px-12" id="proceso" style={{ background: SURF_LOW }}>
+      <section className="py-28 px-6 md:px-12" id="proceso" style={{ background: "rgba(6,14,28,0.5)" }}>
         <div className="max-w-[1100px] mx-auto">
           <motion.div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
             initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
@@ -475,17 +471,19 @@ export default function HomePage() {
 
       {/* ══ CTA BOX ═══════════════════════════════════════ */}
       <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto">
-        <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden"
+        <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-24 text-center relative overflow-hidden"
           style={{ borderColor:"rgba(77,218,218,0.15)" }}
           initial={{ opacity:0, y:32 }} whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.55, ease:"easeOut" }}>
           <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25" />
-          <div className="relative z-10">
-            <p className="text-xs font-black tracking-[0.25em] uppercase mb-4" style={{ color:TEAL }}>Sin compromiso</p>
-            <h2 className="font-black mb-4 text-balance" style={{ fontFamily:"var(--font-syne)", color:BONE, fontSize:"clamp(32px, 5.5vw, 48px)", lineHeight:"1.15", letterSpacing:"-0.01em" }}>¿Empezamos?</h2>
-            <p className="text-lg max-w-md mx-auto mb-10 text-pretty" style={{ color:MUTED }}>
-              Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto.
-            </p>
+          <div className="relative z-10 space-y-10">
+            <div className="space-y-4">
+              <p className="text-xs font-black tracking-[0.25em] uppercase" style={{ color:TEAL }}>Sin compromiso</p>
+              <h2 className="font-black text-balance" style={{ fontFamily:"var(--font-syne)", color:BONE, fontSize:"clamp(32px, 5.5vw, 48px)", lineHeight:"1.15", letterSpacing:"-0.01em" }}>¿Empezamos?</h2>
+              <p className="text-lg max-w-md mx-auto text-pretty" style={{ color:MUTED }}>
+                Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto.
+              </p>
+            </div>
             <div className="flex flex-wrap justify-center gap-4">
               <a href={wa} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full px-10 py-5 font-bold text-sm transition-all hover:scale-105 active:scale-95"
@@ -509,7 +507,7 @@ export default function HomePage() {
         <div className="max-w-[1100px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-3">
             <Image src="/logo-paginalo.png" alt="Páginalo" width={110} height={30}
-              className="h-7 w-auto object-contain" style={{ mixBlendMode:"screen" }} />
+              className="h-8 w-auto object-contain" style={{ mixBlendMode:"screen" }} />
             <p className="text-sm" style={{ color:MUTED }}>San Juan, Puerto Rico 🇵🇷 · © 2025 Páginalo</p>
           </div>
           <div className="flex items-center gap-2" style={{ color:MUTED }}>
