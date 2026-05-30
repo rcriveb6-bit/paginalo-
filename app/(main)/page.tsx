@@ -133,11 +133,11 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div style={{ background: BG, color: "#dbe2f7", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }} className="min-h-screen overflow-x-hidden">
+    <div style={{ background: BG, color: "#dbe2f7", fontFamily: "var(--font-dm-sans), system-ui, sans-serif" }} className="min-h-dvh overflow-x-hidden">
       <div className="grain-dark" />
 
       {/* ══ NAV ══════════════════════════════════════════ */}
-      <nav className="fixed top-0 w-full z-50" style={{ background: "rgba(11,19,34,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+      <nav className="fixed top-0 w-full z-50" style={{ background: "rgba(11,19,34,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.07)", paddingTop: "env(safe-area-inset-top)" }}>
         <div className="max-w-[1100px] mx-auto px-6 md:px-12 flex justify-between items-center h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -226,8 +226,8 @@ export default function HomePage() {
           </motion.div>
 
           {/* H1 */}
-          <motion.h1 variants={{ hidden:{opacity:0,y:20}, show:{opacity:1,y:0,transition:{duration:0.6}} }}
-            className="font-black max-w-4xl text-center"
+          <motion.h1 variants={{ hidden:{opacity:0,y:20}, show:{opacity:1,y:0,transition:{duration:0.6,ease:"easeOut"}} }}
+            className="font-black max-w-4xl text-center text-balance"
             style={{ fontFamily: "var(--font-syne), sans-serif", color: BONE, fontSize: "clamp(32px, 5.5vw, 48px)", lineHeight: "1.15", letterSpacing: "-0.02em" }}>
             Recupera tu tiempo.<br/>
             <span style={{ background: `linear-gradient(90deg, ${TEAL}, ${CORAL})`, WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
@@ -236,8 +236,8 @@ export default function HomePage() {
           </motion.h1>
 
           {/* Subtext */}
-          <motion.p variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.55}} }}
-            className="text-lg max-w-2xl leading-relaxed text-center" style={{ color: MUTED }}>
+          <motion.p variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.55,ease:"easeOut"}} }}
+            className="text-lg max-w-2xl leading-relaxed text-center text-pretty" style={{ color: MUTED }}>
             Sitio web profesional + chatbot IA + presencia en Google. Todo incluido para tu negocio en Puerto Rico. Entregamos en 2 semanas.
           </motion.p>
 
@@ -358,24 +358,27 @@ export default function HomePage() {
 
       {/* ══ SERVICIOS ═════════════════════════════════════ */}
       <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="servicios">
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16"
+          initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true, margin:"-80px" }} transition={{ duration:0.5, ease:"easeOut" }}>
           <p className="text-xs font-black tracking-[0.25em] uppercase mb-3" style={{ color:TEAL }}>Lo que hacemos</p>
-          <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE }}>
+          <h2 className="text-3xl md:text-4xl font-black mb-4 text-balance"
+            style={{ fontFamily:"var(--font-syne)", color:BONE, letterSpacing:"-0.01em" }}>
             Todo lo que necesita tu negocio
           </h2>
-          <p className="max-w-xl mx-auto" style={{ color:MUTED }}>Tecnología de punta adaptada a la escala de tu negocio en Puerto Rico.</p>
-        </div>
+          <p className="max-w-xl mx-auto text-pretty" style={{ color:MUTED }}>Tecnología de punta adaptada a la escala de tu negocio en Puerto Rico.</p>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             { msIcon:"web",       title:"Sitio Web Profesional", desc:"Diseño moderno, rápido y responsive optimizado para Google. WhatsApp y formulario incluidos.", featured:false, coral:false },
             { msIcon:"smart_toy", title:"Chatbot IA 24/7",       desc:"Atención al cliente automatizada con n8n + Claude AI. Responde preguntas, califica leads y nunca duerme.", featured:true,  coral:true  },
             { msIcon:"language",  title:"Presencia en Google",   desc:"Google Business optimizado, visible en Maps, estrategia de reseñas y redes sociales.", featured:false, coral:false },
-          ].map(s => (
-            <div key={s.title}
+          ].map((s, i) => (
+            <motion.div key={s.title}
+              initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+              viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.45, ease:"easeOut", delay: i * 0.08 }}
               className={`glass-card-dark rounded-3xl p-8 flex flex-col items-center text-center relative overflow-hidden group transition-colors duration-300 ${
-                s.coral
-                  ? "hover:border-[rgba(255,127,127,0.4)]"
-                  : "hover:border-[rgba(77,218,218,0.4)]"
+                s.coral ? "hover:border-[rgba(255,127,127,0.4)]" : "hover:border-[rgba(77,218,218,0.4)]"
               }`}
               style={s.featured ? { borderColor:`rgba(255,127,127,0.25)`, boxShadow:"0 0 30px rgba(255,127,127,0.06)" } : {}}>
               {s.featured && (
@@ -392,9 +395,9 @@ export default function HomePage() {
                   {s.msIcon}
                 </span>
               </div>
-              <h3 className="text-xl font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h3>
-              <p style={{ color:MUTED }}>{s.desc}</p>
-            </div>
+              <h3 className="text-xl font-black mb-4 text-balance" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h3>
+              <p className="text-pretty" style={{ color:MUTED }}>{s.desc}</p>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -402,13 +405,16 @@ export default function HomePage() {
       {/* ══ PROCESO ═══════════════════════════════════════ */}
       <section className="py-28 px-6 md:px-12" id="proceso" style={{ background: SURF_LOW }}>
         <div className="max-w-[1100px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <motion.div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+            initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+            viewport={{ once:true, margin:"-80px" }} transition={{ duration:0.5, ease:"easeOut" }}>
             <div>
               <p className="text-xs font-black tracking-[0.25em] uppercase mb-3" style={{ color:TEAL }}>Metodología</p>
-              <h2 className="text-3xl md:text-4xl font-black" style={{ fontFamily:"var(--font-syne)", color:BONE }}>Del acuerdo al lanzamiento</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-balance"
+                style={{ fontFamily:"var(--font-syne)", color:BONE, letterSpacing:"-0.01em" }}>Del acuerdo al lanzamiento</h2>
             </div>
-            <p className="max-w-sm" style={{ color:MUTED }}>Un proceso ágil y transparente. Sin sorpresas, sin retrasos.</p>
-          </div>
+            <p className="max-w-sm text-pretty" style={{ color:MUTED }}>Un proceso ágil y transparente. Sin sorpresas, sin retrasos.</p>
+          </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
             <div className="hidden md:block absolute top-8 left-0 w-full h-px" style={{ background:"rgba(255,255,255,0.07)" }} />
             {[
@@ -416,16 +422,18 @@ export default function HomePage() {
               { n:"02", title:"Diseño",      desc:"Creamos la maqueta y tú la apruebas antes de codificar.",       day:"Días 2–4",  active:false },
               { n:"03", title:"Desarrollo",  desc:"Construcción con tecnologías modernas. Tú ves el progreso.",    day:"Días 5–12", active:false },
               { n:"04", title:"Lanzamiento", desc:"Deploy, capacitación y 30 días de soporte gratuito.",           day:"Día 14",   active:false },
-            ].map(s => (
-              <div key={s.n} className="space-y-4">
-                <div className="w-16 h-16 rounded-2xl glass-card-dark flex items-center justify-center text-lg font-black"
+            ].map((s, i) => (
+              <motion.div key={s.n} className="space-y-4"
+                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
+                viewport={{ once:true, margin:"-40px" }} transition={{ duration:0.4, ease:"easeOut", delay: i * 0.07 }}>
+                <div className="size-16 rounded-2xl glass-card-dark flex items-center justify-center text-lg font-black"
                   style={s.active ? { fontFamily:"var(--font-syne)", color:TEAL, borderColor:`rgba(77,218,218,0.2)`, background:`rgba(77,218,218,0.05)` } : { fontFamily:"var(--font-syne)", color:BONE }}>
                   {s.n}
                 </div>
                 <h4 className="text-lg font-black" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{s.title}</h4>
-                <p className="text-sm" style={{ color:MUTED }}>{s.desc}</p>
+                <p className="text-sm text-pretty" style={{ color:MUTED }}>{s.desc}</p>
                 <span className="text-xs font-black tracking-widest uppercase" style={{ color: s.active ? TEAL : MUTED }}>{s.day}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -433,14 +441,19 @@ export default function HomePage() {
 
       {/* ══ PORTAFOLIO ════════════════════════════════════ */}
       <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="portafolio">
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16"
+          initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true, margin:"-80px" }} transition={{ duration:0.5, ease:"easeOut" }}>
           <p className="text-xs font-black tracking-[0.25em] uppercase mb-3" style={{ color:TEAL }}>Trabajo real</p>
-          <h2 className="text-3xl md:text-4xl font-black" style={{ fontFamily:"var(--font-syne)", color:BONE }}>Proyectos que lanzamos</h2>
-        </div>
+          <h2 className="text-3xl md:text-4xl font-black text-balance"
+            style={{ fontFamily:"var(--font-syne)", color:BONE, letterSpacing:"-0.01em" }}>Proyectos que lanzamos</h2>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map(p => (
-            <a key={p.title} href={p.href} target="_blank" rel="noopener noreferrer"
-              className="group flex flex-col items-center cursor-pointer">
+          {projects.map((p, i) => (
+            <motion.a key={p.title} href={p.href} target="_blank" rel="noopener noreferrer"
+              className="group flex flex-col items-center cursor-pointer"
+              initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+              viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.45, ease:"easeOut", delay: i * 0.08 }}>
               <div className="relative w-full rounded-3xl overflow-hidden mb-6 glass-card-dark" style={{ aspectRatio:"16/9" }}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${p.gradient} flex flex-col items-center justify-center gap-3`}>
                   <span className="text-5xl">{p.icon}</span>
@@ -449,26 +462,28 @@ export default function HomePage() {
                 <div className="absolute inset-0 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity"
                   style={{ background:"linear-gradient(to top, rgba(11,19,34,0.8), transparent)" }}>
                   <span className="text-xs font-bold flex items-center gap-1" style={{ color:BONE }}>
-                    Ver sitio →
+                    Ver sitio <span className="material-symbols-outlined text-sm">open_in_new</span>
                   </span>
                 </div>
               </div>
               <h4 className="font-black text-lg mb-1" style={{ fontFamily:"var(--font-syne)", color:BONE }}>{p.title}</h4>
               <p className="text-sm" style={{ color:MUTED }}>{p.category}</p>
-            </a>
+            </motion.a>
           ))}
         </div>
       </section>
 
       {/* ══ CTA BOX ═══════════════════════════════════════ */}
       <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto">
-        <div className="glass-card-dark rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden"
-          style={{ borderColor:"rgba(77,218,218,0.15)" }}>
+        <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden"
+          style={{ borderColor:"rgba(77,218,218,0.15)" }}
+          initial={{ opacity:0, y:32 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.55, ease:"easeOut" }}>
           <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25" />
           <div className="relative z-10">
             <p className="text-xs font-black tracking-[0.25em] uppercase mb-4" style={{ color:TEAL }}>Sin compromiso</p>
-            <h2 className="font-black mb-4" style={{ fontFamily:"var(--font-syne)", color:BONE, fontSize:"clamp(32px, 5.5vw, 48px)", lineHeight:"1.15" }}>¿Empezamos?</h2>
-            <p className="text-lg max-w-md mx-auto mb-10" style={{ color:MUTED }}>
+            <h2 className="font-black mb-4 text-balance" style={{ fontFamily:"var(--font-syne)", color:BONE, fontSize:"clamp(32px, 5.5vw, 48px)", lineHeight:"1.15", letterSpacing:"-0.01em" }}>¿Empezamos?</h2>
+            <p className="text-lg max-w-md mx-auto mb-10 text-pretty" style={{ color:MUTED }}>
               Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -486,7 +501,7 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ══ FOOTER ════════════════════════════════════════ */}
