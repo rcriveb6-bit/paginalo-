@@ -55,7 +55,7 @@ export default function HomePage() {
       {/* ══ NAV ══════════════════════════════════════════ */}
       <nav className="fixed top-0 w-full z-50 bg-glass-bg backdrop-blur-md border-b border-glass-border"
         style={{ paddingTop:"env(safe-area-inset-top)" }}>
-        <div className="max-w-[1100px] mx-auto px-12 flex justify-between items-center h-20">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-12 flex justify-between items-center h-20">
           <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Image src="/logo-paginalo.png" alt="Páginalo" width={130} height={36}
               className="h-9 w-auto object-contain" style={{ mixBlendMode:"screen" }} priority />
@@ -108,7 +108,7 @@ export default function HomePage() {
       <main className="relative pt-16 md:pt-20">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'5rem 48px 8rem' }}>
+        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
@@ -205,7 +205,7 @@ export default function HomePage() {
 
         {/* ══ TRUST STRIP — tech logos sutiles ══════════ */}
         <section className="py-8 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm">
-          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 transition-all">
+          <div className="max-w-[1100px] mx-auto px-6 md:px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 transition-all">
             {logos.map(l => (
               <div key={l.name} className="trust-logo flex items-center gap-1.5">
                 <div style={{ color:l.color }}>{l.svg}</div>
@@ -215,7 +215,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ SERVICIOS ════════════════════════════════════ */}
-        <section id="servicios" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
+        <section id="servicios" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Lo que hacemos</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Todo lo que necesita tu negocio</h2>
@@ -259,7 +259,7 @@ export default function HomePage() {
         </div>
 
         {/* ══ PORTAFOLIO ═══════════════════════════════════ */}
-        <section id="portafolio" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
+        <section id="portafolio" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Trabajo real</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Proyectos que lanzamos</h2>
@@ -289,7 +289,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ CTA BOX ══════════════════════════════════════ */}
-        <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
+        <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
           <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
             <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
             <div className="space-y-4 relative z-10">
