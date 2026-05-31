@@ -108,7 +108,7 @@ export default function HomePage() {
       <main className="relative" style={{ paddingTop: '5rem' }}>
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-16 md:pt-20 pb-32 md:pb-40 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center min-h-[calc(100dvh-5rem)]">
+        <section className="pt-16 md:pt-20 pb-32 md:pb-40 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
