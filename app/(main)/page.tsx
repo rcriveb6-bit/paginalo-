@@ -108,7 +108,7 @@ export default function HomePage() {
       <main className="relative pt-16 md:pt-20">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
+        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(4rem, 7vw, 7rem) clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
@@ -185,7 +185,8 @@ export default function HomePage() {
                 alt="Páginalo — Tu negocio merece estar en internet"
                 width={1794}
                 height={592}
-                className="rounded-lg shadow-inner w-full h-auto"
+                className="rounded-lg w-full h-auto"
+                style={{ mixBlendMode:'multiply' }}
               />
             </div>
 
