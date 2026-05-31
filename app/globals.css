@@ -207,13 +207,9 @@ body {
   background-image: url("https://www.transparenttextures.com/patterns/carbon-fibre.png");
 }
 .trust-logo {
-  filter: grayscale(100%);
-  opacity: 0.5;
-  transition: filter 0.4s ease, opacity 0.4s ease;
-}
-section:hover .trust-logo {
   filter: grayscale(0%);
   opacity: 1;
+  transition: filter 0.4s ease, opacity 0.4s ease;
 }
 .group:hover .mockup-rotate {
   transform: rotate(0deg) !important;
