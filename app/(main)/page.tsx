@@ -108,7 +108,7 @@ export default function HomePage() {
       <main className="relative pt-16 md:pt-20">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-8 md:pt-16 pb-24 md:pb-32 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center overflow-hidden">
+        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'5rem 48px 8rem' }}>
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
@@ -215,13 +215,13 @@ export default function HomePage() {
         </section>
 
         {/* ══ SERVICIOS ════════════════════════════════════ */}
-        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="servicios">
+        <section id="servicios" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Lo que hacemos</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Todo lo que necesita tu negocio</h2>
             <p className="text-on-surface-variant text-body-base max-w-xl mx-auto text-pretty">Tecnología de punta adaptada a la escala de tu negocio en Puerto Rico.</p>
           </motion.div>
-          <div className="grid grid-cols-2 gap-gutter md:grid-cols-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               { icon:"web",         title:"Sitio Web Profesional",   desc:"Diseño moderno, rápido y responsive optimizado para Google. WhatsApp y formulario incluidos.", coral:false },
               { icon:"bolt",        title:"Automatizaciones",        desc:"Flujos inteligentes con n8n que conectan tu web, WhatsApp, email y redes. Cotizaciones, recordatorios, seguimiento de clientes — todo automático.", coral:false },
@@ -259,7 +259,7 @@ export default function HomePage() {
         </div>
 
         {/* ══ PORTAFOLIO ═══════════════════════════════════ */}
-        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto" id="portafolio">
+        <section id="portafolio" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
           <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
             <span className="text-primary font-label-caps">Trabajo real</span>
             <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Proyectos que lanzamos</h2>
@@ -289,7 +289,7 @@ export default function HomePage() {
         </section>
 
         {/* ══ CTA BOX ══════════════════════════════════════ */}
-        <section className="py-28 px-6 md:px-12 max-w-[1100px] mx-auto">
+        <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem 48px' }}>
           <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
             <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
             <div className="space-y-4 relative z-10">
