@@ -313,10 +313,10 @@ export default function HomePage() {
 
         {/* ══ CTA BOX ══════════════════════════════════════ */}
         <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
-          <motion.div className="glass-card-dark rounded-[40px] p-12 md:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
+          <motion.div className="glass-card-dark rounded-[40px] p-8 md:p-12 lg:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
             <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
             <div className="space-y-4 relative z-10">
-              <span className="text-primary font-label-caps">Sin compromiso</span>
+              <span className="text-primary font-label-caps whitespace-nowrap">Sin compromiso</span>
               <h2 className="font-display-hero text-display-hero text-bone-white text-balance">¿Empezamos?</h2>
               <p className="text-body-lg text-on-surface-variant max-w-xl mx-auto text-pretty">
                 Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto. Sin rodeos.
