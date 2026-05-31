@@ -108,7 +108,7 @@ export default function HomePage() {
       <main className="relative pt-16 md:pt-20">
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(4rem, 7vw, 7rem) clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
+        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
@@ -166,37 +166,59 @@ export default function HomePage() {
 
           </motion.div>
 
-          {/* Browser card + floating badges */}
-          <motion.div {...fadeIn(0.5)} className="relative group w-full max-w-4xl mt-20 md:mt-24">
+          {/* Browser card glassmorphism — sin PNG blanco */}
+          <motion.div {...fadeIn(0.5)} className="relative w-full max-w-4xl mt-20 md:mt-24">
             <div className="coral-glow-dark -bottom-20 -right-20" />
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-xl rotate-2 group-hover:rotate-0 transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden mockup-rotate">
-              <div className="flex items-center gap-2 mb-4 border-b border-glass-border pb-2">
+
+            <div className="glass-card-dark rounded-2xl overflow-hidden relative z-10"
+              style={{ boxShadow:'0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(77,218,218,0.08)', borderColor:'rgba(77,218,218,0.15)' }}>
+
+              {/* Barra browser */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-glass-border" style={{ background:'rgba(255,255,255,0.02)' }}>
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-error/40" />
                   <div className="w-3 h-3 rounded-full bg-secondary/40" />
                   <div className="w-3 h-3 rounded-full bg-primary/40" />
                 </div>
-                <div className="h-4 w-48 bg-glass-bg rounded-full ml-4 flex items-center px-3">
+                <div className="h-5 w-48 bg-white/5 rounded-full ml-4 flex items-center px-3">
                   <span className="text-on-surface-variant text-xs">paginalo.org</span>
                 </div>
               </div>
-              <Image
-                src="/paginalo-hero.png"
-                alt="Páginalo — Tu negocio merece estar en internet"
-                width={1794}
-                height={592}
-                className="rounded-lg w-full h-auto"
-                style={{ mixBlendMode:'multiply' }}
-              />
+
+              {/* Contenido glass */}
+              <div className="px-8 py-10 md:px-16 md:py-14 flex flex-col md:flex-row items-center gap-8 md:gap-12"
+                style={{ background:'linear-gradient(135deg, rgba(77,218,218,0.07) 0%, rgba(11,19,34,0.5) 50%, rgba(255,127,127,0.07) 100%)' }}>
+
+                <div className="flex-shrink-0">
+                  <Image src="/logo-paginalo.png" alt="Páginalo" width={200} height={56}
+                    className="h-14 w-auto object-contain" style={{ mixBlendMode:'screen' }} />
+                  <p className="text-on-surface-variant text-sm mt-3 text-center md:text-left">Tu negocio merece estar en internet</p>
+                </div>
+
+                <div className="hidden md:block w-px self-stretch bg-glass-border" />
+
+                <div className="flex gap-10 md:gap-16">
+                  {[
+                    { value:'2 sem.', label:'Entrega',       color:'#4ddada' },
+                    { value:'100%',   label:'Personalizado', color:'#FF7F7F' },
+                    { value:'24/7',   label:'Soporte IA',    color:'#4ddada' },
+                  ].map(s => (
+                    <div key={s.label} className="text-center">
+                      <p className="text-2xl font-bold leading-none" style={{ color: s.color }}>{s.value}</p>
+                      <p className="text-xs text-on-surface-variant mt-2 font-body-bold uppercase tracking-wide">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Floating badges */}
-            <div className="absolute -left-6 top-1/4 glass-card-dark border-primary/30 p-3 rounded-lg animate-bounce z-20"
+            <div className="absolute -left-4 md:-left-6 top-1/3 glass-card-dark border-primary/30 p-3 rounded-lg animate-bounce z-20"
               style={{ animationDuration:"3s", boxShadow:"0 0 15px rgba(77,218,218,0.2)" }}>
               <p className="text-label-caps font-label-caps text-on-surface-variant">ENTREGA</p>
               <p className="text-xl font-headline-md text-primary">2 sem.</p>
             </div>
-            <div className="absolute -right-6 bottom-1/4 glass-card-dark border-coral-sunset/30 p-3 rounded-lg animate-pulse z-20"
+            <div className="absolute -right-4 md:-right-6 bottom-1/3 glass-card-dark border-coral-sunset/30 p-3 rounded-lg animate-pulse z-20"
               style={{ boxShadow:"0 0 15px rgba(255,127,127,0.2)" }}>
               <p className="text-label-caps font-label-caps text-on-surface-variant">SOPORTE IA</p>
               <p className="text-xl font-headline-md text-coral-sunset">24/7</p>
