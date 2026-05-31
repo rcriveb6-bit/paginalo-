@@ -13,7 +13,7 @@ const logos = [
   { name:"Next.js",   color:"#ffffff", svg:<svg viewBox="0 0 180 180" className="w-8 h-8"><mask id="nx" style={{maskType:"alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180"><circle cx="90" cy="90" r="90" fill="black"/></mask><g mask="url(#nx)"><circle cx="90" cy="90" r="90" fill="black"/><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="white"/><rect x="115" y="54" width="12" height="72" fill="white"/></g></svg> },
   { name:"Supabase",  color:"#3ECF8E", svg:<svg viewBox="0 0 109 113" className="w-7 h-7"><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#sA)"/><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#sB)" fillOpacity="0.2"/><path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/><defs><linearGradient id="sA" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse"><stop stopColor="#249361"/><stop offset="1" stopColor="#3ECF8E"/></linearGradient><linearGradient id="sB" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse"><stop/><stop offset="1" stopOpacity="0"/></linearGradient></defs></svg> },
   { name:"n8n",       color:"#EA4B71", svg:<svg viewBox="0 0 60 30" className="w-14 h-7"><text x="0" y="24" fontFamily="monospace" fontWeight="800" fontSize="28" fill="#EA4B71">n8n</text></svg> },
-  { name:"Anthropic", color:"#D4A57A", svg:<svg viewBox="0 0 100 40" className="w-24 h-8"><text x="0" y="30" fontFamily="Georgia, serif" fontWeight="700" fontSize="26" fill="#D4A57A">Anthropic</text></svg> },
+  { name:"Anthropic", color:"#D4A57A", svg:<svg viewBox="0 0 130 40" className="w-28 h-8"><text x="0" y="30" fontFamily="Georgia, serif" fontWeight="700" fontSize="24" fill="#D4A57A">Anthropic</text></svg> },
   { name:"Vercel",    color:"#ffffff", svg:<svg viewBox="0 0 76 65" className="w-7 h-7"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="white"/></svg> },
   { name:"Google",    color:"#4285F4", svg:<svg viewBox="0 0 24 24" className="w-7 h-7"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> },
   { name:"Cloudflare", color:"#F38020", svg:<svg viewBox="0 0 24 24" className="w-7 h-7"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.4 12.6H6.6v-1.2h10.8v1.2zm0-3.6H6.6V9.8h10.8v1.2zm0-3.6H6.6V6.2h10.8v1.2z" fill="currentColor"/></svg> },
@@ -205,10 +205,10 @@ export default function HomePage() {
 
         {/* ══ TRUST STRIP — tech logos sutiles ══════════ */}
         <section className="py-8 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm">
-          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 opacity-30 hover:opacity-60 transition-all">
+          <div className="max-w-[1100px] mx-auto px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 transition-all">
             {logos.map(l => (
               <div key={l.name} className="trust-logo flex items-center gap-1.5">
-                <div style={{ color:l.color, opacity:0.7 }}>{l.svg}</div>
+                <div style={{ color:l.color }}>{l.svg}</div>
               </div>
             ))}
           </div>
