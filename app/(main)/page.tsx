@@ -105,10 +105,10 @@ export default function HomePage() {
         </AnimatePresence>
       </nav>
 
-      <main className="relative">
+      <main className="relative" style={{ paddingTop: '5rem' }}>
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-72 md:pt-80 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
+        <section className="pt-20 md:pt-28 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"

@@ -13,6 +13,8 @@
   --color-error:                    #ffb4ab;
   --color-secondary:                #ffb3b1;
   --color-whatsapp-green:           #25D366;
+  --color-glass-bg:                 rgba(11,19,34,0.85);
+  --color-glass-border:             rgba(255,255,255,0.08);
 
   --spacing-section-gap-desktop: 7rem;
   --spacing-section-gap-mobile:  6rem;
