@@ -167,38 +167,38 @@ export default function HomePage() {
           </motion.div>
 
           {/* Browser card + floating badges */}
-          <motion.div {...fadeIn(0.5)} className="relative group w-full max-w-4xl mt-20 md:mt-24">
+          <motion.div {...fadeIn(0.5)} className="relative group w-full max-w-3xl mt-16 md:mt-20">
             <div className="coral-glow-dark -bottom-20 -right-20" />
-            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-xl rotate-2 group-hover:rotate-0 transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden mockup-rotate">
-              <div className="flex items-center gap-2 mb-4 border-b border-glass-border pb-2">
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-3 rounded-xl rotate-2 group-hover:rotate-0 transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden mockup-rotate">
+              <div className="flex items-center gap-1.5 mb-3 border-b border-glass-border pb-2">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-error/40" />
-                  <div className="w-3 h-3 rounded-full bg-secondary/40" />
-                  <div className="w-3 h-3 rounded-full bg-primary/40" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-error/40" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-secondary/40" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary/40" />
                 </div>
-                <div className="h-4 w-48 bg-glass-bg rounded-full ml-4 flex items-center px-3">
-                  <span className="text-on-surface-variant text-xs">paginalo.org</span>
+                <div className="h-3.5 w-40 bg-glass-bg rounded-full ml-3 flex items-center px-2">
+                  <span className="text-on-surface-variant text-[10px]">paginalo.org</span>
                 </div>
               </div>
               <Image
                 src="/paginalo-hero.png"
                 alt="Páginalo — Tu negocio merece estar en internet"
-                width={1794}
-                height={592}
+                width={1200}
+                height={420}
                 className="rounded-lg shadow-inner w-full h-auto"
               />
             </div>
 
             {/* Floating badges */}
-            <div className="absolute -left-6 top-1/4 glass-card-dark border-primary/30 p-3 rounded-lg animate-bounce z-20"
+            <div className="absolute -left-4 top-1/4 glass-card-dark border-primary/30 p-2 rounded-lg animate-bounce z-20"
               style={{ animationDuration:"3s", boxShadow:"0 0 15px rgba(77,218,218,0.2)" }}>
-              <p className="text-label-caps font-label-caps text-on-surface-variant">ENTREGA</p>
-              <p className="text-xl font-headline-md text-primary">2 sem.</p>
+              <p className="text-label-caps font-label-caps text-on-surface-variant text-[10px]">ENTREGA</p>
+              <p className="text-lg font-headline-md text-primary">2 sem.</p>
             </div>
-            <div className="absolute -right-6 bottom-1/4 glass-card-dark border-coral-sunset/30 p-3 rounded-lg animate-pulse z-20"
+            <div className="absolute -right-4 bottom-1/4 glass-card-dark border-coral-sunset/30 p-2 rounded-lg animate-pulse z-20"
               style={{ boxShadow:"0 0 15px rgba(255,127,127,0.2)" }}>
-              <p className="text-label-caps font-label-caps text-on-surface-variant">SOPORTE IA</p>
-              <p className="text-xl font-headline-md text-coral-sunset">24/7</p>
+              <p className="text-label-caps font-label-caps text-on-surface-variant text-[10px]">SOPORTE IA</p>
+              <p className="text-lg font-headline-md text-coral-sunset">24/7</p>
             </div>
           </motion.div>
         </section>
