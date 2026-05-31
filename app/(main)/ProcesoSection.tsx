@@ -136,7 +136,7 @@ export default function ProcesoSection() {
 
       <style>{`
         .proceso-section {
-          padding: 112px 24px;
+          padding: 112px 48px;
           max-width: 1100px;
           margin: 0 auto;
         }
@@ -356,7 +356,7 @@ export default function ProcesoSection() {
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
           .proceso-section {
-            padding: 80px 16px;
+            padding: 80px 24px;
           }
           .steps-desktop {
             display: none;
@@ -368,7 +368,7 @@ export default function ProcesoSection() {
 
         @media (max-width: 480px) {
           .proceso-section {
-            padding: 60px 12px;
+            padding: 60px 16px;
           }
         }
       `}</style>
