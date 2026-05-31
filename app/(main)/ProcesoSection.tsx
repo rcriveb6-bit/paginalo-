@@ -10,6 +10,7 @@ const pasos = [
     description:
       "Entendemos tu negocio, tu cliente ideal y exactamente qué necesitas. Sin suposiciones, sin scope creep. Salimos de esta reunión con un plan claro y un precio exacto.",
     icon: "travel_explore",
+    color: "#4ddada",
   },
   {
     num: "02",
@@ -18,6 +19,7 @@ const pasos = [
     description:
       "Creamos la maqueta visual y tú la apruebas antes de que escribamos una línea de código. Lo que apruebas es exactamente lo que recibes. Sin sorpresas.",
     icon: "draw",
+    color: "#FF7F7F",
   },
   {
     num: "03",
@@ -26,6 +28,7 @@ const pasos = [
     description:
       "Construcción con Next.js, Supabase y n8n. Ves el progreso en tiempo real — no desaparecemos una semana y reaparecemos con algo que no pediste.",
     icon: "bolt",
+    color: "#4ddada",
   },
   {
     num: "04",
@@ -34,6 +37,7 @@ const pasos = [
     description:
       "Deploy, dominio, Google Business y 30 días de soporte gratuito incluidos. Te capacitamos para que puedas editar lo que necesites. Tu negocio, tu control.",
     icon: "rocket_launch",
+    color: "#FF7F7F",
   },
 ];
 
@@ -52,13 +56,14 @@ export default function ProcesoSection() {
         </p>
       </div>
 
-      {/* Desktop: horizontal cards */}
+      {/* Desktop: 4 cards iguales, siempre con descripción */}
       <div className="steps-desktop">
         {pasos.map((paso, i) => (
           <button
             key={i}
             className={`step-card ${active === i ? "step-active" : ""}`}
-            onClick={() => setActive(i === active ? -1 : i)}
+            style={{ "--paso-color": paso.color } as React.CSSProperties}
+            onClick={() => setActive(i)}
             aria-expanded={active === i}
           >
             <div className="step-top">
@@ -66,33 +71,52 @@ export default function ProcesoSection() {
               <span className="step-day">{paso.day}</span>
             </div>
             <div className="step-icon">
-              <span className="material-symbols-outlined" style={{ fontSize:"28px", fontVariationSettings:"'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>
+              <span
+                className="material-symbols-outlined"
+                style={{
+                  fontSize: "32px",
+                  fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
+                  color: paso.color,
+                  opacity: active === i ? 1 : 0.45,
+                  transition: "opacity 0.2s",
+                }}
+              >
                 {paso.icon}
               </span>
             </div>
             <h3 className="step-title">{paso.title}</h3>
-            <div
-              className="step-desc-wrap"
-              style={{ maxHeight: active === i ? "140px" : "0px" }}
-            >
-              <p className="step-desc">{paso.description}</p>
-            </div>
+            <p className="step-desc">{paso.description}</p>
             <div className="step-indicator" />
           </button>
         ))}
       </div>
 
-      {/* Mobile: vertical accordion */}
+      {/* Mobile: vertical accordion con colores */}
       <div className="steps-mobile">
         {pasos.map((paso, i) => (
-          <div key={i} className={`step-row ${active === i ? "row-active" : ""}`}>
+          <div
+            key={i}
+            className={`step-row ${active === i ? "row-active" : ""}`}
+            style={{ "--paso-color": paso.color } as React.CSSProperties}
+          >
             <button
               className="step-row-header"
               onClick={() => setActive(i === active ? -1 : i)}
               aria-expanded={active === i}
             >
               <div className="step-row-left">
-                <span className="step-num-sm">{paso.num}</span>
+                <span
+                  className="material-symbols-outlined step-icon-sm"
+                  style={{
+                    fontSize: "22px",
+                    fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
+                    color: paso.color,
+                    opacity: active === i ? 1 : 0.4,
+                    transition: "opacity 0.2s",
+                  }}
+                >
+                  {paso.icon}
+                </span>
                 <div>
                   <span className="step-title-sm">{paso.title}</span>
                   <span className="step-day-sm">{paso.day}</span>
@@ -150,6 +174,7 @@ export default function ProcesoSection() {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 12px;
+          align-items: stretch;
         }
 
         .step-card {
@@ -161,26 +186,29 @@ export default function ProcesoSection() {
           padding: 24px 20px;
           text-align: left;
           cursor: pointer;
-          transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+          transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
           overflow: hidden;
           color: #dbe2f7;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          min-height: 260px;
         }
 
         .step-card:hover {
-          border-color: rgba(255, 255, 255, 0.15);
+          border-color: color-mix(in srgb, var(--paso-color) 40%, transparent);
           transform: translateY(-2px);
         }
 
         .step-card.step-active {
-          border-color: #4ddada;
-          box-shadow: 0 4px 24px rgba(77, 218, 218, 0.12);
+          border-color: var(--paso-color);
+          box-shadow: 0 4px 28px color-mix(in srgb, var(--paso-color) 18%, transparent);
         }
 
         .step-top {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 16px;
         }
 
         .step-num {
@@ -192,7 +220,7 @@ export default function ProcesoSection() {
         }
 
         .step-active .step-num {
-          color: #4ddada;
+          color: var(--paso-color);
         }
 
         .step-day {
@@ -206,35 +234,29 @@ export default function ProcesoSection() {
         }
 
         .step-active .step-day {
-          background: #4ddada;
+          background: var(--paso-color);
           color: #0b1322;
         }
 
         .step-icon {
-          font-size: 24px;
-          margin-bottom: 10px;
           display: block;
+          margin-top: 4px;
         }
 
         .step-title {
           font-size: 17px;
-          font-weight: 600;
+          font-weight: 700;
           color: #F8F8F8;
           margin: 0;
           line-height: 1.2;
-        }
-
-        .step-desc-wrap {
-          overflow: hidden;
-          transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .step-desc {
           font-size: 13px;
           color: #bbc9c9;
           line-height: 1.65;
-          margin: 12px 0 0;
-          padding-right: 4px;
+          margin: 0;
+          flex: 1;
         }
 
         .step-indicator {
@@ -243,10 +265,10 @@ export default function ProcesoSection() {
           left: 0;
           right: 0;
           height: 3px;
-          background: #4ddada;
+          background: var(--paso-color);
           transform: scaleX(0);
           transform-origin: left;
-          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 0 0 16px 16px;
         }
 
@@ -269,7 +291,7 @@ export default function ProcesoSection() {
         }
 
         .step-row.row-active {
-          border-color: #4ddada;
+          border-color: var(--paso-color);
         }
 
         .step-row-header {
@@ -289,17 +311,6 @@ export default function ProcesoSection() {
           display: flex;
           align-items: center;
           gap: 14px;
-        }
-
-        .step-num-sm {
-          font-size: 13px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.25);
-          min-width: 28px;
-        }
-
-        .row-active .step-num-sm {
-          color: #4ddada;
         }
 
         .step-title-sm {
@@ -326,7 +337,7 @@ export default function ProcesoSection() {
         }
 
         .row-active .step-chevron {
-          color: #4ddada;
+          color: var(--paso-color);
         }
 
         .step-row-body {
