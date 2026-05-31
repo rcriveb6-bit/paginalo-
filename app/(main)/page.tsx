@@ -108,12 +108,12 @@ export default function HomePage() {
       <main className="relative" style={{ paddingTop: '5rem' }}>
 
         {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="pt-20 md:pt-28 pb-28 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center">
+        <section className="pt-16 md:pt-20 pb-32 md:pb-40 px-6 md:px-12 max-w-[1100px] mx-auto relative flex flex-col items-center text-center min-h-[calc(100dvh-5rem)]">
           <div className="hero-glow-dark -top-20 -left-40" />
 
           <motion.div initial="hidden" animate="show"
             variants={{ hidden:{}, show:{ transition:{ staggerChildren:0.1 } } }}
-            className="flex flex-col items-center space-y-8 w-full">
+            className="flex flex-col items-center space-y-10 md:space-y-12 w-full">
 
             <motion.div variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.5,ease:"easeOut"}} }}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-caps uppercase">
@@ -167,7 +167,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Browser card + floating badges */}
-          <motion.div {...fadeIn(0.5)} className="relative group w-full max-w-4xl mt-16">
+          <motion.div {...fadeIn(0.5)} className="relative group w-full max-w-4xl mt-20 md:mt-24">
             <div className="coral-glow-dark -bottom-20 -right-20" />
             <div className="bg-white/5 backdrop-blur-xl border border-white/10 p-4 rounded-xl rotate-2 group-hover:rotate-0 transition-transform duration-500 shadow-2xl relative z-10 overflow-hidden mockup-rotate">
               <div className="flex items-center gap-2 mb-4 border-b border-glass-border pb-2">
