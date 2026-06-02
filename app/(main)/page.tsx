@@ -149,7 +149,7 @@ export default function Home() {
             <img
               src="/paginalo-hero.png"
               alt="Páginalo"
-              style={{ height: "44px", width: "auto", objectFit: "contain", display: "block" }}
+              style={{ height: "44px", width: "auto", objectFit: "contain", display: "block", mixBlendMode: "multiply" }}
             />
           </a>
 
@@ -280,7 +280,7 @@ export default function Home() {
                 <img
                   src="/paginalo-hero.png"
                   alt="Páginalo"
-                  style={{ height: "40px", width: "auto", objectFit: "contain" }}
+                  style={{ height: "40px", width: "auto", objectFit: "contain", mixBlendMode: "multiply" }}
                 />
               </div>
               {/* Row 1: Next.js (span 2) + Supabase */}
