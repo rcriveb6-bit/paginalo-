@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import ProcesoSection from "./ProcesoSection";
 
@@ -46,8 +47,8 @@ const techStack = [
     name: "n8n",
     svg: (
       <svg viewBox="0 0 40 40" width="36" height="36">
-        <circle cx="20" cy="20" r="20" fill="#EA4B71"/>
-        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="monospace">n8n</text>
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="#FF6D5A"/>
+        <text x="50%" y="57%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="12" fontWeight="800" fontFamily="monospace">n8n</text>
       </svg>
     ),
   },
@@ -145,12 +146,14 @@ export default function Home() {
           style={{ maxWidth: "1100px", margin: "0 auto", padding: "0.75rem 1.5rem" }}
         >
           <a href="#" className="flex items-center gap-2" aria-label="Páginalo inicio">
-            <span
-              className="font-display display-heavy"
-              style={{ fontSize: "1.35rem", color: PRIMARY, letterSpacing: "-0.03em" }}
-            >
-              PÁGINALO
-            </span>
+            <Image
+              src="/logo-paginalo.png"
+              alt="Páginalo"
+              width={140}
+              height={40}
+              priority
+              style={{ height: "36px", width: "auto", objectFit: "contain" }}
+            />
           </a>
 
           <div className="hidden md:flex items-center gap-8">
