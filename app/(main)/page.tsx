@@ -146,13 +146,10 @@ export default function Home() {
           style={{ maxWidth: "1100px", margin: "0 auto", padding: "0.75rem 1.5rem" }}
         >
           <a href="#" className="flex items-center gap-2" aria-label="Páginalo inicio">
-            <Image
+            <img
               src="/logo-paginalo.png"
               alt="Páginalo"
-              width={140}
-              height={40}
-              priority
-              style={{ height: "36px", width: "auto", objectFit: "contain" }}
+              style={{ height: "44px", width: "auto", objectFit: "contain", display: "block" }}
             />
           </a>
 
@@ -275,6 +272,17 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.2, 0.8, 0.3, 1] }}
           >
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+              {/* Row 0: Logo Páginalo — full width */}
+              <div
+                className="tech-card flex items-center justify-center"
+                style={{ gridColumn: "span 3", padding: "18px 24px" }}
+              >
+                <img
+                  src="/logo-paginalo.png"
+                  alt="Páginalo"
+                  style={{ height: "40px", width: "auto", objectFit: "contain" }}
+                />
+              </div>
               {/* Row 1: Next.js (span 2) + Supabase */}
               <div
                 className="tech-card flex flex-col items-center justify-center gap-2"
