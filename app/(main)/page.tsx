@@ -1,345 +1,553 @@
 "use client";
 
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 import ProcesoSection from "./ProcesoSection";
 
-const wa = "https://wa.me/17875104504";
-const ig = "https://www.instagram.com/paginalo";
+const CANVAS  = "#F9F9F9";
+const NAVY    = "#1E3A5F";
+const PRIMARY = "#022448";
+const TEAL    = "#00B5B5";
+const CORAL   = "#FF7F7F";
+const BONE    = "#F8F8F8";
+const MUTED   = "#43474e";
 
-/* ── SVG logos trust strip ───────────────────────── */
-const logos = [
-  { name:"Next.js",   color:"#ffffff", svg:<svg viewBox="0 0 180 180" className="w-8 h-8"><mask id="nx" style={{maskType:"alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180"><circle cx="90" cy="90" r="90" fill="black"/></mask><g mask="url(#nx)"><circle cx="90" cy="90" r="90" fill="black"/><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="white"/><rect x="115" y="54" width="12" height="72" fill="white"/></g></svg> },
-  { name:"Supabase",  color:"#3ECF8E", svg:<svg viewBox="0 0 109 113" className="w-7 h-7"><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#sA)"/><path d="M63.7076 110.284C60.8481 113.885 55.0502 111.912 54.9813 107.314L53.9738 40.0627L99.1935 40.0627C107.384 40.0627 111.952 49.5228 106.859 55.9374L63.7076 110.284Z" fill="url(#sB)" fillOpacity="0.2"/><path d="M45.317 2.07103C48.1765 -1.53037 53.9745 0.442937 54.0434 5.041L54.4849 72.2922H9.83113C1.64038 72.2922 -2.92775 62.8321 2.1655 56.4175L45.317 2.07103Z" fill="#3ECF8E"/><defs><linearGradient id="sA" x1="53.9738" y1="54.974" x2="94.1635" y2="71.8295" gradientUnits="userSpaceOnUse"><stop stopColor="#249361"/><stop offset="1" stopColor="#3ECF8E"/></linearGradient><linearGradient id="sB" x1="36.1558" y1="30.578" x2="54.4844" y2="65.0806" gradientUnits="userSpaceOnUse"><stop/><stop offset="1" stopOpacity="0"/></linearGradient></defs></svg> },
-  { name:"n8n",       color:"#EA4B71", svg:<svg viewBox="0 0 60 30" className="w-14 h-7"><text x="0" y="24" fontFamily="monospace" fontWeight="800" fontSize="28" fill="#EA4B71">n8n</text></svg> },
-  { name:"Anthropic", color:"#D4A57A", svg:<svg viewBox="0 0 130 40" className="w-28 h-8"><text x="0" y="30" fontFamily="Georgia, serif" fontWeight="700" fontSize="24" fill="#D4A57A">Anthropic</text></svg> },
-  { name:"Vercel",    color:"#ffffff", svg:<svg viewBox="0 0 76 65" className="w-7 h-7"><path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="white"/></svg> },
-  { name:"Google",    color:"#4285F4", svg:<svg viewBox="0 0 24 24" className="w-7 h-7"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg> },
-  { name:"Cloudflare", color:"#F38020", svg:<svg viewBox="0 0 24 24" className="w-7 h-7"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.4 12.6H6.6v-1.2h10.8v1.2zm0-3.6H6.6V9.8h10.8v1.2zm0-3.6H6.6V6.2h10.8v1.2z" fill="currentColor"/></svg> },
-  { name:"WhatsApp",  color:"#25D366", svg:<svg viewBox="0 0 24 24" className="w-7 h-7"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/></svg> },
-];
-
-const navLinks = [
-  { label:"Servicios", href:"#servicios" },
-  { label:"Proceso",   href:"#proceso"   },
-];
+const WA_LINK = "https://wa.me/17875104504?text=Hola%2C%20quiero%20una%20consulta%20gratis%20para%20mi%20negocio";
 
 const fadeIn = (delay = 0) => ({
-  initial:{ opacity:0, y:20 },
-  animate:{ opacity:1, y:0 },
-  transition:{ duration:0.55, ease:"easeOut" as const, delay },
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.2, 0.8, 0.3, 1] as [number, number, number, number] },
 });
 
-const viewIn = {
-  initial:{ opacity:0, y:24 },
-  whileInView:{ opacity:1, y:0 },
-  viewport:{ once:true, margin:"-80px" as const },
-  transition:{ duration:0.5, ease:"easeOut" as const },
-};
+const navLinks = [
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso",   href: "#proceso"   },
+];
 
-export default function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false);
+const techStack = [
+  {
+    name: "Next.js",
+    svg: (
+      <svg viewBox="0 0 128 128" width="36" height="36" fill="currentColor">
+        <path d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64c11.2 0 21.7-2.9 30.8-7.9L48.4 55.3v36.6H36.2V26.4h13.7l62.1 89.6C122.9 104.4 128 84.9 128 64c0-35.3-28.7-64-64-64zm27.2 92.9L79.4 74.1V41.2h11.8v51.7z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Supabase",
+    svg: (
+      <svg viewBox="0 0 109 113" width="36" height="36">
+        <path d="M63.7 110.2c-2.4 3-7.4 1.4-7.6-2.4l-1-67.6H100c7.7 0 12 8.9 7.2 14.9L63.7 110.2z" fill="#3ECF8E"/>
+        <path d="M45.3 2.8c2.4-3 7.4-1.4 7.6 2.4l.7 67.6H9.3c-7.7 0-12-8.9-7.2-14.9L45.3 2.8z" fill="#3ECF8E" opacity=".5"/>
+      </svg>
+    ),
+  },
+  {
+    name: "n8n",
+    svg: (
+      <svg viewBox="0 0 40 40" width="36" height="36">
+        <circle cx="20" cy="20" r="20" fill="#EA4B71"/>
+        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="monospace">n8n</text>
+      </svg>
+    ),
+  },
+  {
+    name: "Anthropic",
+    svg: (
+      <svg viewBox="0 0 256 176" width="48" height="30" fill="#191919">
+        <path d="M171.3 0h-40.9l58.3 176h40.9L171.3 0ZM85.2 0 27 176h41.6l11.9-36.5h61.1l11.9 36.5h41.6L136.8 0H85.2Zm-8.4 104.6 20.8-63.8 20.8 63.8H76.8Z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Vercel",
+    svg: (
+      <svg viewBox="0 0 283 232" width="36" height="30" fill="#000">
+        <path d="M141.68 0L283.36 232H0L141.68 0z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Google",
+    svg: (
+      <svg viewBox="0 0 48 48" width="36" height="36">
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.5-1.45-.79-3-.79-4.59s.29-3.14.79-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Cloudflare",
+    svg: (
+      <svg viewBox="0 0 200 84" width="44" height="20">
+        <path fill="#F38020" d="M130.3 57.3l2.9-9.9c.3-1.1-.3-1.5-1.4-1.2l-3.1 1.2c-.5.2-1.1.1-1.4-.4l-2.1-3.5c-.6-1-1.7-1-2.2 0l-2.1 3.5c-.3.5-.9.6-1.4.4l-3.1-1.2c-1.1-.4-1.7 0-1.4 1.2l2.9 9.9c.2.7.9 1.1 1.6.9l11.1-3.3c.7-.2 1-.7.7-1.6z"/>
+        <path fill="#FBAD41" d="M170 41.4c-1.6-5.5-7.4-9.5-14-9.5-2.3 0-4.5.5-6.5 1.5-.5-8.3-7.5-14.9-16-14.9-8.9 0-16.1 7.2-16.1 16.1 0 .7.1 1.4.1 2.1-5.4.4-9.6 4.9-9.6 10.4 0 5.7 4.6 10.3 10.3 10.3h49.6c5.1 0 9.2-4.1 9.2-9.2 0-3.3-1.7-6.2-4.3-7.9-.5-.3-.6-.6-.7-.9z"/>
+      </svg>
+    ),
+  },
+  {
+    name: "WhatsApp",
+    svg: (
+      <svg viewBox="0 0 32 32" width="36" height="36">
+        <path fill="#25D366" d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.3-2.1C10.6 31.3 13.3 32 16 32c8.8 0 16-7.2 16-16S24.8 0 16 0zm8.2 22.2c-.4 1-2.1 2-2.9 2.1-.8.1-1.5.4-5.2-1.1-4.3-1.7-7.1-6.1-7.3-6.4-.2-.3-1.7-2.3-1.7-4.4 0-2.1 1.1-3.1 1.5-3.5.4-.4.9-.5 1.2-.5.3 0 .6 0 .8.01.3.01.6.02.9.7.3.7 1.1 2.6 1.2 2.8.1.2.1.4 0 .7-.1.2-.2.4-.4.6-.2.2-.4.5-.5.6-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1.1 2.2 1.4 2.5 1.6.3.1.5.1.7-.1.2-.2.8-1 1.1-1.3.3-.3.5-.2.9-.1.4.1 2.4 1.1 2.8 1.3.4.2.7.3.8.5.1.2.1 1-.3 2z"/>
+      </svg>
+    ),
+  },
+];
 
+const services = [
+  {
+    title: "Sitio Web Profesional",
+    description: "Diseñado para convertir visitas en clientes. Rápido, seguro, y fácil de editar. Entregado en 2 semanas.",
+    icon: "language",
+    span: 7,
+    stat: { value: "2 sem.", label: "Entrega garantizada" },
+    color: TEAL,
+  },
+  {
+    title: "Automatizaciones IA",
+    description: "Elimina tareas repetitivas. Facturas, citas, seguimientos y más — automatizados con n8n y Claude.",
+    icon: "account_tree",
+    span: 5,
+    stat: null,
+    color: CORAL,
+  },
+  {
+    title: "Chatbot IA 24/7",
+    description: "Responde clientes a cualquier hora, agenda citas y filtra leads — mientras tú duermes.",
+    icon: "smart_toy",
+    span: 5,
+    stat: null,
+    color: TEAL,
+  },
+  {
+    title: "Presencia en Google",
+    description: "Aparece en el top de búsquedas locales. Google Business configurado y optimizado para Puerto Rico.",
+    icon: "pin_drop",
+    span: 7,
+    stat: { value: "Top 3", label: "Búsqueda local PR" },
+    color: CORAL,
+  },
+];
+
+export default function Home() {
   return (
-    <div className="bg-background text-on-surface font-body-base antialiased overflow-x-hidden min-h-dvh">
+    <div className="mesh-gradient min-h-full font-body" style={{ color: PRIMARY }}>
+
       <div className="grain-dark" />
 
-      {/* ══ NAV ══════════════════════════════════════════ */}
-      <nav className="fixed top-0 w-full z-50 bg-glass-bg backdrop-blur-md border-b border-glass-border"
-        style={{ paddingTop:"env(safe-area-inset-top)" }}>
-        <div className="max-w-[1100px] mx-auto px-6 md:px-12 flex justify-between items-center h-20">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Image src="/logo-paginalo.png" alt="Páginalo" width={130} height={36}
-              className="h-9 w-auto object-contain" style={{ mixBlendMode:"screen" }} priority />
+      {/* ── NAVBAR ── */}
+      <header className="fixed top-0 w-full z-50" style={{ padding: "1rem 1.5rem" }}>
+        <nav
+          className="glass-panel rounded-2xl flex items-center justify-between"
+          style={{ maxWidth: "1100px", margin: "0 auto", padding: "0.75rem 1.5rem" }}
+        >
+          <a href="#" className="flex items-center gap-2" aria-label="Páginalo inicio">
+            <span
+              className="font-display display-heavy"
+              style={{ fontSize: "1.35rem", color: PRIMARY, letterSpacing: "-0.03em" }}
+            >
+              PÁGINALO
+            </span>
           </a>
 
-          <div className="hidden md:flex gap-8 items-center">
-            {navLinks.map(l => (
-              <a key={l.href} href={l.href} className="text-on-surface-variant hover:text-bone-white transition-colors font-body-bold">
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="font-mono-label text-xs uppercase transition-colors"
+                style={{ color: MUTED, letterSpacing: "0.15em" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = TEAL)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = MUTED)}
+              >
                 {l.label}
               </a>
             ))}
           </div>
 
-          <a href={wa} target="_blank" rel="noopener noreferrer"
-            className="hidden md:flex bg-coral-sunset text-bone-white px-6 py-2 rounded-full font-body-bold text-sm hover:scale-105 active:scale-95 transition-all items-center gap-2"
-            style={{ boxShadow:"0 8px 24px rgba(255,127,127,0.25)" }}>
-            <span className="material-symbols-outlined text-lg">chat</span>
-            WhatsApp
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 font-body text-sm font-semibold rounded-full transition-all"
+            style={{ background: "#25D366", color: "#fff", padding: "0.5rem 1.1rem" }}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>chat</span>
+            <span className="hidden sm:inline">WhatsApp</span>
           </a>
+        </nav>
+      </header>
 
-          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menú">
-            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "rotate-45 translate-y-[6px]" : ""}`} />
-            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block h-[2px] w-5 bg-white/70 transition-all duration-200 ${menuOpen ? "-rotate-45 -translate-y-[6px]" : ""}`} />
-          </button>
-        </div>
+      {/* ── HERO ── */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          padding: "clamp(7rem, 12vw, 10rem) clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 7rem)",
+        }}
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div initial={{ height:0, opacity:0 }} animate={{ height:"auto", opacity:1 }}
-              exit={{ height:0, opacity:0 }} transition={{ duration:0.22 }} className="overflow-hidden md:hidden"
-              style={{ background:"rgba(11,19,34,0.98)", borderTop:"1px solid rgba(255,255,255,0.07)" }}>
-              <div className="px-6 py-6 flex flex-col gap-5">
-                {navLinks.map(l => (
-                  <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-                    className="text-on-surface-variant hover:text-bone-white transition-colors font-body-bold py-1">
-                    {l.label}
-                  </a>
-                ))}
-                <a href={wa} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}
-                  className="bg-coral-sunset text-bone-white rounded-full px-5 py-3 text-sm font-body-bold text-center">
-                  WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-
-      <main className="relative pt-16 md:pt-20">
-
-        {/* ══ HERO ═════════════════════════════════════════ */}
-        <section className="relative flex flex-col items-center text-center overflow-hidden" style={{ maxWidth:'1100px', margin:'0 auto', padding:'7rem clamp(1rem, 4vw, 48px) clamp(4rem, 8vw, 8rem)' }}>
-          <div className="hero-glow-dark -top-20 -left-40" />
-
-          <motion.div initial="hidden" animate="show"
-            variants={{ hidden:{}, show:{ transition:{ staggerChildren:0.1 } } }}
-            className="flex flex-col items-center space-y-10 md:space-y-12 w-full">
-
-            <motion.div variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.5,ease:"easeOut"}} }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-caps uppercase">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+          {/* Texto */}
+          <div className="flex flex-col gap-6">
+            <motion.div {...fadeIn(0)}>
+              <span
+                className="font-mono-label text-xs uppercase tracking-widest inline-block px-3 py-1 rounded-full"
+                style={{
+                  color: TEAL,
+                  background: "rgba(0,181,181,0.1)",
+                  border: "1px solid rgba(0,181,181,0.2)",
+                  letterSpacing: "0.18em",
+                }}
+              >
+                Agencia Digital · Puerto Rico
               </span>
-              Agencia IA · Puerto Rico 🇵🇷
             </motion.div>
 
-            <motion.h1 variants={{ hidden:{opacity:0,y:20}, show:{opacity:1,y:0,transition:{duration:0.6,ease:"easeOut"}} }}
-              className="font-display-hero text-display-hero text-bone-white leading-tight max-w-4xl text-balance">
-              Recupera tu tiempo.<br/>
-              <span className="bg-gradient-to-r from-primary to-coral-sunset bg-clip-text text-transparent">
-                Nosotros automatizamos el resto.
-              </span>
+            <motion.h1
+              className="font-display display-heavy"
+              style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)", color: PRIMARY }}
+              {...fadeIn(0.1)}
+            >
+              Recupera tu{" "}
+              <span className="italic" style={{ color: TEAL }}>tiempo.</span>
+              <br />
+              Nosotros
+              <br />
+              automatizamos
+              <br />
+              el resto.
             </motion.h1>
 
-            <motion.p variants={{ hidden:{opacity:0,y:16}, show:{opacity:1,y:0,transition:{duration:0.55,ease:"easeOut"}} }}
-              className="text-body-lg text-on-surface-variant max-w-2xl text-pretty">
-              Sitio web profesional + chatbot IA + presencia en Google. Todo incluido para tu negocio en Puerto Rico. Entregamos en 2 semanas.
+            <motion.p
+              className="font-body text-base leading-relaxed"
+              style={{ color: MUTED, maxWidth: "420px" }}
+              {...fadeIn(0.2)}
+            >
+              Sitio web profesional, chatbot IA 24/7 y presencia en Google.
+              Todo incluido. Entregado en 2 semanas.
             </motion.p>
 
-            <motion.div variants={{ hidden:{opacity:0,y:12}, show:{opacity:1,y:0,transition:{duration:0.5,ease:"easeOut"}} }}
-              className="flex flex-wrap gap-4 justify-center">
-              <a href={wa} target="_blank" rel="noopener noreferrer"
-                className="bg-coral-sunset text-bone-white px-8 py-4 rounded-full font-body-bold hover:scale-105 active:scale-95 transition-all"
-                style={{ boxShadow:"0 20px 60px rgba(255,127,127,0.2)" }}>
-                Consulta gratis
+            <motion.div className="flex flex-wrap gap-4 mt-2" {...fadeIn(0.3)}>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body font-semibold rounded-xl transition-all"
+                style={{
+                  background: PRIMARY,
+                  color: "#fff",
+                  padding: "0.875rem 2rem",
+                  fontSize: "0.95rem",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = NAVY)}
+                onMouseLeave={(e) => (e.currentTarget.style.background = PRIMARY)}
+              >
+                Consulta gratis →
+              </a>
+              <a
+                href="#servicios"
+                className="font-body font-semibold rounded-xl transition-all"
+                style={{
+                  background: "transparent",
+                  color: PRIMARY,
+                  border: `1.5px solid ${PRIMARY}`,
+                  padding: "0.875rem 2rem",
+                  fontSize: "0.95rem",
+                }}
+              >
+                Ver servicios
               </a>
             </motion.div>
-
-            <motion.div variants={{ hidden:{opacity:0}, show:{opacity:1,transition:{duration:0.5}} }}
-              className="flex items-center gap-6 pt-4 border-t border-glass-border justify-center">
-              {[
-                { icon:"schedule",      text:"2 semanas de entrega" },
-                { icon:"location_on",   text:"San Juan, PR" },
-                { icon:"support_agent", text:"Chatbot 24/7" },
-              ].map(b => (
-                <div key={b.text} className="flex items-center gap-2 text-sm font-body-bold text-on-surface">
-                  <span className="material-symbols-outlined text-primary">{b.icon}</span>
-                  {b.text}
-                </div>
-              ))}
-            </motion.div>
-
-          </motion.div>
-
-          {/* Browser card glassmorphism — sin PNG blanco */}
-          <motion.div {...fadeIn(0.5)} className="relative w-full max-w-4xl mt-20 md:mt-24">
-            <div className="coral-glow-dark -bottom-20 -right-20" />
-
-            <div className="glass-card-dark rounded-2xl overflow-hidden relative z-10"
-              style={{ boxShadow:'0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(77,218,218,0.08)', borderColor:'rgba(77,218,218,0.15)' }}>
-
-              {/* Barra browser */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-glass-border" style={{ background:'rgba(255,255,255,0.02)' }}>
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-error/40" />
-                  <div className="w-3 h-3 rounded-full bg-secondary/40" />
-                  <div className="w-3 h-3 rounded-full bg-primary/40" />
-                </div>
-                <div className="h-5 w-48 bg-white/5 rounded-full ml-4 flex items-center px-3">
-                  <span className="text-on-surface-variant text-xs">paginalo.org</span>
-                </div>
-              </div>
-
-              {/* Contenido glass */}
-              <div className="px-8 py-10 md:px-16 md:py-14 flex flex-col md:flex-row items-center gap-8 md:gap-12"
-                style={{ background:'linear-gradient(135deg, rgba(77,218,218,0.07) 0%, rgba(11,19,34,0.5) 50%, rgba(255,127,127,0.07) 100%)' }}>
-
-                <div className="flex-shrink-0">
-                  <Image src="/logo-paginalo.png" alt="Páginalo" width={200} height={56}
-                    className="h-14 w-auto object-contain" style={{ mixBlendMode:'screen' }} />
-                  <p className="text-on-surface-variant text-sm mt-3 text-center md:text-left">Tu negocio merece estar en internet</p>
-                </div>
-
-                <div className="hidden md:block w-px self-stretch bg-glass-border" />
-
-                <div className="flex gap-10 md:gap-16">
-                  {[
-                    { value:'2 sem.', label:'Entrega',       color:'#4ddada' },
-                    { value:'100%',   label:'Personalizado', color:'#FF7F7F' },
-                    { value:'24/7',   label:'Soporte IA',    color:'#4ddada' },
-                  ].map(s => (
-                    <div key={s.label} className="text-center">
-                      <p className="text-2xl font-bold leading-none" style={{ color: s.color }}>{s.value}</p>
-                      <p className="text-xs text-on-surface-variant mt-2 font-body-bold uppercase tracking-wide">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Floating badges */}
-            <div className="absolute -left-4 md:-left-6 top-1/3 glass-card-dark border-primary/30 p-3 rounded-lg animate-bounce z-20"
-              style={{ animationDuration:"3s", boxShadow:"0 0 15px rgba(77,218,218,0.2)" }}>
-              <p className="text-label-caps font-label-caps text-on-surface-variant">ENTREGA</p>
-              <p className="text-xl font-headline-md text-primary">2 sem.</p>
-            </div>
-            <div className="absolute -right-4 md:-right-6 bottom-1/3 glass-card-dark border-coral-sunset/30 p-3 rounded-lg animate-pulse z-20"
-              style={{ boxShadow:"0 0 15px rgba(255,127,127,0.2)" }}>
-              <p className="text-label-caps font-label-caps text-on-surface-variant">SOPORTE IA</p>
-              <p className="text-xl font-headline-md text-coral-sunset">24/7</p>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* ══ TRUST STRIP — tech logos sutiles ══════════ */}
-        <section className="py-8 border-y border-glass-border bg-glass-bg/20 backdrop-blur-sm">
-          <div className="max-w-[1100px] mx-auto px-6 md:px-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-3 transition-all">
-            {logos.map(l => (
-              <div key={l.name} className="trust-logo flex items-center gap-1.5">
-                <div style={{ color:l.color }}>{l.svg}</div>
-              </div>
-            ))}
           </div>
-        </section>
 
-        {/* ══ SERVICIOS ════════════════════════════════════ */}
-        <section id="servicios" style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
-          <motion.div className="text-center mb-16 space-y-4" {...viewIn}>
-            <span className="text-primary font-label-caps">Lo que hacemos</span>
-            <h2 className="font-headline-lg text-headline-lg text-bone-white text-balance">Todo lo que necesita tu negocio</h2>
-            <p className="text-on-surface-variant text-body-base max-w-xl mx-auto text-pretty">Tecnología de punta adaptada a la escala de tu negocio en Puerto Rico.</p>
+          {/* Bento tech stack */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.2, 0.8, 0.3, 1] }}
+          >
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}>
+              {/* Row 1: Next.js (span 2) + Supabase */}
+              <div
+                className="tech-card flex flex-col items-center justify-center gap-2"
+                style={{ gridColumn: "span 2", padding: "20px 24px" }}
+              >
+                {techStack[0].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Next.js</span>
+              </div>
+              <div className="tech-card flex flex-col items-center justify-center gap-2" style={{ padding: "20px 16px" }}>
+                {techStack[1].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Supabase</span>
+              </div>
+              {/* Row 2: n8n + Anthropic (span 2) */}
+              <div className="tech-card flex flex-col items-center justify-center gap-2" style={{ padding: "20px 16px" }}>
+                {techStack[2].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>n8n</span>
+              </div>
+              <div
+                className="tech-card flex flex-col items-center justify-center gap-2"
+                style={{ gridColumn: "span 2", padding: "20px 24px" }}
+              >
+                {techStack[3].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Anthropic</span>
+              </div>
+              {/* Row 3: Vercel + Google + Cloudflare */}
+              <div className="tech-card flex flex-col items-center justify-center gap-2" style={{ padding: "20px 16px" }}>
+                {techStack[4].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Vercel</span>
+              </div>
+              <div className="tech-card flex flex-col items-center justify-center gap-2" style={{ padding: "20px 16px" }}>
+                {techStack[5].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Google</span>
+              </div>
+              <div className="tech-card flex flex-col items-center justify-center gap-2" style={{ padding: "20px 16px" }}>
+                {techStack[6].svg}
+                <span className="font-mono-label text-xs" style={{ color: MUTED }}>Cloudflare</span>
+              </div>
+            </div>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              { icon:"web",         title:"Sitio Web Profesional",   desc:"Diseño moderno, rápido y responsive optimizado para Google. WhatsApp y formulario incluidos.", coral:false },
-              { icon:"bolt",        title:"Automatizaciones",        desc:"Flujos inteligentes con n8n que conectan tu web, WhatsApp, email y redes. Cotizaciones, recordatorios, seguimiento de clientes — todo automático.", coral:false },
-              { icon:"smart_toy",   title:"Chatbot IA 24/7",         desc:"Atención al cliente automatizada con n8n + Claude AI. Responde preguntas, califica leads y nunca duerme.", coral:true, popular:true },
-              { icon:"language",    title:"Presencia en Google",     desc:"Google Business optimizado, visible en Maps, estrategia de reseñas y redes sociales.", coral:false },
-            ].map((s, i) => (
-              <motion.div key={s.title}
-                initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
-                viewport={{ once:true, margin:"-60px" }} transition={{ duration:0.45, ease:"easeOut", delay: i * 0.08 }}
-                className={`glass-card-dark p-8 rounded-3xl group transition-colors relative overflow-hidden flex flex-col items-center text-center ${
-                  s.coral ? "hover:border-coral-sunset/40" : "hover:border-primary/40"
-                }`}
-                style={s.coral ? { borderColor:"rgba(255,127,127,0.2)" } : {}}>
-                {s.popular && (
-                  <div className="absolute top-4 right-4">
-                    <span className="text-label-caps font-label-caps text-coral-sunset border border-coral-sunset/30 px-2 py-0.5 rounded-full">MÁS POPULAR</span>
+        </div>
+      </section>
+
+      {/* ── SERVICIOS ── */}
+      <section id="servicios" style={{ background: NAVY }}>
+        <div
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "clamp(3.5rem, 7vw, 7rem) clamp(1rem, 4vw, 48px)",
+          }}
+        >
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span
+              className="font-mono-label text-xs uppercase tracking-widest block mb-4"
+              style={{ color: TEAL, letterSpacing: "0.18em" }}
+            >
+              Servicios
+            </span>
+            <h2
+              className="font-display display-heavy"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: BONE, maxWidth: "600px" }}
+            >
+              Todo lo que tu negocio necesita.
+            </h2>
+          </motion.div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(12, 1fr)",
+              gap: "12px",
+            }}
+          >
+            {services.map((svc, i) => (
+              <motion.div
+                key={svc.title}
+                className="service-card-dark"
+                style={{
+                  gridColumn: `span ${svc.span}`,
+                  padding: "2rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                  minHeight: svc.span === 7 ? "220px" : "200px",
+                }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: "36px", color: svc.color, opacity: 0.85 }}
+                >
+                  {svc.icon}
+                </span>
+                <h3
+                  className="font-display"
+                  style={{ fontSize: "1.15rem", color: BONE, fontWeight: 700, lineHeight: 1.2 }}
+                >
+                  {svc.title}
+                </h3>
+                <p
+                  className="font-body text-sm leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.6)", flex: 1 }}
+                >
+                  {svc.description}
+                </p>
+                {svc.stat && (
+                  <div
+                    className="flex items-center gap-3 mt-auto pt-3"
+                    style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+                  >
+                    <span className="font-display" style={{ fontSize: "1.5rem", color: svc.color, fontWeight: 700 }}>
+                      {svc.stat.value}
+                    </span>
+                    <span
+                      className="font-mono-label text-xs uppercase"
+                      style={{ color: "rgba(255,255,255,0.4)", letterSpacing: "0.12em" }}
+                    >
+                      {svc.stat.label}
+                    </span>
                   </div>
                 )}
-                <div className="mb-6">
-                  <span className={`material-symbols-outlined text-6xl block ${s.coral ? "card-icon-coral" : "card-icon-teal"}`}
-                    style={{ fontSize:"60px" }}>
-                    {s.icon}
-                  </span>
-                </div>
-                <h3 className="font-headline-md text-headline-md text-bone-white mb-4 text-balance">{s.title}</h3>
-                <p className="text-on-surface-variant text-body-base text-pretty">{s.desc}</p>
               </motion.div>
             ))}
           </div>
-        </section>
-
-        {/* ══ PROCESO ══════════════════════════════════════ */}
-        <div style={{ background:"rgba(6,14,28,0.5)" }}>
-          <ProcesoSection />
         </div>
+      </section>
 
-        {/* ══ PORTAFOLIO ═══════════════════════════════════ */}
-        {/* ══ CTA BOX ══════════════════════════════════════ */}
-        <section style={{ maxWidth:'1100px', margin:'0 auto', padding:'clamp(3rem, 6vw, 7rem) clamp(1rem, 4vw, 48px)' }}>
-          <motion.div className="glass-card-dark rounded-[40px] p-8 md:p-12 lg:p-24 text-center space-y-10 relative overflow-hidden border-primary/20" {...viewIn}>
-            <div className="hero-glow-dark top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
-            <div className="space-y-4 relative z-10">
-              <span className="text-primary font-label-caps whitespace-nowrap">Sin compromiso</span>
-              <h2 className="font-display-hero text-display-hero text-bone-white text-balance">¿Empezamos?</h2>
-              <p className="text-body-lg text-on-surface-variant max-w-xl mx-auto text-pretty">
-                Escríbenos hoy y en 24 horas tienes una propuesta con precio exacto. Sin rodeos.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-6 relative z-10">
-              <a href={wa} target="_blank" rel="noopener noreferrer"
-                className="bg-coral-sunset text-bone-white px-10 py-5 rounded-full font-body-bold hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
-                style={{ boxShadow:"0 20px 60px rgba(255,127,127,0.25)" }}>
-                <span className="material-symbols-outlined">chat</span>
-                Escríbenos por WhatsApp
+      {/* ── PROCESO ── */}
+      <ProcesoSection />
+
+      {/* ── CTA ── */}
+      <section style={{ background: BONE }}>
+        <div
+          className="text-center"
+          style={{
+            maxWidth: "780px",
+            margin: "0 auto",
+            padding: "clamp(4rem, 8vw, 8rem) clamp(1rem, 4vw, 48px)",
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center gap-8"
+          >
+            <span
+              className="font-mono-label text-xs uppercase tracking-widest"
+              style={{ color: CORAL, letterSpacing: "0.18em" }}
+            >
+              ¿Empezamos?
+            </span>
+            <h2
+              className="font-display display-heavy text-balance"
+              style={{ fontSize: "clamp(2.4rem, 5.5vw, 4rem)", color: PRIMARY }}
+            >
+              El futuro de tu negocio{" "}
+              <span
+                className="italic"
+                style={{
+                  background: CORAL,
+                  color: "#fff",
+                  padding: "0 12px 4px",
+                  display: "inline-block",
+                  transform: "rotate(-1deg)",
+                  borderRadius: "4px",
+                }}
+              >
+                no espera.
+              </span>
+            </h2>
+            <p
+              className="font-body text-base leading-relaxed"
+              style={{ color: MUTED, maxWidth: "460px" }}
+            >
+              Consulta gratis, sin compromiso. En 30 minutos sabes exactamente
+              qué necesitas y cuánto cuesta.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body font-bold rounded-2xl flex items-center gap-3 transition-all"
+                style={{
+                  background: "#25D366",
+                  color: "#fff",
+                  padding: "1rem 2.2rem",
+                  fontSize: "1rem",
+                  boxShadow: "0 8px 32px rgba(37,211,102,0.25)",
+                }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: "22px" }}>rocket_launch</span>
+                Iniciar ahora — gratis
               </a>
-              <a href={ig} target="_blank" rel="noopener noreferrer"
-                className="border border-glass-border bg-white/5 backdrop-blur-md text-bone-white px-10 py-5 rounded-full font-body-bold hover:bg-white/10 transition-all flex items-center gap-2">
-                <span className="material-symbols-outlined">photo_camera</span>
-                @paginalo en Instagram
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body font-semibold rounded-2xl transition-all"
+                style={{
+                  background: "transparent",
+                  color: PRIMARY,
+                  border: `1.5px solid ${PRIMARY}`,
+                  padding: "1rem 2.2rem",
+                  fontSize: "1rem",
+                }}
+              >
+                Agendar llamada
               </a>
             </div>
+            <p
+              className="font-mono-label text-xs"
+              style={{ color: "rgba(2,36,72,0.3)", letterSpacing: "0.12em" }}
+            >
+              DISPONIBILIDAD LIMITADA · PUERTO RICO
+            </p>
           </motion.div>
-        </section>
+        </div>
+      </section>
 
-      </main>
-
-      {/* ══ FOOTER ═══════════════════════════════════════ */}
-      <footer className="bg-surface-container-lowest border-t border-glass-border py-16">
-        <div className="max-w-[1100px] mx-auto px-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col items-center md:items-start gap-3">
-            <Image src="/logo-paginalo.png" alt="Páginalo" width={110} height={30}
-              className="h-8 w-auto object-contain" style={{ mixBlendMode:"screen" }} />
-            <p className="text-on-surface-variant text-body-base">San Juan, Puerto Rico 🇵🇷 · © {new Date().getFullYear()} Páginalo</p>
-          </div>
-          <div className="flex gap-8">
-            <a href="mailto:hola@paginalo.co" className="text-on-surface-variant hover:text-bone-white transition-colors text-sm">
+      {/* ── FOOTER ── */}
+      <footer style={{ background: PRIMARY, color: "rgba(255,255,255,0.55)" }}>
+        <div
+          className="flex flex-col md:flex-row items-center justify-between gap-6"
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "2.5rem clamp(1rem, 4vw, 48px)",
+          }}
+        >
+          <span
+            className="font-display display-heavy"
+            style={{ fontSize: "1.2rem", color: "#fff", letterSpacing: "-0.03em" }}
+          >
+            PÁGINALO
+          </span>
+          <div className="flex items-center gap-6 text-sm">
+            <a href="https://instagram.com/paginalo" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+              Instagram
+            </a>
+            <a href={WA_LINK} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+              WhatsApp
+            </a>
+            <a href="mailto:hola@paginalo.co" className="transition-colors hover:text-white">
               hola@paginalo.co
             </a>
           </div>
-          <div className="flex gap-4">
-            {[
-              { href:ig, label:"Instagram", d:"M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
-              { href:wa,  label:"WhatsApp",  d:"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" },
-            ].map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                className="w-10 h-10 rounded-full glass-card-dark flex items-center justify-center hover:text-primary transition-colors text-on-surface-variant">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d={s.d}/></svg>
-              </a>
-            ))}
-            <a href="mailto:hola@paginalo.co" aria-label="Email"
-              className="w-10 h-10 rounded-full glass-card-dark flex items-center justify-center hover:text-primary transition-colors text-on-surface-variant">
-              <span className="material-symbols-outlined text-xl">alternate_email</span>
-            </a>
-          </div>
+          <span className="font-mono-label text-xs" style={{ color: "rgba(255,255,255,0.25)", letterSpacing: "0.1em" }}>
+            © 2025 PÁGINALO
+          </span>
         </div>
       </footer>
 
-      {/* ══ FLOATING WA ══════════════════════════════════ */}
-      <a href={wa} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-        className="fixed bottom-8 right-8 w-16 h-16 bg-whatsapp-green rounded-full flex items-center justify-center text-white shadow-2xl z-50 hover:scale-110 active:scale-90 transition-transform group overflow-hidden"
-        style={{ boxShadow:"0 8px 32px rgba(37,211,102,0.4)" }}>
-        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity" />
-        <span className="material-symbols-outlined text-3xl relative z-10" style={{ fontVariationSettings:"'FILL' 1" }}>chat</span>
-        <div className="absolute inset-0 rounded-full border-2 border-whatsapp-green animate-ping opacity-75" />
+      {/* ── Floating WhatsApp ── */}
+      <a
+        href={WA_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full shadow-lg"
+        style={{ width: "56px", height: "56px", background: "#25D366" }}
+      >
+        <span className="absolute inset-0 rounded-full animate-pulse-ring" style={{ background: "#25D366" }} />
+        <span className="material-symbols-outlined text-white" style={{ fontSize: "28px" }}>chat</span>
       </a>
-
     </div>
   );
 }

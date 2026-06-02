@@ -1,15 +1,15 @@
 # CLAUDE.md — Páginalo
 
 ## Proyecto
-Agencia digital de Puerto Rico. Landing page principal con portafolio de proyectos.
+Agencia digital de Puerto Rico. Landing page principal.
 
 ## Stack
 - Next.js 16 (App Router)
 - Vercel (deploy — paginalo.org)
 - Tailwind CSS v4
 - framer-motion (animaciones)
-- Google Fonts: Syne (headlines 700/800) + DM Sans (body 400/700)
-- Material Symbols Outlined (iconos en service cards y trust badges)
+- Google Fonts: Playfair Display (headlines serif) + Inter (body) + JetBrains Mono (labels/mono)
+- Material Symbols Outlined (iconos)
 
 ## Arquitectura
 - Proyecto ÚNICO para landing de Páginalo
@@ -17,27 +17,59 @@ Agencia digital de Puerto Rico. Landing page principal con portafolio de proyect
 - RYA → rya-alpha.vercel.app (separado)
 - CRM Solar → solar-crm-seven-mu.vercel.app (separado)
 
-## Paleta de Colores OFICIAL — DARK GLASSMORPHISM
-- **Canvas**: `#0b1322` (fondo principal — dark navy)
-- **Surface**: `#18202e` (surface cards)
-- **Surface Low**: `#060e1c` (secciones proceso y footer)
-- **Primary Teal**: `#4ddada` (acento principal — badges, iconos, números)
-- **Coral**: `#FF7F7F` (CTA primario, WhatsApp, acento secundario)
-- **Bone White**: `#F8F8F8` (texto headlines, botones CTA)
-- **Text primary**: `#dbe2f7` (texto general sobre dark)
-- **Text muted**: `#bbc9c9` (texto secundario, labels)
-- **WhatsApp Green**: `#25D366`
-- **Glass card**: `background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08)`
+## Paleta de Colores OFICIAL — EDITORIAL LIGHT
 
-## Referencia visual
-- **Proto aprobado**: `public/proto.html` — fuente de verdad visual
-- **Arquetipo**: Dark canvas + product UI as protagonist (estilo Linear/Cursor/Warp)
-- El sitio live en `paginalo.org` debe ser 99.9% igual al proto.html
+- **Canvas**: `#F9F9F9` (fondo base — bone white)
+- **Primary Navy**: `#022448` (headlines, texto fuerte, navbar wordmark)
+- **Navy Mid**: `#1E3A5F` (secciones dark alternas — Servicios)
+- **Teal**: `#00B5B5` (acento principal — eyebrows, badges, iconos activos)
+- **Coral**: `#FF7F7F` (acento secundario — CTA, paso 02/04)
+- **Bone**: `#F8F8F8` (headlines sobre secciones dark)
+- **Muted**: `#43474e` (texto secundario, subtítulos)
+- **WhatsApp**: `#25D366`
 
-## Proyectos en Portafolio
-1. Liora & Co. — https://www.liorayco.com/ (E-Commerce · Velas artesanales)
-2. RYA Shop — https://rya-alpha.vercel.app/ (Thrift Shop · Moda curada PR)
-3. CRM Solar PR — https://solar-crm-seven-mu.vercel.app/ (CRM · Energía Solar)
+## Design System
+
+### Tipografía
+- **Headlines**: Playfair Display, serif, 700 — `var(--font-playfair)` → clase `.font-display`
+- **Body**: Inter, sans-serif — `var(--font-inter)` → clase `.font-body`
+- **Labels/mono**: JetBrains Mono — `var(--font-jetbrains)` → clase `.font-mono-label`
+
+### Clases CSS en globals.css
+- `.mesh-gradient` — background canvas con radiales teal/coral sutiles
+- `.glass-panel` — navbar glass (light): rgba(255,255,255,0.75) + blur(20px)
+- `.display-heavy` — letter-spacing:-0.04em, line-height:0.95 (para headlines Playfair grandes)
+- `.tech-card` — tarjeta blanca para logos del tech stack (hover: teal border/glow)
+- `.service-card-dark` — card para secciones navy (rgba white + blur)
+- `.glass-card-dark` — conservado para uso en otros proyectos
+- `.animate-pulse-ring`, `.grain-dark` — conservados
+
+### Constantes en page.tsx
+```tsx
+const CANVAS  = "#F9F9F9";
+const NAVY    = "#1E3A5F";
+const PRIMARY = "#022448";
+const TEAL    = "#00B5B5";
+const CORAL   = "#FF7F7F";
+const BONE    = "#F8F8F8";
+const MUTED   = "#43474e";
+```
+
+## Arquetipo visual
+- Editorial serif + bento grid (estilo Linear/Stripe/premium agency)
+- Secciones alternas: canvas light → navy dark → canvas light → bone
+- Hero: 2 columnas — texto izq + bento tech stack der
+- Servicios: bento 12-col sobre navy
+- Proceso: 4 cards blancas sobre canvas, Playfair Display grandes
+- CTA: headline bold + botón WhatsApp verde + botón secundario navy
+
+## Estructura de página
+1. Navbar (glass-panel fijo)
+2. Hero (mesh-gradient, 2-col desktop)
+3. Servicios (navy dark, bento 12-col)
+4. Proceso (canvas light, 4 cards)
+5. CTA (bone, centrado)
+6. Footer (primary navy, minimal)
 
 ## Contacto (NO CAMBIAR)
 - WhatsApp: 787-510-4504 (wa.me/17875104504)
@@ -47,32 +79,25 @@ Agencia digital de Puerto Rico. Landing page principal con portafolio de proyect
 ## Reglas de Diseño
 
 ### Layout & Espaciado
-- Hero **DARK** (`#0b1322`). NUNCA light.
-- `space-y-8` para ritmo vertical del hero content
-- Portafolio con 3 cards visuales del mismo tamaño (aspect-video, rounded-3xl)
+- NUNCA dark canvas global — ahora light base con secciones dark
+- Servicios: bento 12-col grid con cards span 5/7
 - NO stats falsos, NO carruseles de marcas
-- Footer minimal dark con IG + WA + email
+- Footer minimal navy con IG + WA + email
 - Mobile first, responsive
-- Usar `text-balance` en headings, `text-pretty` en párrafos
-
-### Componentes
-- Service cards: Material Symbols Outlined (web, smart_toy, language) — 60px, group hover border + icon color animation via CSS
-- Trust strip: SVG logos (Next.js, Supabase, n8n, Anthropic, Vercel, Google) — grayscale → color on hover
-- Floating WA button verde `#25D366` con animate-ping
-- `aria-label` en botones solo-icono
-- NUNCA bloquear paste en inputs
+- `text-balance` en headings, `text-pretty` en párrafos
+- `display-heavy` + Playfair Display = impacto tipográfico
 
 ### Animaciones (framer-motion)
-- Solo animar `transform` y `opacity` — NUNCA `width`, `height`, `margin`, `padding`
-- Stagger: 30-80ms entre elementos
-- Respetar `prefers-reduced-motion`
-- Usar `ease-out` en entradas, NUNCA `ease-in` en UI
+- Solo animar `transform` y `opacity`
+- Stagger: 30–80ms entre elementos
+- `ease-out` en entradas
+- `whileInView` con `viewport={{ once: true }}` en secciones
 
 ## Reglas de código
-- `page.tsx` usa constantes: `BG`, `TEAL`, `CORAL`, `BONE`, `MUTED`, `SURF_LOW`
-- CSS custom classes en `globals.css`: `glass-card-dark`, `hero-glow-dark`, `coral-glow-dark`, `grain-dark`, `card-icon-teal`, `card-icon-coral`, `mockup-rotate`, `trust-logo`, `trust-strip`
-- Hover de iconos via CSS (globals.css), NO Tailwind arbitrary hover
-- Framer-motion: stagger en hero, whileInView en secciones
+- Inline styles para colores (las constantes PRIMARY, TEAL, etc.)
+- CSS custom classes en `globals.css` para patrones reutilizables
+- `ProcesoSection.tsx` usa `<style>` scoped con CSS vars `--paso-color`
+- Mouse event handlers (`onMouseEnter/Leave`) para hover de links en nav
 
 ## Dueño
 Roberto (RC) — Boricua, dueño de Páginalo. Socio: Rogi

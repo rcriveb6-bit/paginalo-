@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Cormorant_Garamond, Outfit, Jost, Syne, DM_Sans } from "next/font/google";
+import { Inter, Playfair_Display, Cormorant_Garamond, Outfit, Jost, Syne, DM_Sans, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -10,6 +10,7 @@ const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"], weight: [
 const jost = Jost({ variable: "--font-jost", subsets: ["latin"], weight: ["300", "400", "500", "600"] });
 const syne = Syne({ variable: "--font-syne", subsets: ["latin"], weight: ["700", "800"] });
 const dmSans = DM_Sans({ variable: "--font-dm-sans", subsets: ["latin"], weight: ["400", "700"] });
+const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: ["500", "700"] });
 
 export const metadata: Metadata = {
   icons: { icon: "/favicon.ico", apple: "/logo-paginalo.png" },
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${outfit.variable} ${jost.variable} ${syne.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}>
+    <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} ${outfit.variable} ${jost.variable} ${syne.variable} ${dmSans.variable} ${jetbrains.variable} h-full antialiased scroll-smooth`}>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
       <body className="min-h-full flex flex-col">
         <script

@@ -2,42 +2,47 @@
 
 import { useState } from "react";
 
+const PRIMARY = "#022448";
+const TEAL    = "#00B5B5";
+const MUTED   = "#43474e";
+const BONE    = "#F8F8F8";
+
 const pasos = [
   {
     num: "01",
     title: "Análisis",
     day: "Día 1",
+    icon: "travel_explore",
+    color: TEAL,
     description:
       "Entendemos tu negocio, tu cliente ideal y exactamente qué necesitas. Sin suposiciones, sin scope creep. Salimos de esta reunión con un plan claro y un precio exacto.",
-    icon: "travel_explore",
-    color: "#4ddada",
   },
   {
     num: "02",
     title: "Diseño",
     day: "Días 2–4",
-    description:
-      "Creamos la maqueta visual y tú la apruebas antes de que escribamos una línea de código. Lo que apruebas es exactamente lo que recibes. Sin sorpresas.",
     icon: "draw",
     color: "#FF7F7F",
+    description:
+      "Creamos la maqueta visual y tú la apruebas antes de que escribamos una línea de código. Lo que apruebas es exactamente lo que recibes. Sin sorpresas.",
   },
   {
     num: "03",
     title: "Desarrollo",
     day: "Días 5–12",
+    icon: "bolt",
+    color: TEAL,
     description:
       "Construcción con Next.js, Supabase y n8n. Ves el progreso en tiempo real — no desaparecemos una semana y reaparecemos con algo que no pediste.",
-    icon: "bolt",
-    color: "#4ddada",
   },
   {
     num: "04",
     title: "Lanzamiento",
     day: "Día 14",
-    description:
-      "Deploy, dominio, Google Business y 30 días de soporte gratuito incluidos. Te capacitamos para que puedas editar lo que necesites. Tu negocio, tu control.",
     icon: "rocket_launch",
     color: "#FF7F7F",
+    description:
+      "Deploy, dominio, Google Business y 30 días de soporte gratuito incluidos. Te capacitamos para que puedas editar lo que necesites. Tu negocio, tu control.",
   },
 ];
 
@@ -48,15 +53,15 @@ export default function ProcesoSection() {
     <section id="proceso" className="proceso-section">
       <div className="proceso-header">
         <span className="proceso-eyebrow">Metodología</span>
-        <h2 className="proceso-title font-headline-lg text-headline-lg text-balance">
+        <h2 className="proceso-title font-display display-heavy text-balance">
           Del acuerdo al lanzamiento
         </h2>
-        <p className="proceso-subtitle text-body-base text-pretty">
+        <p className="proceso-subtitle text-pretty">
           Un proceso ágil y transparente. Sin sorpresas, sin retrasos.
         </p>
       </div>
 
-      {/* Desktop: 4 cards iguales, siempre con descripción */}
+      {/* Desktop: 4 cards iguales */}
       <div className="steps-desktop">
         {pasos.map((paso, i) => (
           <button
@@ -66,32 +71,23 @@ export default function ProcesoSection() {
             onClick={() => setActive(i)}
             aria-expanded={active === i}
           >
+            {/* Número grande Playfair */}
+            <div className="step-num-big font-display">{paso.num}</div>
+
             <div className="step-top">
-              <span className="step-num">{paso.num}</span>
-              <span className="step-day">{paso.day}</span>
+              <span className="material-symbols-outlined step-icon-sym">{paso.icon}</span>
+              <span className="step-day-badge">{paso.day}</span>
             </div>
-            <div className="step-icon">
-              <span
-                className="material-symbols-outlined"
-                style={{
-                  fontSize: "32px",
-                  fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
-                  color: paso.color,
-                  opacity: active === i ? 1 : 0.45,
-                  transition: "opacity 0.2s",
-                }}
-              >
-                {paso.icon}
-              </span>
-            </div>
-            <h3 className="step-title">{paso.title}</h3>
-            <p className="step-desc">{paso.description}</p>
+
+            <h3 className="step-title font-display">{paso.title}</h3>
+            <p className="step-desc font-body">{paso.description}</p>
+
             <div className="step-indicator" />
           </button>
         ))}
       </div>
 
-      {/* Mobile: vertical accordion con colores */}
+      {/* Mobile: accordion */}
       <div className="steps-mobile">
         {pasos.map((paso, i) => (
           <div
@@ -106,20 +102,20 @@ export default function ProcesoSection() {
             >
               <div className="step-row-left">
                 <span
-                  className="material-symbols-outlined step-icon-sm"
+                  className="material-symbols-outlined"
                   style={{
                     fontSize: "22px",
                     fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24",
                     color: paso.color,
-                    opacity: active === i ? 1 : 0.4,
+                    opacity: active === i ? 1 : 0.45,
                     transition: "opacity 0.2s",
                   }}
                 >
                   {paso.icon}
                 </span>
                 <div>
-                  <span className="step-title-sm">{paso.title}</span>
-                  <span className="step-day-sm">{paso.day}</span>
+                  <span className="step-title-sm font-display">{paso.title}</span>
+                  <span className="step-day-sm font-mono-label">{paso.day}</span>
                 </div>
               </div>
               <span className="step-chevron">{active === i ? "−" : "+"}</span>
@@ -128,7 +124,7 @@ export default function ProcesoSection() {
               className="step-row-body"
               style={{ maxHeight: active === i ? "200px" : "0px" }}
             >
-              <p className="step-desc-sm">{paso.description}</p>
+              <p className="step-desc-sm font-body">{paso.description}</p>
             </div>
           </div>
         ))}
@@ -136,6 +132,7 @@ export default function ProcesoSection() {
 
       <style>{`
         .proceso-section {
+          background: #F9F9F9;
           padding: 112px 48px;
           max-width: 1100px;
           margin: 0 auto;
@@ -151,22 +148,31 @@ export default function ProcesoSection() {
         }
 
         .proceso-eyebrow {
+          font-family: var(--font-jetbrains), monospace;
           font-size: 11px;
-          font-weight: 800;
+          font-weight: 700;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: #4ddada;
+          color: ${TEAL};
         }
 
         .proceso-title {
+          font-family: var(--font-playfair), Georgia, serif;
+          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          line-height: 1.05;
+          color: ${PRIMARY};
           margin: 0;
-          color: #F8F8F8;
         }
 
         .proceso-subtitle {
-          color: #bbc9c9;
+          font-family: var(--font-inter), system-ui, sans-serif;
+          color: ${MUTED};
           margin: 0;
           max-width: 420px;
+          font-size: 15px;
+          line-height: 1.6;
         }
 
         /* ── DESKTOP ── */
@@ -179,81 +185,95 @@ export default function ProcesoSection() {
 
         .step-card {
           position: relative;
-          background: rgba(255, 255, 255, 0.04);
-          backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 16px;
-          padding: 24px 20px;
+          background: #ffffff;
+          border: 1px solid rgba(0, 0, 0, 0.07);
+          border-radius: 20px;
+          padding: 28px 22px;
           text-align: left;
           cursor: pointer;
           transition: border-color 0.25s, box-shadow 0.25s, transform 0.15s;
           overflow: hidden;
-          color: #dbe2f7;
           display: flex;
           flex-direction: column;
-          gap: 10px;
-          min-height: 260px;
+          gap: 8px;
+          min-height: 280px;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         }
 
         .step-card:hover {
           border-color: color-mix(in srgb, var(--paso-color) 40%, transparent);
           transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.08);
         }
 
         .step-card.step-active {
           border-color: var(--paso-color);
-          box-shadow: 0 4px 28px color-mix(in srgb, var(--paso-color) 18%, transparent);
+          box-shadow: 0 4px 28px color-mix(in srgb, var(--paso-color) 15%, transparent);
+        }
+
+        .step-num-big {
+          font-family: var(--font-playfair), Georgia, serif;
+          font-size: 3rem;
+          font-weight: 700;
+          letter-spacing: -0.04em;
+          line-height: 1;
+          color: rgba(0,0,0,0.06);
+          transition: color 0.25s;
+          margin-bottom: 4px;
+        }
+
+        .step-active .step-num-big {
+          color: var(--paso-color);
+          opacity: 0.25;
         }
 
         .step-top {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-top: -4px;
         }
 
-        .step-num {
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          color: rgba(255, 255, 255, 0.25);
+        .step-icon-sym {
+          font-size: 28px;
+          font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+          color: rgba(0,0,0,0.2);
           transition: color 0.2s;
         }
 
-        .step-active .step-num {
+        .step-active .step-icon-sym {
           color: var(--paso-color);
         }
 
-        .step-day {
+        .step-day-badge {
+          font-family: var(--font-jetbrains), monospace;
           font-size: 11px;
-          color: #bbc9c9;
-          font-weight: 500;
-          background: rgba(255, 255, 255, 0.06);
-          padding: 3px 8px;
+          color: ${MUTED};
+          background: rgba(0,0,0,0.05);
+          padding: 3px 10px;
           border-radius: 20px;
+          font-weight: 500;
           transition: background 0.2s, color 0.2s;
         }
 
-        .step-active .step-day {
+        .step-active .step-day-badge {
           background: var(--paso-color);
-          color: #0b1322;
-        }
-
-        .step-icon {
-          display: block;
-          margin-top: 4px;
+          color: #fff;
         }
 
         .step-title {
-          font-size: 17px;
+          font-family: var(--font-playfair), Georgia, serif;
+          font-size: 1.15rem;
           font-weight: 700;
-          color: #F8F8F8;
-          margin: 0;
+          color: ${PRIMARY};
+          margin: 4px 0 0;
           line-height: 1.2;
         }
 
         .step-desc {
+          font-family: var(--font-inter), system-ui, sans-serif;
           font-size: 13px;
-          color: #bbc9c9;
+          color: ${MUTED};
           line-height: 1.65;
           margin: 0;
           flex: 1;
@@ -269,7 +289,7 @@ export default function ProcesoSection() {
           transform: scaleX(0);
           transform-origin: left;
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          border-radius: 0 0 16px 16px;
+          border-radius: 0 0 20px 20px;
         }
 
         .step-active .step-indicator {
@@ -277,22 +297,18 @@ export default function ProcesoSection() {
         }
 
         /* ── MOBILE ── */
-        .steps-mobile {
-          display: none;
-        }
+        .steps-mobile { display: none; }
 
         .step-row {
-          background: rgba(255, 255, 255, 0.04);
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: #ffffff;
+          border: 1px solid rgba(0,0,0,0.07);
           border-radius: 14px;
           overflow: hidden;
           margin-bottom: 10px;
           transition: border-color 0.2s;
         }
 
-        .step-row.row-active {
-          border-color: var(--paso-color);
-        }
+        .step-row.row-active { border-color: var(--paso-color); }
 
         .step-row-header {
           display: flex;
@@ -304,7 +320,7 @@ export default function ProcesoSection() {
           border: none;
           cursor: pointer;
           text-align: left;
-          color: #dbe2f7;
+          color: ${PRIMARY};
         }
 
         .step-row-left {
@@ -315,30 +331,30 @@ export default function ProcesoSection() {
 
         .step-title-sm {
           display: block;
+          font-family: var(--font-playfair), Georgia, serif;
           font-size: 15px;
-          font-weight: 600;
-          color: #F8F8F8;
+          font-weight: 700;
+          color: ${PRIMARY};
           line-height: 1.2;
         }
 
         .step-day-sm {
           display: block;
-          font-size: 12px;
-          color: #bbc9c9;
+          font-family: var(--font-jetbrains), monospace;
+          font-size: 11px;
+          color: ${MUTED};
           margin-top: 2px;
         }
 
         .step-chevron {
           font-size: 20px;
-          color: rgba(255, 255, 255, 0.3);
+          color: rgba(0,0,0,0.25);
           font-weight: 300;
           line-height: 1;
           transition: color 0.2s;
         }
 
-        .row-active .step-chevron {
-          color: var(--paso-color);
-        }
+        .row-active .step-chevron { color: var(--paso-color); }
 
         .step-row-body {
           overflow: hidden;
@@ -346,8 +362,9 @@ export default function ProcesoSection() {
         }
 
         .step-desc-sm {
+          font-family: var(--font-inter), system-ui, sans-serif;
           font-size: 14px;
-          color: #bbc9c9;
+          color: ${MUTED};
           line-height: 1.65;
           margin: 0;
           padding: 0 20px 20px;
@@ -355,21 +372,13 @@ export default function ProcesoSection() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-          .proceso-section {
-            padding: 80px 24px;
-          }
-          .steps-desktop {
-            display: none;
-          }
-          .steps-mobile {
-            display: block;
-          }
+          .proceso-section { padding: 80px 24px; }
+          .steps-desktop { display: none; }
+          .steps-mobile { display: block; }
         }
 
         @media (max-width: 480px) {
-          .proceso-section {
-            padding: 60px 16px;
-          }
+          .proceso-section { padding: 60px 16px; }
         }
       `}</style>
     </section>
