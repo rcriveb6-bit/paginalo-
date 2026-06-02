@@ -135,7 +135,7 @@ const services = [
 
 export default function Home() {
   return (
-    <div className="mesh-gradient min-h-full font-body" style={{ color: PRIMARY }}>
+    <div className="mesh-gradient min-h-full font-body" style={{ color: PRIMARY, overflowX: "hidden" }}>
 
       <div className="grain-dark" />
 
@@ -355,19 +355,12 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(12, 1fr)",
-              gap: "12px",
-            }}
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
             {services.map((svc, i) => (
               <motion.div
                 key={svc.title}
-                className="service-card-dark"
+                className={`service-card-dark ${svc.span === 7 ? "lg:col-span-7" : "lg:col-span-5"}`}
                 style={{
-                  gridColumn: `span ${svc.span}`,
                   padding: "2rem",
                   display: "flex",
                   flexDirection: "column",
