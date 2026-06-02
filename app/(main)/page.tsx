@@ -147,7 +147,7 @@ export default function Home() {
         >
           <a href="#" className="flex items-center gap-2" aria-label="Páginalo inicio">
             <img
-              src="/logo-paginalo.png"
+              src="/paginalo-hero.png"
               alt="Páginalo"
               style={{ height: "44px", width: "auto", objectFit: "contain", display: "block" }}
             />
@@ -278,7 +278,7 @@ export default function Home() {
                 style={{ gridColumn: "span 3", padding: "18px 24px" }}
               >
                 <img
-                  src="/logo-paginalo.png"
+                  src="/paginalo-hero.png"
                   alt="Páginalo"
                   style={{ height: "40px", width: "auto", objectFit: "contain" }}
                 />
