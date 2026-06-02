@@ -142,14 +142,20 @@ export default function Home() {
       {/* ── NAVBAR ── */}
       <header className="fixed top-0 w-full z-50" style={{ padding: "1rem 1.5rem" }}>
         <nav
-          className="glass-panel rounded-2xl flex items-center justify-between"
-          style={{ maxWidth: "1100px", margin: "0 auto", padding: "0.75rem 1.5rem" }}
+          className="rounded-2xl flex items-center justify-between"
+          style={{
+            maxWidth: "1100px",
+            margin: "0 auto",
+            padding: "0.75rem 1.5rem",
+            background: "#ffffff",
+            boxShadow: "0 1px 16px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)",
+          }}
         >
           <a href="#" className="flex items-center gap-2" aria-label="Páginalo inicio">
             <img
               src="/paginalo-hero.png"
               alt="Páginalo"
-              style={{ height: "44px", width: "auto", objectFit: "contain", display: "block", mixBlendMode: "multiply" }}
+              style={{ height: "44px", width: "auto", objectFit: "contain", display: "block" }}
             />
           </a>
 
