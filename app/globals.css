@@ -260,3 +260,37 @@ body {
   color: rgba(255,127,127,0.4);
   transform: scale(1.1);
 }
+
+/* ─── OpenClaw WebChat Fix ────────────────────────── */
+/* Arregla puntas cortadas y palabras rotas en el chat */
+#openclaw-webchat,
+.openclaw-chat-container,
+[class*="openclaw"] {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.openclaw-chat-container *,
+[class*="openclaw"] * {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Arreglar burbujas de chat cortadas */
+[class*="message"] [class*="bubble"],
+[class*="chat-message"] {
+  border-radius: 16px !important;
+  padding: 12px 16px !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* Evitar que el input/texto se salga */
+[class*="input"],
+[class*="text-area"],
+.openclaw-input {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  resize: none !important;
+}
