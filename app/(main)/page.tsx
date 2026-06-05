@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import ProcesoSection from "./ProcesoSection";
 
 const CANVAS  = "#F9F9F9";
@@ -133,6 +134,233 @@ const services = [
   },
 ];
 
+// ── ChatBot component ──
+function ChatBot() {
+  const [mode, setMode] = useState('idle');
+  const [messages, setMessages] = useState([
+    { role: 'bot', text: '¡Hola! Soy el asistente de Páginalo. ¿En qué puedo ayudarte hoy?' }
+  ]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const msgEndRef = useRef(null);
+
+  useEffect(() => {
+    (msgEndRef.current as HTMLDivElement | null)?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const send = async () => {
+    if (!input.trim() || loading) return;
+    const msg = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, { role: 'user', text: msg }]);
+    setLoading(true);
+    try {
+      const res = await fetch('https://paginalo-bot.rcriveb6.workers.dev/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg, history: messages.map(m => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.text })) })
+      });
+      const data = await res.json();
+      setMessages(prev => [...prev, { role: 'bot', text: data.reply || 'Disculpa, no pude procesar tu mensaje. ¿Prefieres contactarnos por WhatsApp?' }]);
+    } catch (e) {
+      setMessages(prev => [...prev, { role: 'bot', text: 'Lo siento, hubo un error. Intenta de nuevo.' }]);
+    }
+    setLoading(false);
+  };
+
+  const close = () => { setMode('idle'); };
+
+  const open = mode !== 'idle';
+  const btnShadow = open
+    ? '0 2px 12px rgba(0,0,0,0.15)'
+    : '0 6px 24px rgba(0,181,181,0.35), 0 0 0 4px rgba(0,181,181,0.12)';
+
+  return (
+    <>
+      {open && <div onClick={close} className="fixed inset-0 z-40" />}
+
+      {/* Floating button */}
+      <button onClick={() => setMode(mode === 'idle' ? 'menu' : 'idle')}
+        className="fixed bottom-6 right-6 z-50 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95"
+        style={{ width: 56, height: 56, boxShadow: btnShadow, background: mode === 'idle' ? '#00B5B5' : '#1E3A5F' }}>
+        {mode === 'idle' ? (
+          <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        ) : (
+          <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        )}
+      </button>
+
+      {/* Card */}
+      <div className="fixed z-50 flex flex-col overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          bottom: 80, right: 16, width: 360,
+          maxWidth: 'calc(100vw - 32px)', maxHeight: 560,
+          borderRadius: 24, background: '#FFFFFF',
+          boxShadow: '0 12px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)',
+          transform: open ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.92)',
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? 'all' : 'none',
+          transformOrigin: 'bottom right',
+        }}>
+
+        {/* Menu */}
+        {mode === 'menu' && (
+          <>
+            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '24px 24px 20px' }}>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span className="text-lg">⚡</span>
+                  </div>
+                  <span className="font-semibold text-sm tracking-tight">Páginalo</span>
+                </div>
+                <button onClick={close} className="text-white/40 hover:text-white/80 transition-colors">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+              <h3 className="text-lg font-semibold leading-tight">¿Cómo prefieres hablar?</h3>
+              <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>Elige tu canal preferido</p>
+            </div>
+            <div className="flex-1 flex flex-col gap-3 p-5" style={{ background: '#FAFBFC' }}>
+              <button onClick={() => setMode('chat')}
+                className="flex items-center gap-3.5 p-4 rounded-2xl bg-white border"
+                style={{ border: '1.5px solid #E8ECF0', transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#00B5B5'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,181,181,0.12)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8ECF0'; e.currentTarget.style.boxShadow = 'none'; }}>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'linear-gradient(135deg, #00B5B5 0%, #009999 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    <path d="M8 10h.01M12 10h.01M16 10h.01"/>
+                  </svg>
+                </div>
+                <div className="text-left flex-1">
+                  <div style={{ fontWeight: 600, color: '#1E3A5F', fontSize: 14 }}>Chat con IA</div>
+                  <div style={{ color: '#8E959D', fontSize: 12 }}>Respuesta inmediata · 24/7</div>
+                </div>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#C4CAD1" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
+              <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3.5 p-4 rounded-2xl bg-white border no-underline"
+                style={{ border: '1.5px solid #E8ECF0', transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#25D366'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(37,211,102,0.12)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8ECF0'; e.currentTarget.style.boxShadow = 'none'; }}>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: 'linear-gradient(135deg, #25D366 0%, #1DA851 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c 0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                </div>
+                <div className="text-left flex-1">
+                  <div style={{ fontWeight: 600, color: '#1E3A5F', fontSize: 14 }}>WhatsApp</div>
+                  <div style={{ color: '#8E959D', fontSize: 12 }}>Atención personalizada</div>
+                </div>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#C4CAD1" strokeWidth="2" strokeLinecap="round">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+            </div>
+          </>
+        )}
+
+        {/* Chat */}
+        {mode === 'chat' && (
+          <>
+            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div className="flex items-center gap-2.5">
+                <button onClick={() => setMode('menu')} className="text-white/50 hover:text-white/90 transition-colors">
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                </button>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                    <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-sm font-semibold leading-tight">Asistente IA</div>
+                  <div className="text-[10px]" style={{ color: 'rgba(255,255,255,0.45)' }}>Páginalo · En línea</div>
+                </div>
+              </div>
+              <button onClick={close} className="text-white/40 hover:text-white/80 transition-colors">
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto" style={{ minHeight: 300, maxHeight: 400, padding: '12px 14px', background: '#F5F7FA' }}>
+              <div style={{ background: 'linear-gradient(135deg, #FF7F7F 0%, #FF6B6B 100%)', color: 'white', fontSize: 12, padding: '10px 14px', borderRadius: 12, marginBottom: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span>📞</span>
+                <span className="flex-1">¿Prefieres hablar con una persona?</span>
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600, textDecoration: 'underline', whiteSpace: 'nowrap' }}>WhatsApp →</a>
+              </div>
+
+              {messages.map((m, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', marginBottom: 10 }}>
+                  {m.role === 'bot' && (
+                    <div style={{ width: 26, height: 26, borderRadius: 8, background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8, marginTop: 4, flexShrink: 0 }}>
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+                        <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                      </svg>
+                    </div>
+                  )}
+                  <div style={{
+                    maxWidth: '78%', padding: '10px 14px', fontSize: 13, lineHeight: 1.5,
+                    background: m.role === 'user' ? '#00B5B5' : '#FFFFFF',
+                    color: m.role === 'user' ? '#FFFFFF' : '#1E3A5F',
+                    boxShadow: m.role === 'user' ? '0 2px 8px rgba(0,181,181,0.2)' : '0 1px 4px rgba(0,0,0,0.04)',
+                    borderRadius: 16,
+                    borderBottomRightRadius: m.role === 'user' ? 4 : 16,
+                    borderBottomLeftRadius: m.role === 'bot' ? 4 : 16,
+                  }}>{m.text}</div>
+                </div>
+              ))}
+
+              {loading && (
+                <div style={{ display: 'flex', marginBottom: 10 }}>
+                  <div style={{ width: 26, height: 26, borderRadius: 8, background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8, marginTop: 4, flexShrink: 0 }}>
+                    <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+                      <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    </svg>
+                  </div>
+                  <div style={{ background: '#FFFFFF', padding: '10px 14px', borderRadius: 16, borderBottomLeftRadius: 4, boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }} />
+                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={msgEndRef} />
+            </div>
+
+            <div className="p-3 flex gap-2" style={{ background: '#FFFFFF', borderTop: '1px solid #F0F2F4' }}>
+              <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()}
+                placeholder="Escribe tu mensaje..."
+                className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm outline-none focus:border-[#00B5B5]" />
+              <button onClick={send} disabled={loading}
+                className="bg-[#00B5B5] text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#009999] disabled:opacity-50">Enviar</button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  );
+}
+
+// ── Page ──
 export default function Home() {
   return (
     <div className="mesh-gradient min-h-full font-body" style={{ color: PRIMARY, overflowX: "hidden" }}>
@@ -546,18 +774,8 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* ── Floating WhatsApp ── */}
-      <a
-        href={WA_LINK}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center justify-center rounded-full shadow-lg"
-        style={{ width: "56px", height: "56px", background: "#25D366" }}
-      >
-        <span className="absolute inset-0 rounded-full animate-pulse-ring" style={{ background: "#25D366" }} />
-        <span className="material-symbols-outlined text-white" style={{ fontSize: "28px" }}>chat</span>
-      </a>
+      {/* ── Floating Chat — IA + WhatsApp ── */}
+      <ChatBot />
     </div>
   );
 }
