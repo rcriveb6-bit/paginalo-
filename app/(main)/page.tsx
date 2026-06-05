@@ -210,7 +210,7 @@ function ChatBot() {
         {/* Menu */}
         {mode === 'menu' && (
           <>
-            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '24px 24px 20px' }}>
+            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '24px 24px 20px', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5">
                   <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -272,7 +272,7 @@ function ChatBot() {
         {/* Chat */}
         {mode === 'chat' && (
           <>
-            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ background: 'linear-gradient(135deg, #1E3A5F 0%, #022448 100%)', color: '#F8F8F8', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
               <div className="flex items-center gap-2.5">
                 <button onClick={() => setMode('menu')} className="text-white/50 hover:text-white/90 transition-colors">
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -347,7 +347,7 @@ function ChatBot() {
               <div ref={msgEndRef} />
             </div>
 
-            <div className="p-3 flex gap-2" style={{ background: '#FFFFFF', borderTop: '1px solid #F0F2F4' }}>
+            <div className="p-3 flex gap-2" style={{ background: '#FFFFFF', borderTop: '1px solid #F0F2F4', borderBottomLeftRadius: 24, borderBottomRightRadius: 24 }}>
               <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && send()}
                 placeholder="Escribe tu mensaje..."
                 className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm outline-none focus:border-[#00B5B5]" />
