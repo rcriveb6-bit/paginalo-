@@ -199,7 +199,7 @@ function ChatBot() {
         style={{
           bottom: 80, right: 16, width: 360,
           maxWidth: 'calc(100vw - 32px)', maxHeight: 560,
-          borderRadius: 24, background: '#FFFFFF',
+          borderRadius: 24, background: '#FFFFFF', clipPath: 'inset(0 round 24px)',
           boxShadow: '0 12px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04)',
           transform: open ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.92)',
           opacity: open ? 1 : 0,
