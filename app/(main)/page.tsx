@@ -322,6 +322,7 @@ function ChatBot() {
                     borderRadius: 16,
                     borderBottomRightRadius: m.role === 'user' ? 4 : 16,
                     borderBottomLeftRadius: m.role === 'bot' ? 4 : 16,
+                    wordBreak: 'break-word', overflowWrap: 'break-word', whiteSpace: 'pre-wrap',
                   }}>{m.text}</div>
                 </div>
               ))}
