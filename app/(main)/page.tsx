@@ -240,7 +240,7 @@ function ChatBot() {
                   </svg>
                 </div>
                 <div className="text-left flex-1">
-                  <div style={{ fontWeight: 600, color: '#1E3A5F', fontSize: 14 }}>Chat con IA</div>
+                  <div style={{ fontWeight: 600, color: '#1E3A5F', fontSize: 14 }}>Chat con Asistente Virtual</div>
                   <div style={{ color: '#8E959D', fontSize: 12 }}>Respuesta inmediata · 24/7</div>
                 </div>
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#C4CAD1" strokeWidth="2" strokeLinecap="round">
