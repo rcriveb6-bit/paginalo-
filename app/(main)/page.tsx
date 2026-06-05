@@ -286,7 +286,7 @@ function ChatBot() {
                   </svg>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold leading-tight">Asistente IA</div>
+                  <div className="text-sm font-semibold leading-tight">Asistente Virtual</div>
                   <div className="text-[10px]" style={{ color: 'rgba(255,255,255,0.45)' }}>Páginalo · En línea</div>
                 </div>
               </div>
